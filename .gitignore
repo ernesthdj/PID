@@ -1,6 +1,9 @@
 # Doublon binaire du pack design deja decompresse a cote
 Design/*.zip
 
+# Cache technique graphify cree en sous-arbre (nested sous Suivit_Cours) - pas du contenu projet
+Suivit_Cours/graphify-out/
+
 # Secrets
 .env
 .env.*

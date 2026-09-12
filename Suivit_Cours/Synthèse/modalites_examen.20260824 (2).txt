@@ -1,0 +1,32 @@
+1) Les étudiants doivent réaliser un site :
+* utilisant HTML 5/ CSS 3/Javascript/Jquery/AJAX/PHP/MySQL
+* possibilité d'utiliser un ou des frameworks côté client et/ou côté serveur
+* disposant au moins d'une gestion d'utilisateur (identification, idéalement inscription et gestion à différents niveaux d'accréditation)
+* apte à proposer des contenus distincts selon l'identification de l'utilisateur sur le site
+* fournissant une sécurisation d'accès à certaines informations et fonctionnalités
+* en faisant particulièrement attention à la problématique de la sécurité de la base de données
+* utilisant éventuellement une communication Ajax et du code Javascript/Jquery
+
+2) Présentation du site lors d'un examen oral
+
+3) Les questions portent ensuite sur :
+* l'utilisation correcte de HTML/CSS
+* l'implémentation de code cohérent côté client (Javascript/Jquery/...)
+* l'utilisation à bon escient de la communication AJAX
+* les traitements en PHP
+* la sécurité en PHP
+* la consultation de données en MySQL (SELECT) (comprend aussi l'aspect sécurité)
+* la modification de données en MySQL (INSERT/UPDATE/DELETE) (comprend aussi l'aspect sécurité)
+* le développement orienté objet et/ou la généricité du code, et/ou l'utilisation de framework
+
+L'évaluation se fait par le biais de la grille suivante :
+* en fonction de la présentation du site : évaluation de la qualité par rapport à l'ampleur (taille et complexité du site) : une cote de la qualité réalisée sur un maximum compris entre 20 et 50 selon l'ampleur
+* en fonction des réponses sur les questions théoriques et pratiques, et en s'appuyant si possible sur le code du site réalisé : évaluation du degré de maîtrise des éléments fondamentaux nécessaires à la réalisation d'une application web "complète" ("front-end" et "back-end"), en répartissant cette évaluation comme suit :
+- HTML/CSS : une cote sur 5
+- Javascript/Jquery : une cote sur 15
+- communication AJAX : une cote sur 15
+- traitement en PHP : une cote sur 20
+- sécurité en PHP : une cote sur 20
+- conception et réalisation de la base de données : une cote sur 10
+- exploitation de la base en SQL : une cote sur 10
+- framework(s) / généricité : une cote sur 20

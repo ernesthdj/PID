@@ -1,0 +1,32 @@
+But : réalisation d’un squelette de site Web permettant de sécuriser l’accès à des pages et/ou à des fonctionnalités de pages
+
+Fonctionnalités visées :
+* assurer la sécurité des données des comptes utilisateurs (y compris au sein de la base de données)
+* assurer des accès restreints par le biais d’un menu de navigation qui ne propose que les éléments auxquels l’utilisateur a droit, et en rejetant de toute page de visualisation et/ou de traitement tout utilisateur n’ayant pas les droits requis
+* permettre l’utilisation de comptes utilisateurs de types différents (administrateur, gérant, client, …)
+* permettre à l’utilisateur de créer et modifier les données de son compte
+* permettre à l’administrateur de gérer les comptes de tous les utilisateurs
+* sécuriser le plus possible le compte de l’utilisateur par le biais de sa boîte mail
+* accorder une importance plus particulière à la validité de l’adresse email de l’utilisateur
+* gérer les oublis de login et/ou de mot de passe de l’utilisateur
+* mettre en place une stratégie efficace contre les attaques en “force brut” sur le module d’identification
+* gérer l’état des comptes
+
+
+Approche de développement employée :
+* programmation orientée objet
+* communication AJAX
+* synchronisation d’objet entre client et serveur
+
+
+Outils informatiques utilisés :
+* HTML 5, CSS 3, Javascript + JQuery, PHP, MySQL
+
+
+
+Pour l'examen :
+* réaliser un site Internet (par programmation personnelle, mais pouvant s'appuyer sur l'un ou l'autre framework) respectant les consignes suivantes :
+- sécurisation de l'accès à certaines pages et fonctionnalités selon le "type" d'utilisateur connecté
+- gestion de compte utilisateur
+- contenu "intéressant" et fonctions spécifiques en relation avec le thème abordé par le site (ce qui n'aura pas été réalisé dans le cadre du squelette de site Web développé dans le cadre du cours)
+- présentation et défense technique du travail lors de l'examen oral

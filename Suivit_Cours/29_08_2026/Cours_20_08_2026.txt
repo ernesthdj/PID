@@ -1,0 +1,12 @@
+Présentation du cours
+
+Début de l'étude de problèmes et de solutions :
+
+interdiction de l'exploration des répertoires via le navigateur par l'ajout de fichier index.php dans chaque répertoire
+possibilité d'avoir dans certains répertoires, un contenu d'accueil
+dossier racine d'hébergement (__FILE__)
+dossier racine du site (utilisation d'un marqueur de dossier : un fichier au nom particulier)
+chemin "montant" du fichier php interrogé (par le client et exécuté par le moteur php à partir de la demande relayée par Apache) vers la racine du site
+problématique de la configuration du framework ... et plus tard de certains éléments du site
+fonctionnalité de mise à jour
+ajout d'aide au développeur pour lui signaler des erreurs de "configuration", voire quand c'est possible une génération de ce qui manque
