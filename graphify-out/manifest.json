@@ -1,4 +1,89 @@
 {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\init-options.json": {
+    "mtime": 1789204279.154236,
+    "ast_hash": "9df117b3d97f0aaa182294c7aed96181",
+    "semantic_hash": "9df117b3d97f0aaa182294c7aed96181"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\integration.json": {
+    "mtime": 1789204278.832343,
+    "ast_hash": "af4e0cddd6beb7c084f95fa3376a4c4a",
+    "semantic_hash": "af4e0cddd6beb7c084f95fa3376a4c4a"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\integrations\\claude.manifest.json": {
+    "mtime": 1789204278.828331,
+    "ast_hash": "43eae97580a90ab61c10d639f169213f",
+    "semantic_hash": "43eae97580a90ab61c10d639f169213f"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\integrations\\speckit.manifest.json": {
+    "mtime": 1789204279.1282322,
+    "ast_hash": "7af6e218fb46340212ed29b67e95b4e1",
+    "semantic_hash": "7af6e218fb46340212ed29b67e95b4e1"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\memory\\.constitution-template.json": {
+    "mtime": 1789204279.1607704,
+    "ast_hash": "7e3332a78cec1722b4351c6bf52dfc51",
+    "semantic_hash": "7e3332a78cec1722b4351c6bf52dfc51"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\check-prerequisites.ps1": {
+    "mtime": 1789204278.9894228,
+    "ast_hash": "ab9d4c9d5772d28c6b2150b1f53ac638",
+    "semantic_hash": "ab9d4c9d5772d28c6b2150b1f53ac638"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\common.ps1": {
+    "mtime": 1789204279.0059707,
+    "ast_hash": "6d1dc2322173d3cd13a3633d61324293",
+    "semantic_hash": "6d1dc2322173d3cd13a3633d61324293"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\create-new-feature.ps1": {
+    "mtime": 1789204279.0269475,
+    "ast_hash": "fad051375e6dcd47030cc49188472fe1",
+    "semantic_hash": "fad051375e6dcd47030cc49188472fe1"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\resolve-template.ps1": {
+    "mtime": 1789204279.0460036,
+    "ast_hash": "645ad018c6297df6e23949ac3e915749",
+    "semantic_hash": "645ad018c6297df6e23949ac3e915749"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\setup-plan.ps1": {
+    "mtime": 1789204279.0535288,
+    "ast_hash": "02abf0794256a7423782adc760f0e0ca",
+    "semantic_hash": "02abf0794256a7423782adc760f0e0ca"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\scripts\\powershell\\setup-tasks.ps1": {
+    "mtime": 1789204279.06055,
+    "ast_hash": "c97a7f80df74295a055dac0106c8904f",
+    "semantic_hash": "c97a7f80df74295a055dac0106c8904f"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\workflows\\workflow-registry.json": {
+    "mtime": 1789204279.1527262,
+    "ast_hash": "6325c3e59a9553828c089d1c8288048c",
+    "semantic_hash": "6325c3e59a9553828c089d1c8288048c"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\.image-slots.state.json": {
+    "mtime": 1789207581.6482422,
+    "ast_hash": "b8606c050b06ca8193456032adc3eb69",
+    "semantic_hash": "b8606c050b06ca8193456032adc3eb69"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\image-slot.js": {
+    "mtime": 1789207581.6817555,
+    "ast_hash": "ffd58db33ccba77f4418532eb598043f",
+    "semantic_hash": "ffd58db33ccba77f4418532eb598043f"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\ios-frame.jsx": {
+    "mtime": 1789207581.6947715,
+    "ast_hash": "6da939543e70e48b202355746c930d92",
+    "semantic_hash": "6da939543e70e48b202355746c930d92"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\support.js": {
+    "mtime": 1789207581.7067986,
+    "ast_hash": "951ae391b8ae72ef12e671c2fad23353",
+    "semantic_hash": "951ae391b8ae72ef12e671c2fad23353"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\PIPELINE-STATE.json": {
+    "mtime": 1789207110.5425935,
+    "ast_hash": "e3adff9c37751d18bd0bd35919304303",
+    "semantic_hash": "e3adff9c37751d18bd0bd35919304303"
+  },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\.class.register.php": {
     "mtime": 1789194607.880721,
     "ast_hash": "bb26119077ebe1e331c56323d582370b",
@@ -185,14 +270,189 @@
     "semantic_hash": "9b6db3bde3fe912744976bdcc09648ff"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\CLAUDE.md": {
-    "mtime": 1789198839.3548696,
-    "ast_hash": "39d79965c065aa4b393c6bbf45161ae4",
-    "semantic_hash": "39d79965c065aa4b393c6bbf45161ae4"
+    "mtime": 1789201252.8325477,
+    "ast_hash": "e4b2e998edfc28441c4ac8b9060a2358",
+    "semantic_hash": "e4b2e998edfc28441c4ac8b9060a2358"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-analyze\\SKILL.md": {
+    "mtime": 1789204278.6472101,
+    "ast_hash": "b02fd4ddc4ee06dc4a5cd54c210f7ec8",
+    "semantic_hash": "b02fd4ddc4ee06dc4a5cd54c210f7ec8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-checklist\\SKILL.md": {
+    "mtime": 1789204278.7635508,
+    "ast_hash": "891f642d9acb80a17c0926c01ca0b2e0",
+    "semantic_hash": "891f642d9acb80a17c0926c01ca0b2e0"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-clarify\\SKILL.md": {
+    "mtime": 1789204278.6682665,
+    "ast_hash": "39c817acb2af9a9e66c8e726e734c390",
+    "semantic_hash": "39c817acb2af9a9e66c8e726e734c390"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-constitution\\SKILL.md": {
+    "mtime": 1789204278.6868079,
+    "ast_hash": "1e0cfc54f5de55ebeb4e10149eed8c39",
+    "semantic_hash": "1e0cfc54f5de55ebeb4e10149eed8c39"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-converge\\SKILL.md": {
+    "mtime": 1789204278.7255287,
+    "ast_hash": "6f64cd3de106518d8a6f33527e89d993",
+    "semantic_hash": "6f64cd3de106518d8a6f33527e89d993"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-implement\\SKILL.md": {
+    "mtime": 1789204278.706384,
+    "ast_hash": "4839982bf24ba7f725a6f51c5d7cf66c",
+    "semantic_hash": "4839982bf24ba7f725a6f51c5d7cf66c"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-plan\\SKILL.md": {
+    "mtime": 1789204278.7424843,
+    "ast_hash": "edd957742b856e1b731ddd9d9f61aaaf",
+    "semantic_hash": "edd957742b856e1b731ddd9d9f61aaaf"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-specify\\SKILL.md": {
+    "mtime": 1789204278.7820761,
+    "ast_hash": "70939fcfcb1ed426f79ff2791f702abd",
+    "semantic_hash": "70939fcfcb1ed426f79ff2791f702abd"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-tasks\\SKILL.md": {
+    "mtime": 1789204278.800641,
+    "ast_hash": "a8fbbffad285831f4c977e56ce3b6f35",
+    "semantic_hash": "a8fbbffad285831f4c977e56ce3b6f35"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-taskstoissues\\SKILL.md": {
+    "mtime": 1789204278.8183093,
+    "ast_hash": "87231bb7897400694a7c437ee9631f75",
+    "semantic_hash": "87231bb7897400694a7c437ee9631f75"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\memory\\constitution.md": {
+    "mtime": 1789205219.0698824,
+    "ast_hash": "df08ce3e7c8816f90bdee7f06658dfa1",
+    "semantic_hash": "df08ce3e7c8816f90bdee7f06658dfa1"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\templates\\checklist-template.md": {
+    "mtime": 1789204279.0765855,
+    "ast_hash": "5af23404f7e1314e93fab2bcfcfa5c23",
+    "semantic_hash": "5af23404f7e1314e93fab2bcfcfa5c23"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\templates\\constitution-template.md": {
+    "mtime": 1789204279.0866134,
+    "ast_hash": "dcefb6b60e7cb3db2e966977b6f02f18",
+    "semantic_hash": "dcefb6b60e7cb3db2e966977b6f02f18"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\templates\\plan-template.md": {
+    "mtime": 1789204279.0916474,
+    "ast_hash": "311db0670c3d19d2f5b781de97529b79",
+    "semantic_hash": "311db0670c3d19d2f5b781de97529b79"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\templates\\spec-template.md": {
+    "mtime": 1789204279.102661,
+    "ast_hash": "45ac8538bc1220324c9f0d610145b53f",
+    "semantic_hash": "45ac8538bc1220324c9f0d610145b53f"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\templates\\tasks-template.md": {
+    "mtime": 1789204279.1076863,
+    "ast_hash": "f8b4f62d384defa0a559bdbbaacb0540",
+    "semantic_hash": "f8b4f62d384defa0a559bdbbaacb0540"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\workflows\\speckit\\workflow.yml": {
+    "mtime": 1786827159.7966843,
+    "ast_hash": "06fd89e478bb8e0e668917a5f02f9055",
+    "semantic_hash": "06fd89e478bb8e0e668917a5f02f9055"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\Ernest H Photography.dc.html": {
+    "mtime": 1789207581.6737244,
+    "ast_hash": "7318917c054ccc011b91e77ad5770236",
+    "semantic_hash": "7318917c054ccc011b91e77ad5770236"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\uploads\\PROMPT_DESIGN.md": {
+    "mtime": 1789207581.7198343,
+    "ast_hash": "a6e97352230c0760fdea4caecddb0691",
+    "semantic_hash": "a6e97352230c0760fdea4caecddb0691"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\API-ENDPOINTS.md": {
+    "mtime": 1789206664.6933916,
+    "ast_hash": "4be21f7c34f7aa5901f2a8059e20e572",
+    "semantic_hash": "4be21f7c34f7aa5901f2a8059e20e572"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\ARCHITECTURE.md": {
+    "mtime": 1789206619.8444214,
+    "ast_hash": "d0bf93d54aa70a98a826ee265ba0ce5c",
+    "semantic_hash": "d0bf93d54aa70a98a826ee265ba0ce5c"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\FOUNDATION.md": {
+    "mtime": 1789216209.6935465,
+    "ast_hash": "5c6d524b197974dd993d1608ad5e1fc2",
+    "semantic_hash": "5c6d524b197974dd993d1608ad5e1fc2"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\JOURNAL.md": {
-    "mtime": 1789194367.9351494,
-    "ast_hash": "34e6d602d9be852e74b5f0c12f0e7b5a",
-    "semantic_hash": "34e6d602d9be852e74b5f0c12f0e7b5a"
+    "mtime": 1789216458.3324776,
+    "ast_hash": "cd9eabc28fad7c64d2bd8f8932aae4e8",
+    "semantic_hash": "cd9eabc28fad7c64d2bd8f8932aae4e8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\PALETTE.md": {
+    "mtime": 1789207750.831465,
+    "ast_hash": "4b74d3d8c361c883eb2896470a60a333",
+    "semantic_hash": "4b74d3d8c361c883eb2896470a60a333"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\UI-DESIGN.md": {
+    "mtime": 1789216202.2428803,
+    "ast_hash": "7a05e9eeb8bfed264c0631e84061b740",
+    "semantic_hash": "7a05e9eeb8bfed264c0631e84061b740"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\USER-STORIES.md": {
+    "mtime": 1789206267.7310824,
+    "ast_hash": "f27ac804a352fa4f77b050dc77bdd922",
+    "semantic_hash": "f27ac804a352fa4f77b050dc77bdd922"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L1-fondation.md": {
+    "mtime": 1789203051.960433,
+    "ast_hash": "50377e30f55b0e42efa42314f282bf02",
+    "semantic_hash": "50377e30f55b0e42efa42314f282bf02"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-administration-comptes.md": {
+    "mtime": 1789203481.416404,
+    "ast_hash": "5ebafc93808ec84bfd7aa6504e45b945",
+    "semantic_hash": "5ebafc93808ec84bfd7aa6504e45b945"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-auth-comptes.md": {
+    "mtime": 1789203389.7707136,
+    "ast_hash": "a7d4086126ba53a3f15f46a887c45b30",
+    "semantic_hash": "a7d4086126ba53a3f15f46a887c45b30"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-devis-contrat.md": {
+    "mtime": 1789203461.9124825,
+    "ast_hash": "174232b66b658a34703037dd19f6a9f8",
+    "semantic_hash": "174232b66b658a34703037dd19f6a9f8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-generateur-devis.md": {
+    "mtime": 1789203439.9505246,
+    "ast_hash": "a2666f013e82d65afba55468dcc23b9a",
+    "semantic_hash": "a2666f013e82d65afba55468dcc23b9a"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-vitrine-portfolio.md": {
+    "mtime": 1789203410.3437133,
+    "ast_hash": "f42c6adb0dc15dffe2151bebda1a0ee9",
+    "semantic_hash": "f42c6adb0dc15dffe2151bebda1a0ee9"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L3-auth-comptes.md": {
+    "mtime": 1789203620.8781826,
+    "ast_hash": "8bcea80dbb7d4a10668154fc60587aa0",
+    "semantic_hash": "8bcea80dbb7d4a10668154fc60587aa0"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L3-devis-contrat.md": {
+    "mtime": 1789203669.4320347,
+    "ast_hash": "c0ea53be4d6ad8830947b01fbe61e77b",
+    "semantic_hash": "c0ea53be4d6ad8830947b01fbe61e77b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L3-generateur-devis.md": {
+    "mtime": 1789203645.991287,
+    "ast_hash": "6ae1879c105f28aaf94f1944c6a5df67",
+    "semantic_hash": "6ae1879c105f28aaf94f1944c6a5df67"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L4-parcours.md": {
+    "mtime": 1789204078.404048,
+    "ast_hash": "8ebcd7c7c975bb3f2b6fb5c56a4c41f5",
+    "semantic_hash": "8ebcd7c7c975bb3f2b6fb5c56a4c41f5"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\Cours_05_09_2026.txt": {
     "mtime": 1789194577.9536028,
@@ -223,5 +483,20 @@
     "mtime": 1789194450.1859264,
     "ast_hash": "4c0dd9849d6cc5302d0b1ffba271bb45",
     "semantic_hash": "4c0dd9849d6cc5302d0b1ffba271bb45"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\uploads\\pasted-1785270429265-0.png": {
+    "mtime": 1789207581.7386293,
+    "ast_hash": "fa043488d974c9a034197169a05bb33e",
+    "semantic_hash": "fa043488d974c9a034197169a05bb33e"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\uploads\\pasted-1785270486805-0.png": {
+    "mtime": 1789207581.7606854,
+    "ast_hash": "2aeed8807bb782ba420943cfda0e15db",
+    "semantic_hash": "2aeed8807bb782ba420943cfda0e15db"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Design\\Ernest H. Photography site planning\\uploads\\pasted-1785489951331-0.png": {
+    "mtime": 1789207581.7716973,
+    "ast_hash": "b9113d7614ebfe19760ef0e2460cd821",
+    "semantic_hash": "b9113d7614ebfe19760ef0e2460cd821"
   }
 }
