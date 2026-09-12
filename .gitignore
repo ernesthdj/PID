@@ -1,0 +1,6 @@
+# Doublon binaire du pack design deja decompresse a cote
+Design/*.zip
+
+# Secrets
+.env
+.env.*
