@@ -34,7 +34,7 @@ pid/
 
 Active : oui
 Dossier : docs/academique/
-Derniere mise a jour : jamais
+Derniere mise a jour : 2026-09-12
 
 ## Stack
 
