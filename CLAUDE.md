@@ -20,6 +20,7 @@ pid/
 ├── CLAUDE.md          # Ce fichier
 ├── docs/
 │   └── JOURNAL.md     # Journal du projet
+├── graphify-out/      # Graphe de connaissances local (seede a la creation)
 ├── src/               # Code source
 └── tests/             # Tests
 ```
@@ -29,6 +30,12 @@ pid/
 > Ajouter ici les regles specifiques au projet apres le brainstorm.
 > Les regles globales de `~/.claude/CLAUDE.md` s'appliquent par defaut.
 
+## Suivi academique
+
+Active : oui
+Dossier : docs/academique/
+Derniere mise a jour : jamais
+
 ## Stack
 
 > A definir apres `/brainstorm`.
@@ -37,4 +44,4 @@ pid/
 
 - [ ] Brainstorm initial (`/brainstorm`)
 - [ ] Pipeline agents (`/pipeline`)
-- [ ] Graphify projet (`/graphify`)
+- [x] Graphify projet — seede a la creation, mis a jour a chaque `/hub end`
