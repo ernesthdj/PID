@@ -1,0 +1,40 @@
+# CLAUDE.md — PID
+
+> **Projet :** PID
+> **Slug :** pid
+> **Type :** Web App
+> **Cree le :** 2026-09-12
+> **Description :** Project scolaire d'integration et developpement, avec à la clé un project à developper tout en répondant aux consignes du professeur
+
+---
+
+## Contexte
+
+Ce projet a ete cree via `/hub new` dans le workspace ProjectMaster.
+La stack et les dependances seront definies apres le brainstorm initial (`/brainstorm`).
+
+## Structure
+
+```
+pid/
+├── CLAUDE.md          # Ce fichier
+├── docs/
+│   └── JOURNAL.md     # Journal du projet
+├── src/               # Code source
+└── tests/             # Tests
+```
+
+## Regles specifiques
+
+> Ajouter ici les regles specifiques au projet apres le brainstorm.
+> Les regles globales de `~/.claude/CLAUDE.md` s'appliquent par defaut.
+
+## Stack
+
+> A definir apres `/brainstorm`.
+
+## Workflows actifs
+
+- [ ] Brainstorm initial (`/brainstorm`)
+- [ ] Pipeline agents (`/pipeline`)
+- [ ] Graphify projet (`/graphify`)
