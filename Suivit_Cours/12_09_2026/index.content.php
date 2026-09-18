@@ -1,0 +1,3 @@
+<?php
+new CPage()->WriteDocument();
+?>
