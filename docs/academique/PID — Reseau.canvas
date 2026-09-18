@@ -1,132 +1,26 @@
 {
-  "nodes": [
-    {
-      "id": "moc",
-      "type": "file",
-      "file": "docs/academique/MOC — PID.md",
-      "x": -140,
-      "y": -420,
-      "width": 380,
-      "height": 90,
-      "color": "1"
-    },
-    {
-      "id": "label_29_08",
-      "type": "text",
-      "text": "## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)",
-      "x": -700,
-      "y": -420,
-      "width": 300,
-      "height": 130
-    },
-    {
-      "id": "bootstrap",
-      "type": "file",
-      "file": "docs/academique/Bootstrap PID — Detection de la Racine du Site.md",
-      "x": -140,
-      "y": -180,
-      "width": 380,
-      "height": 90,
-      "color": "4"
-    },
-    {
-      "id": "pathto",
-      "type": "file",
-      "file": "docs/academique/PID_PathTo, PID_Include et PID_IncludeOnce.md",
-      "x": -140,
-      "y": 60,
-      "width": 380,
-      "height": 90,
-      "color": "4"
-    },
-    {
-      "id": "autoload",
-      "type": "file",
-      "file": "docs/academique/Autoloading PID — spl_autoload_register et le Cache.md",
-      "x": -140,
-      "y": 300,
-      "width": 380,
-      "height": 90,
-      "color": "3"
-    },
-    {
-      "id": "poo",
-      "type": "file",
-      "file": "docs/academique/Structure POO — CPersonne, CPersonne2 et CAutre.md",
-      "x": -540,
-      "y": 540,
-      "width": 380,
-      "height": 90,
-      "color": "3"
-    },
-    {
-      "id": "retry",
-      "type": "file",
-      "file": "docs/academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md",
-      "x": 20,
-      "y": 540,
-      "width": 380,
-      "height": 90,
-      "color": "6"
-    },
-    {
-      "id": "label_ordre",
-      "type": "text",
-      "text": "Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)",
-      "x": -1000,
-      "y": 300,
-      "width": 260,
-      "height": 120
-    }
-  ],
-  "edges": [
-    {
-      "id": "e_29_08_bootstrap",
-      "fromNode": "label_29_08",
-      "toNode": "bootstrap",
-      "fromSide": "right",
-      "toSide": "left",
-      "label": "evolue vers (05/09)"
-    },
-    {
-      "id": "e_moc_bootstrap",
-      "fromNode": "moc",
-      "toNode": "bootstrap",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "label": "1"
-    },
-    {
-      "id": "e_bootstrap_pathto",
-      "fromNode": "bootstrap",
-      "toNode": "pathto",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "label": "2 fournit PID_PATH_TO_ROOT"
-    },
-    {
-      "id": "e_pathto_autoload",
-      "fromNode": "pathto",
-      "toNode": "autoload",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "label": "3 utilise PID_Include"
-    },
-    {
-      "id": "e_autoload_poo",
-      "fromNode": "autoload",
-      "toNode": "poo",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "label": "4 charge ces classes"
-    },
-    {
-      "id": "e_autoload_retry",
-      "fromNode": "autoload",
-      "toNode": "retry",
-      "fromSide": "bottom",
-      "toSide": "top",
-      "label": "5 durci le 12/09"
-    }
-  ]
+	"nodes":[
+		{"id":"pathto","type":"file","file":"academique/PID_PathTo, PID_Include et PID_IncludeOnce.md","x":-140,"y":60,"width":380,"height":360,"color":"4"},
+		{"id":"label_ordre","type":"text","text":"Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)","x":-1000,"y":300,"width":260,"height":150},
+		{"id":"label_29_08","type":"text","text":"## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)","x":-820,"y":-580,"width":300,"height":220},
+		{"id":"bootstrap","type":"file","file":"academique/Bootstrap PID — Detection de la Racine du Site.md","x":-140,"y":-470,"width":380,"height":310,"color":"4"},
+		{"id":"retry","type":"file","file":"academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md","x":160,"y":1000,"width":380,"height":420,"color":"6"},
+		{"id":"poo","type":"file","file":"academique/Structure POO — CPersonne, CPersonne2 et CAutre.md","x":-780,"y":1000,"width":380,"height":420,"color":"3"},
+		{"id":"autoload","type":"file","file":"academique/Autoloading PID — spl_autoload_register et le Cache.md","x":-330,"y":600,"width":380,"height":280,"color":"3"},
+		{"id":"capplication","type":"file","file":"academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":650,"y":600,"width":380,"height":420,"color":"5"},
+		{"id":"moc","type":"file","file":"academique/MOC — PID.md","x":-140,"y":-1360,"width":380,"height":260,"color":"1"},
+		{"id":"label_glossaire","type":"text","text":"+ Glossaire PHP (9 notes) :\nvisibilite, methodes magiques,\nstatic, closures, sessions,\neval, tokenisation,\ninclude/require, singleton\n-> section dediee du MOC,\npas de noeuds ici (evite la toile d'araignee)","x":-700,"y":-1090,"width":380,"height":180},
+		{"id":"intro_php","type":"file","file":"academique/Introduction au PHP — Bases pour débutant.md","x":-1000,"y":-1620,"width":380,"height":440,"color":"2"}
+	],
+	"edges":[
+		{"id":"e_29_08_bootstrap","fromNode":"label_29_08","fromSide":"right","toNode":"bootstrap","toSide":"left","label":"evolue vers (05/09)"},
+		{"id":"e_moc_bootstrap","fromNode":"moc","fromSide":"bottom","toNode":"bootstrap","toSide":"top","label":"1"},
+		{"id":"e_bootstrap_pathto","fromNode":"bootstrap","fromSide":"bottom","toNode":"pathto","toSide":"top","label":"2 fournit PID_PATH_TO_ROOT"},
+		{"id":"e_pathto_autoload","fromNode":"pathto","fromSide":"bottom","toNode":"autoload","toSide":"top","label":"3 utilise PID_Include"},
+		{"id":"e_autoload_poo","fromNode":"autoload","fromSide":"bottom","toNode":"poo","toSide":"top","label":"4 charge ces classes"},
+		{"id":"e_autoload_retry","fromNode":"autoload","fromSide":"bottom","toNode":"retry","toSide":"top","label":"5 durci le 12/09"},
+		{"id":"e_bootstrap_capplication","fromNode":"bootstrap","fromSide":"right","toNode":"capplication","toSide":"top","label":"valide PID_CHARSET / PID_APPLICATION_SESSION_ITEM_NAME"},
+		{"id":"e_autoload_capplication","fromNode":"autoload","fromSide":"right","toNode":"capplication","toSide":"left","label":"6 charge CApplication/CMonApp/CPage"},
+		{"id":"e_moc_intro","fromNode":"moc","fromSide":"left","toNode":"intro_php","toSide":"right","label":"prerequis PHP"}
+	]
 }

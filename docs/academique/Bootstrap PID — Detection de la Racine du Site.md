@@ -40,7 +40,7 @@ for ($remainingUpSteps = substr_count(str_replace("\\", "/", __FILE__), "/"); $r
 
 ### 3. Le fichier-marqueur `.pid.config.php`
 
-Ce fichier n'a qu'un rôle : **exister à la racine** et définir les constantes de configuration du framework (`PID_SETUP_ACTION_NAME`, `PID_INDEX_CONTENT_FILENAME`, `PID_DEFAULT_INDEX_CONTENT`, `PID_CLASS_REGISTER_FILENAME`). S'il manque une de ces constantes après son inclusion, `index.php` s'arrête net avec `die()` — validation défensive dès le bootstrap.
+Ce fichier n'a qu'un rôle : **exister à la racine** et définir les constantes de configuration du framework. Version du 05/09 : `PID_SETUP_ACTION_NAME`, `PID_INDEX_CONTENT_FILENAME`, `PID_DEFAULT_INDEX_CONTENT`, `PID_CLASS_REGISTER_FILENAME`. Depuis le 12/09, deux constantes obligatoires supplémentaires sont apparues — `PID_CHARSET` et `PID_APPLICATION_SESSION_ITEM_NAME` — qui configurent le nouveau singleton applicatif (voir [[CApplication, CMonApp et CPage — Singleton applicatif et charset]]). S'il manque une de ces constantes après son inclusion, `index.php` s'arrête net avec `die()` — validation défensive dès le bootstrap. `index.php` va même plus loin pour `PID_CHARSET` : après avoir vérifié sa présence, il vérifie aussi que sa **valeur** vaut bien `PID_ANSI` ou `PID_UTF8` (deux constantes techniques définies en tout début d'`index.php` lui-même, pas dans `.pid.config.php`) — sinon nouveau `die()`, distinct du premier.
 
 ### 4. Distinguer requête HTTP directe vs inclusion
 
@@ -70,8 +70,10 @@ Tu es dans `dir1/truc/machin/index.php`. `__FILE__` contient 3 occurrences de `/
 
 ## Connexions
 
+- [[Introduction au PHP — Bases pour débutant]] — bases de syntaxe (variables, constantes `define()`, boucles) si ce concept semble encore flou.
 - [[PID_PathTo, PID_Include et PID_IncludeOnce]] — utilisent directement `PID_PATH_TO_ROOT` pour construire des chemins fiables.
 - [[Autoloading PID — spl_autoload_register et le Cache]] — le registre de classes est cherché et écrit à partir de cette même racine.
+- [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — ses deux constantes de configuration (`PID_CHARSET`, `PID_APPLICATION_SESSION_ITEM_NAME`) sont désormais validées ici même, dès le bootstrap, avant que quoi que ce soit d'autre ne s'exécute.
 
 ## Questions de rappel actif
 

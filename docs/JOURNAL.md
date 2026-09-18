@@ -4,9 +4,30 @@
 
 | # | Regle | Fichier(s) | Date |
 |---|-------|-----------|------|
-| _Aucune regle pour l'instant_ | | | |
+| 1 | Le materiel de cours PID est publie en deux temps (avant/apres le samedi) — toujours verifier `Suivit_Cours/<date>/` pour la version **post-cours** avant de baser des notes academiques dessus ; un dossier `pid_avant_cours.<date>/` signale l'ancienne version a ne plus utiliser comme reference. | `Suivit_Cours/12_09_2026/`, `docs/academique/` | 2026-09-18 |
 
 ## Historique
+
+### [2026-09-18] DOCS — introduction PHP + glossaire wiki (10 nouvelles notes)
+**Resume :** mentalyas a demande une introduction PHP pour debutant complet ainsi qu'un "wiki" pour chaque concept complexe du cours, avec liens Obsidian. Cree :
+- `Introduction au PHP — Bases pour débutant.md` — syntaxe de base (variables/types, structures de controle, fonctions, tableaux, chaines, include/require, POO minimale), point d'entree explicite pour quelqu'un qui n'a jamais fait de PHP.
+- 9 notes de glossaire (`Glossaire PHP — *.md` + `Glossaire — Le motif de conception Singleton.md`) : Visibilite/encapsulation, Methodes magiques, Proprietes/methodes statiques, Closures, Superglobales/sessions, eval(), Tokenisation, include/require, motif Singleton. Chacune suit un format allege par rapport aux notes de concept PID (definition, detail, exemple, questions de rappel, pieges) et cible des notions PHP generales reutilisables, independantes du framework du prof.
+- Liens croises ajoutes dans les 6 notes de concept PID existantes + la note CApplication (section Connexions) vers les entrees de glossaire pertinentes ; liens retour de chaque entree de glossaire vers les notes PID qui l'utilisent ("Utilise dans ce cours").
+- MOC mis a jour : nouvelle section "Zero PHP ? Commence ici" + section "Glossaire PHP" listant les 9 notes, ordre d'apprentissage complete avec une etape 0.
+- Canvas : ajout d'un seul noeud `intro_php` relie au MOC (pas de noeuds individuels pour les 9 entrees de glossaire, volontairement, pour respecter la regle "jamais toile d'araignee" du profil — le glossaire reste consultable via le MOC et les wikilinks in-texte).
+**Fichiers :** `docs/academique/Introduction au PHP*.md`, `docs/academique/Glossaire*.md` (x9), `docs/academique/MOC — PID.md`, `docs/academique/PID — Reseau.canvas`, + Connexions des 6 notes existantes.
+**Impact :** un debutant complet peut desormais entrer par l'introduction, puis approfondir n'importe quel terme PHP complexe croise dans une note PID via un aller-retour wiki, sans quitter le vocabulaire du cours.
+
+### [2026-09-18] DOCS — correction academique session 1 (materiel post-cours 12/09)
+**Resume :** mentalyas a signale que les notes academiques de la session 1 avaient ete redigees a partir du materiel publie *avant* le cours du 12/09, et a fourni la version reellement publiee *apres* (`Suivit_Cours/12_09_2026/`, l'ancienne version deplacee dans `pid_avant_cours.20260912/`). Diff complet des deux versions (tous les `index.php`, `.class.register.php`, `.pid.config.php`, `personne.php`) puis corrections :
+- **Bootstrap** : ajout de `PID_CHARSET`/`PID_APPLICATION_SESSION_ITEM_NAME` aux constantes obligatoires validees par `index.php`, + validation de la valeur de `PID_CHARSET`.
+- **Autoloading** : chemin d'exemple corrige (`dir1/truc/machin/personne.php` -> `dir1/dir2/personne.php`).
+- **Evolution de l'Autoloader (retry)** : correction technique significative — le parametre `false` manquant dans `class_exists($className, false)` (et `interface_exists`/`trait_exists`) a ete ajoute, avec explication de son role (evite une re-entree dans l'autoloader via le declenchement d'autoload par defaut de `class_exists`).
+- **Structure POO** : `CPersonne2` (`dir1/dir2/personne.php`) et `CPersonne` (`dir1/truc/machin/personne.php`) fusionnees en une seule classe `CPersonne`, colocalisee avec `CAutre` dans `dir1/dir2/personne.php`, avec un commentaire teste entre `class` et le nom (`class /* OUPS un commentaire */ CPersonne`) — reecriture substantielle de la note (raison d'etre, schema, pieges, exemples).
+- **Nouvelle note** : `CApplication, CMonApp et CPage — Singleton applicatif et charset.md` — concept entierement absent du materiel avant-cours (singleton applicatif persistant en session, `__wakeup()`, conversion de charset ANSI/UTF-8, `CPage::WriteDocument()`).
+- MOC et canvas (`PID — Reseau.canvas`) mis a jour en consequence (nouveau noeud, chemins de reference corriges, note de fiabilite ajoutee).
+**Fichiers :** `docs/academique/*.md`, `docs/academique/PID — Reseau.canvas`, `CLAUDE.md` (date suivi academique)
+**Impact :** les notes academiques refletent maintenant fidelement le code reellement publie par le prof apres le cours, pas une version intermediaire.
 
 ### [2026-09-12] SESSION — End
 **Resume :** Premiere session complete sur PID. Structure alignee sur les correctifs du pipeline (graphify seed local, suivi academique). Brainstorm niveaux 1-4 complet (concept vitrine photographe + generateur de devis a la carte multi-segments, squelette securise multi-roles impose par le cours) puis export FOUNDATION.md. Spec Kit partiel (constitution seedee, specs par feature sautees faute de session dediee pratique). Pipeline IT initialise et Phase 1 executee (PO: 25 user stories, Architect: schema BDD + 29 endpoints + choix Fortify/PDF/session-CSRF, UI/UX: wireframes + palette). Design Claude Design existant ("Ernest H Photography") recupere et reconcilie avec les livrables UI/UX (tokens de marque reels, motifs cadran/cercles de prix). 3 commits pousses.

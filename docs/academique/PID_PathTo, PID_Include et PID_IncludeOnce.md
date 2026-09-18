@@ -67,6 +67,7 @@ Le même appel `PID_Include("dir1/dir2/a_inclure.php")` fonctionnerait **à l'id
 
 ## Connexions
 
+- [[Glossaire PHP — include, require et résolution de chemins]] — le mécanisme natif exact que ces 3 fonctions maison enveloppent et corrigent (résolution relative au fichier courant, pas à la racine).
 - [[Bootstrap PID — Detection de la Racine du Site]] — fournit la constante `PID_PATH_TO_ROOT` sans laquelle `PID_PathTo` ne peut rien calculer.
 - [[Autoloading PID — spl_autoload_register et le Cache]] — utilise `PID_Include` en interne pour charger le fichier trouvé, et `PID_PathTo(..., false)` pour localiser où écrire le cache.
 

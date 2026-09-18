@@ -7,3 +7,6 @@ Suivit_Cours/graphify-out/
 # Secrets
 .env
 .env.*
+
+# Config locale Obsidian (fichier IDE)
+docs/.obsidian/

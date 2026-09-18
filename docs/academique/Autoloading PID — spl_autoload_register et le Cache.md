@@ -73,10 +73,14 @@ flowchart TD
 
 ## Exemple concret
 
-Premier appel de `new CPersonne("Duchemin", "Robert")` dans `test_poo.php` : le cache ne contient rien (ou une entrée obsolète) → recherche récursive dans toute l'arborescence → trouve `dir1/truc/machin/personne.php`, vérifie par tokenisation que `class CPersonne` y est bien déclarée → écrit ce chemin dans `.class.register.php` → inclut le fichier. Au prochain appel de `new CPersonne(...)` (même dans une autre requête HTTP), l'entrée est déjà en cache : chargement instantané, pas de nouvelle exploration de dossiers.
+Premier appel de `new CPersonne("Duchemin", "Robert")` dans `test_poo.php` : le cache ne contient rien (ou une entrée obsolète) → recherche récursive dans toute l'arborescence → trouve `dir1/dir2/personne.php` (depuis le 12/09 — ce fichier contient en réalité **deux** classes, `CAutre` puis `CPersonne`, voir [[Structure POO — CPersonne, CPersonne2 et CAutre]]), vérifie par tokenisation que `class CPersonne` y est bien déclarée → écrit ce chemin dans `.class.register.php` → inclut le fichier. Au prochain appel de `new CPersonne(...)` (même dans une autre requête HTTP), l'entrée est déjà en cache : chargement instantané, pas de nouvelle exploration de dossiers.
+
+> ⚠️ **Correction (12/09, publication post-cours)** : la première version de ce cahier avait été rédigée sur la base du matériel publié *avant* le cours du 12/09, qui plaçait encore `CPersonne` dans `dir1/truc/machin/personne.php` (chemin utilisé le 05/09). La version réellement publiée après le cours déplace/renomme cette classe vers `dir1/dir2/personne.php` — c'est ce chemin qui est aujourd'hui dans `.class.register.php`. `dir1/truc/machin/personne.php` n'existe plus.
 
 ## Connexions
 
+- [[Glossaire PHP — Closures et fonctions anonymes]] — toute la logique de l'autoloader est écrite dans la fonction anonyme passée à `spl_autoload_register()`.
+- [[Glossaire PHP — Tokenisation (token_get_all)]] — le détail complet de comment `token_get_all()` isole une déclaration de classe dans un fichier.
 - [[PID_PathTo, PID_Include et PID_IncludeOnce]] — l'autoloader s'appuie entièrement sur `PID_Include` pour le chargement final et sur `PID_PathTo(..., false)` pour localiser où écrire le cache.
 - [[Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209)]] — la suite logique : que faire si le cache pointe vers un chemin qui ne contient *plus* la bonne classe ?
 - [[Structure POO — CPersonne, CPersonne2 et CAutre]] — ce sont précisément les classes que cet autoloader charge à la demande.
