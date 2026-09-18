@@ -8,6 +8,11 @@
 
 ## Historique
 
+### [2026-09-18] DOCS — schéma illustré Bootstrap/PathTo/Autoloader (avant-apres)
+**Resume :** mentalyas a genere une infographie via Gemini (index.php duplique par dossier + chemins en dur -> Bootstrap + PID_PathTo/Include + Autoloader avec cache). Premiere version rejetee (elements generiques Laravel/Symfony : front controller unique, routeur, PSR-4, MVC — absents du PID reel). Corrigee en deux iterations via prompts cibles jusqu'a fidelite complete au code du cours (dont les vrais chemins `dir1/dir2/personne.php`, `dir.0/index.php`, `dir1/truc/machin/index.php`). Image finale integree dans `docs/academique/attachments/schema-bootstrap-autoloader-avant-apres.png`, embedee dans les 3 notes concernees (Bootstrap, PID_PathTo/Include, Autoloading).
+**Fichiers :** `docs/academique/attachments/schema-bootstrap-autoloader-avant-apres.png`, 3 notes de concept (embed + legende).
+**Impact :** support visuel verifie fidele, evite de propager une confusion PID/Laravel frequente (front controller unique vs index.php duplique par dossier).
+
 ### [2026-09-18] DOCS — introduction PHP + glossaire wiki (10 nouvelles notes)
 **Resume :** mentalyas a demande une introduction PHP pour debutant complet ainsi qu'un "wiki" pour chaque concept complexe du cours, avec liens Obsidian. Cree :
 - `Introduction au PHP — Bases pour débutant.md` — syntaxe de base (variables/types, structures de controle, fonctions, tableaux, chaines, include/require, POO minimale), point d'entree explicite pour quelqu'un qui n'a jamais fait de PHP.

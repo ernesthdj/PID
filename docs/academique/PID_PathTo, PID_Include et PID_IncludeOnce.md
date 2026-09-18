@@ -13,6 +13,9 @@ analogie_domaine: multiprise / électricité
 
 > Ce sont les adaptateurs universels de la multiprise du site : peu importe dans quelle pièce (dossier) tu te trouves, tu branches ta demande ("je veux `dir1/dir2/page.php`") sur `PID_PathTo`, et il te ressort la bonne adresse absolue vers le tableau électrique (la racine), sans jamais te demander où tu es toi-même.
 
+![[attachments/schema-bootstrap-autoloader-avant-apres.png]]
+*Même schéma que [[Bootstrap PID — Detection de la Racine du Site]] — colonne "APRÈS", bloc central `PID_PathTo()`/`PID_Include()`.*
+
 ## En une phrase simple
 
 Trois fonctions globales du framework qui remplacent les `include`/`require` natifs de PHP : elles reçoivent toutes un chemin **écrit à partir de la racine du site**, et se chargent de le convertir en chemin réellement valide depuis l'endroit où le code s'exécute — tu écris toujours le même chemin, peu importe le fichier depuis lequel tu l'écris.

@@ -13,6 +13,9 @@ analogie_domaine: jeux vidéo d'automatisation (Satisfactory)
 
 > Imagine une usine Satisfactory : dès qu'une commande arrive pour une pièce ("j'ai besoin de la classe CPersonne"), un convoyeur rapide vérifie d'abord un entrepôt de pièces déjà répertoriées (`.class.register.php`) — trouvé, livraison immédiate. Sinon, un robot d'exploration part fouiller **tout l'entrepôt** pièce par pièce jusqu'à trouver la bonne, puis met à jour le registre pour que la prochaine commande soit instantanée.
 
+![[attachments/schema-bootstrap-autoloader-avant-apres.png]]
+*Même schéma que [[Bootstrap PID — Detection de la Racine du Site]] — bloc "AUTOLOADER" à droite (déclenchement paresseux, recherche, mise en cache dans `.class.register.php`).*
+
 ## En une phrase simple
 
 L'autoloading (chargement automatique) est un mécanisme qui dit à PHP : "si tu rencontres un nom de classe que tu ne connais pas encore, appelle cette fonction — elle va trouver et charger le bon fichier toute seule", pour ne plus jamais écrire une longue liste de `require` en haut de chaque fichier.

@@ -13,6 +13,9 @@ analogie_domaine: multiprise / électricité
 
 > Chaque `index.php` du site, où qu'il soit dans l'arborescence, se comporte comme une rallonge électrique qui remonte automatiquement jusqu'au tableau électrique principal avant de faire quoi que ce soit — il ne fait confiance à aucune prise locale, il vérifie toujours d'où vient le courant.
 
+![[attachments/schema-bootstrap-autoloader-avant-apres.png]]
+*Schéma avant/après (index.php dupliqué + chemins en dur → Bootstrap + PID_PathTo/Include + Autoloader). Couvre aussi [[PID_PathTo, PID_Include et PID_IncludeOnce]] et [[Autoloading PID — spl_autoload_register et le Cache]] — vérifié fidèle au code du cours le 2026-09-18.*
+
 ## En une phrase simple
 
 Avant de faire quoi que ce soit, chaque `index.php` remonte l'arborescence de dossiers, un cran à la fois, jusqu'à trouver un fichier-marqueur (`.pid.config.php`) qui signale "ici, c'est la racine du site" — et il retient ce chemin dans une constante globale, `PID_PATH_TO_ROOT`, que tout le reste du framework va réutiliser.
