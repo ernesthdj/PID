@@ -8,6 +8,11 @@
 
 ## Historique
 
+### [2026-09-21 13:22] SESSION — End (session du 2026-09-18, fermee en differe)
+**Resume :** Session du 18/09 consacree au cours academique : materiel post-cours 12/09 (remplace la version pre-cours), correction des notes de la session 1, introduction PHP + glossaire wiki (10 notes), schema illustre Bootstrap/PathTo/Autoloader. Fermee a posteriori le 21/09 (non cloturee a l'epoque). Dernier ajustement commite : reorganisation manuelle du canvas `PID — Reseau.canvas` dans Obsidian (groupe ajoute, noeuds deplaces, chemins `moc` et `intro_php` passes en chemins relatifs a la racine du vault). Graphify non mis a jour a la cloture (dernier graphe : 12/09) ; `.obsidian/` et `Sans titre.base` laisses hors commit.
+**Branche :** master
+**Commits pushes :** 4 (3 de la session + 1 de cloture)
+
 ### [2026-09-18] DOCS — schéma illustré Bootstrap/PathTo/Autoloader (avant-apres)
 **Resume :** mentalyas a genere une infographie via Gemini (index.php duplique par dossier + chemins en dur -> Bootstrap + PID_PathTo/Include + Autoloader avec cache). Premiere version rejetee (elements generiques Laravel/Symfony : front controller unique, routeur, PSR-4, MVC — absents du PID reel). Corrigee en deux iterations via prompts cibles jusqu'a fidelite complete au code du cours (dont les vrais chemins `dir1/dir2/personne.php`, `dir.0/index.php`, `dir1/truc/machin/index.php`). Image finale integree dans `docs/academique/attachments/schema-bootstrap-autoloader-avant-apres.png`, embedee dans les 3 notes concernees (Bootstrap, PID_PathTo/Include, Autoloading).
 **Fichiers :** `docs/academique/attachments/schema-bootstrap-autoloader-avant-apres.png`, 3 notes de concept (embed + legende).

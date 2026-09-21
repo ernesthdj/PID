@@ -1,5 +1,6 @@
 {
 	"nodes":[
+		{"id":"5edc566d2b15e7d0","x":300,"y":-1560,"width":1000,"height":1055,"type":"group","label":"Groupe sans titre"},
 		{"id":"pathto","type":"file","file":"academique/PID_PathTo, PID_Include et PID_IncludeOnce.md","x":-140,"y":60,"width":380,"height":360,"color":"4"},
 		{"id":"label_ordre","type":"text","text":"Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)","x":-1000,"y":300,"width":260,"height":150},
 		{"id":"label_29_08","type":"text","text":"## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)","x":-820,"y":-580,"width":300,"height":220},
@@ -8,9 +9,9 @@
 		{"id":"poo","type":"file","file":"academique/Structure POO — CPersonne, CPersonne2 et CAutre.md","x":-780,"y":1000,"width":380,"height":420,"color":"3"},
 		{"id":"autoload","type":"file","file":"academique/Autoloading PID — spl_autoload_register et le Cache.md","x":-330,"y":600,"width":380,"height":280,"color":"3"},
 		{"id":"capplication","type":"file","file":"academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":650,"y":600,"width":380,"height":420,"color":"5"},
-		{"id":"moc","type":"file","file":"academique/MOC — PID.md","x":-140,"y":-1360,"width":380,"height":260,"color":"1"},
 		{"id":"label_glossaire","type":"text","text":"+ Glossaire PHP (9 notes) :\nvisibilite, methodes magiques,\nstatic, closures, sessions,\neval, tokenisation,\ninclude/require, singleton\n-> section dediee du MOC,\npas de noeuds ici (evite la toile d'araignee)","x":-700,"y":-1090,"width":380,"height":180},
-		{"id":"intro_php","type":"file","file":"academique/Introduction au PHP — Bases pour débutant.md","x":-1000,"y":-1620,"width":380,"height":440,"color":"2"}
+		{"id":"moc","type":"file","file":"docs/academique/MOC — PID.md","x":360,"y":-1472,"width":580,"height":440,"color":"1"},
+		{"id":"intro_php","type":"file","file":"docs/academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":-790,"y":-1880,"width":540,"height":560,"color":"2"}
 	],
 	"edges":[
 		{"id":"e_29_08_bootstrap","fromNode":"label_29_08","fromSide":"right","toNode":"bootstrap","toSide":"left","label":"evolue vers (05/09)"},
