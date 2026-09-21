@@ -68,6 +68,9 @@ PID_Include("dir1/dir2/a_inclure.php"); // traduit puis inclut réellement le fi
 
 Le même appel `PID_Include("dir1/dir2/a_inclure.php")` fonctionnerait **à l'identique** si on l'écrivait depuis `index.php` à la racine, depuis `dir1/index.php`, ou depuis `dir1/truc/machin/index.php` — seule la traduction interne change, jamais ce que le développeur écrit.
 
+## Évolution du 19/09 — le préfixe `*`
+`PID_PathTo` reconnaît désormais un chemin qui **commence par `*`** : il est alors cherché dans le dossier du framework (`PID_FOLDER_PATH`, ex. `.pid/`) au lieu de la racine du site. Sans étoile, rien ne change. **Défini mais pas encore utilisé** dans le code du cours au 19/09. Détail dans [[Dossier .pid et préfixe étoile — Séparer le framework du site]].
+
 ## Connexions
 
 - [[Glossaire PHP — include, require et résolution de chemins]] — le mécanisme natif exact que ces 3 fonctions maison enveloppent et corrigent (résolution relative au fichier courant, pas à la racine).

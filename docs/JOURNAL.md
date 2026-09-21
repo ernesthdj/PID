@@ -5,8 +5,14 @@
 | # | Regle | Fichier(s) | Date |
 |---|-------|-----------|------|
 | 1 | Le materiel de cours PID est publie en deux temps (avant/apres le samedi) — toujours verifier `Suivit_Cours/<date>/` pour la version **post-cours** avant de baser des notes academiques dessus ; un dossier `pid_avant_cours.<date>/` signale l'ancienne version a ne plus utiliser comme reference. | `Suivit_Cours/12_09_2026/`, `docs/academique/` | 2026-09-18 |
+| 2 | Le projet avance au rythme du cours, jamais devant : avant toute tache d'implementation, verifier dans `docs/RYTHME-COURS.md` que la notion correspondante est vue. Les dossiers de cours suivent la nomenclature `Suivit_Cours/pid.aaaammjj/` (depuis le 2026-09-21). | `docs/RYTHME-COURS.md`, `CLAUDE.md` | 2026-09-21 |
 
 ## Historique
+
+### [2026-09-21] DOCS — cours du 19/09 + rythme du cours
+**Resume :** mentalyas a depose le materiel du cours du 19/09 (`Suivit_Cours/pid.20260919/_htdocs/`) et renomme les dossiers de cours en `pid.aaaammjj`. Integre : 6 notes creees dans `docs/academique/` (Dossier `.pid` et prefixe `*`, `CPage` complete, `TCssJsFiles` + `CFileCollection`, glossaire Traits / Iterator / Echappement HTML-XSS), 4 notes existantes completees (Bootstrap, PathTo, Autoloading, CApplication), MOC et canvas mis a jour (chemins du canvas passes en relatif a la racine du vault, `intro_php` re-pointe sur l'introduction PHP, 3 noeuds ajoutes). Demande de mentalyas : le projet doit suivre le rythme du cours -> creation de `docs/RYTHME-COURS.md` (cours vu vs suppose par la Phase 1) et regle dans `CLAUDE.md`. Conclusion : les briques MySQL, comptes/auth, JS/jQuery, AJAX ne sont pas encore enseignees ; Phase 2 a decouper en 2a (maintenant) -> 2e (apres cours). Pipeline non relance.
+**Fichiers :** `docs/academique/*` (6 nouveaux, 5 modifies), `docs/RYTHME-COURS.md`, `CLAUDE.md`, `Suivit_Cours/`.
+**Impact :** deux points probables releves dans le code du prof (`CFileCollection::Add` avec `in_array` sur un booleen ; `new X()->m()` exige PHP 8.4) — non executes, pas de PHP installe sur la machine ; a confirmer au prochain cours.
 
 ### [2026-09-21 13:22] SESSION — End (session du 2026-09-18, fermee en differe)
 **Resume :** Session du 18/09 consacree au cours academique : materiel post-cours 12/09 (remplace la version pre-cours), correction des notes de la session 1, introduction PHP + glossaire wiki (10 notes), schema illustre Bootstrap/PathTo/Autoloader. Fermee a posteriori le 21/09 (non cloturee a l'epoque). Dernier ajustement commite : reorganisation manuelle du canvas `PID — Reseau.canvas` dans Obsidian (groupe ajoute, noeuds deplaces, chemins `moc` et `intro_php` passes en chemins relatifs a la racine du vault). Graphify non mis a jour a la cloture (dernier graphe : 12/09) ; `.obsidian/` et `Sans titre.base` laisses hors commit.

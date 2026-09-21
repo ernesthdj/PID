@@ -1,17 +1,20 @@
 {
 	"nodes":[
 		{"id":"5edc566d2b15e7d0","x":300,"y":-1560,"width":1000,"height":1055,"type":"group","label":"Groupe sans titre"},
-		{"id":"pathto","type":"file","file":"academique/PID_PathTo, PID_Include et PID_IncludeOnce.md","x":-140,"y":60,"width":380,"height":360,"color":"4"},
-		{"id":"label_ordre","type":"text","text":"Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)","x":-1000,"y":300,"width":260,"height":150},
+		{"id":"pathto","type":"file","file":"docs/academique/PID_PathTo, PID_Include et PID_IncludeOnce.md","x":-140,"y":60,"width":380,"height":360,"color":"4"},
+		{"id":"label_ordre","type":"text","text":"Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)\n7 Dossier .pid · 8 CPage · 9 Trait CSS/JS (19/09)","x":-1000,"y":300,"width":260,"height":190},
 		{"id":"label_29_08","type":"text","text":"## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)","x":-820,"y":-580,"width":300,"height":220},
-		{"id":"bootstrap","type":"file","file":"academique/Bootstrap PID — Detection de la Racine du Site.md","x":-140,"y":-470,"width":380,"height":310,"color":"4"},
-		{"id":"retry","type":"file","file":"academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md","x":160,"y":1000,"width":380,"height":420,"color":"6"},
-		{"id":"poo","type":"file","file":"academique/Structure POO — CPersonne, CPersonne2 et CAutre.md","x":-780,"y":1000,"width":380,"height":420,"color":"3"},
-		{"id":"autoload","type":"file","file":"academique/Autoloading PID — spl_autoload_register et le Cache.md","x":-330,"y":600,"width":380,"height":280,"color":"3"},
-		{"id":"capplication","type":"file","file":"academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":650,"y":600,"width":380,"height":420,"color":"5"},
+		{"id":"bootstrap","type":"file","file":"docs/academique/Bootstrap PID — Detection de la Racine du Site.md","x":-140,"y":-470,"width":380,"height":310,"color":"4"},
+		{"id":"retry","type":"file","file":"docs/academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md","x":160,"y":1000,"width":380,"height":420,"color":"6"},
+		{"id":"poo","type":"file","file":"docs/academique/Structure POO — CPersonne, CPersonne2 et CAutre.md","x":-780,"y":1000,"width":380,"height":420,"color":"3"},
+		{"id":"autoload","type":"file","file":"docs/academique/Autoloading PID — spl_autoload_register et le Cache.md","x":-330,"y":600,"width":380,"height":280,"color":"3"},
+		{"id":"capplication","type":"file","file":"docs/academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":650,"y":600,"width":380,"height":420,"color":"5"},
 		{"id":"label_glossaire","type":"text","text":"+ Glossaire PHP (9 notes) :\nvisibilite, methodes magiques,\nstatic, closures, sessions,\neval, tokenisation,\ninclude/require, singleton\n-> section dediee du MOC,\npas de noeuds ici (evite la toile d'araignee)","x":-700,"y":-1090,"width":380,"height":180},
 		{"id":"moc","type":"file","file":"docs/academique/MOC — PID.md","x":360,"y":-1472,"width":580,"height":440,"color":"1"},
-		{"id":"intro_php","type":"file","file":"docs/academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":-790,"y":-1880,"width":540,"height":560,"color":"2"}
+		{"id":"intro_php","type":"file","file":"docs/academique/Introduction au PHP — Bases pour débutant.md","x":-790,"y":-1880,"width":540,"height":560,"color":"2"},
+		{"id":"dossier_pid","type":"file","file":"docs/academique/Dossier .pid et préfixe étoile — Séparer le framework du site.md","x":650,"y":1120,"width":380,"height":360,"color":"5"},
+		{"id":"cpage","type":"file","file":"docs/academique/CPage — Générer une page HTML (WriteDocument et points d'extension).md","x":650,"y":1640,"width":380,"height":420,"color":"5"},
+		{"id":"tcssjs","type":"file","file":"docs/academique/TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS.md","x":1150,"y":1400,"width":380,"height":360,"color":"5"}
 	],
 	"edges":[
 		{"id":"e_29_08_bootstrap","fromNode":"label_29_08","fromSide":"right","toNode":"bootstrap","toSide":"left","label":"evolue vers (05/09)"},
@@ -22,6 +25,9 @@
 		{"id":"e_autoload_retry","fromNode":"autoload","fromSide":"bottom","toNode":"retry","toSide":"top","label":"5 durci le 12/09"},
 		{"id":"e_bootstrap_capplication","fromNode":"bootstrap","fromSide":"right","toNode":"capplication","toSide":"top","label":"valide PID_CHARSET / PID_APPLICATION_SESSION_ITEM_NAME"},
 		{"id":"e_autoload_capplication","fromNode":"autoload","fromSide":"right","toNode":"capplication","toSide":"left","label":"6 charge CApplication/CMonApp/CPage"},
-		{"id":"e_moc_intro","fromNode":"moc","fromSide":"left","toNode":"intro_php","toSide":"right","label":"prerequis PHP"}
+		{"id":"e_moc_intro","fromNode":"moc","fromSide":"left","toNode":"intro_php","toSide":"right","label":"prerequis PHP"},
+		{"id":"e_capplication_dossier","fromNode":"capplication","fromSide":"bottom","toNode":"dossier_pid","toSide":"top","label":"7 framework range dans .pid (19/09)"},
+		{"id":"e_dossier_cpage","fromNode":"dossier_pid","fromSide":"bottom","toNode":"cpage","toSide":"top","label":"8 CPage devient complete"},
+		{"id":"e_tcssjs_cpage","fromNode":"tcssjs","fromSide":"left","toNode":"cpage","toSide":"right","label":"9 fournit Css() / Js()"}
 	]
 }

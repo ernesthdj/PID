@@ -27,14 +27,17 @@ pid/
 
 ## Regles specifiques
 
-> Ajouter ici les regles specifiques au projet apres le brainstorm.
 > Les regles globales de `~/.claude/CLAUDE.md` s'appliquent par defaut.
+
+- **Rythme du cours** — le projet avance au meme rythme que le cours du prof, jamais devant (demande de mentalyas, 2026-09-21). Avant toute tache d'implementation, verifier dans `docs/RYTHME-COURS.md` que la notion de cours correspondante est vue ; sinon la tache attend. Ne pas lancer `/pipeline next` sur la Phase 2 sans cette verification.
+- **Nouveau cours** — au debut de session, verifier si un dossier `Suivit_Cours/pid.aaaammjj/` du dernier samedi existe et l'integrer (notes dans `docs/academique/`, mise a jour de `docs/RYTHME-COURS.md`) avant d'avancer sur le projet.
+- **Materiel de cours** — dossiers `Suivit_Cours/pid.aaaammjj/` ; la version publiee apres le cours fait reference, `pid_avant_cours.*` est conserve pour memoire uniquement.
 
 ## Suivi academique
 
 Active : oui
 Dossier : docs/academique/
-Derniere mise a jour : 2026-09-18
+Derniere mise a jour : 2026-09-21
 
 ## Stack
 

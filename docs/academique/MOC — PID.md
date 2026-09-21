@@ -1,13 +1,13 @@
 ---
 type: MOC
-subject: PID — Framework maison codé en direct par le prof (29/08, 05/09, 12/09)
+subject: PID — Framework maison codé en direct par le prof (29/08, 05/09, 12/09, 19/09)
 tags: [#MOC, #PID, #PHP, #POO, #autoloading]
-date: 2026-09-12
+date: 2026-09-21
 ---
 
 # PID — Map of Content
 
-> **En résumé** : chaque samedi, le prof code en direct un mini-framework PHP maison qui sert de "squelette" pédagogique. Il tient en 3 idées : (1) **se retrouver** dans l'arborescence peu importe où on est (bootstrap + `PID_PathTo`/`PID_Include`), (2) **charger les classes tout seul** sans liste de `require` (autoloader + cache, durci le 12/09), et (3) **garantir une instance applicative unique** partagée par tout le code, persistante en session (`CApplication`/`CMonApp`, 12/09). `CPersonne`/`CAutre` sont les cobayes du (2), `CMonApp`/`CPage` ceux du (3). Ce contenu est distinct du projet Laravel personnel de mentalyas — c'est le mécanisme brut que Laravel automatise en coulisses.
+> **En résumé** : chaque samedi, le prof code en direct un mini-framework PHP maison qui sert de "squelette" pédagogique. Il tient en 3 idées : (1) **se retrouver** dans l'arborescence peu importe où on est (bootstrap + `PID_PathTo`/`PID_Include`), (2) **charger les classes tout seul** sans liste de `require` (autoloader + cache, durci le 12/09), et (3) **garantir une instance applicative unique** partagée par tout le code, persistante en session (`CApplication`/`CMonApp`, 12/09). `CPersonne`/`CAutre` sont les cobayes du (2), `CMonApp`/`CPage` ceux du (3). **Le 19/09**, le framework est rangé dans son propre dossier `.pid/` (séparé du code du site), et `CPage` devient un vrai générateur de pages HTML (titre, contenu, points d'extension, échappement anti-XSS) appuyé sur un trait et une collection de fichiers CSS/JS. Ce contenu est distinct du projet Laravel personnel de mentalyas — c'est le mécanisme brut que Laravel automatise en coulisses.
 >
 > ⚠️ **Note de fiabilité (18/09)** : les notes de la session du 12/09 avaient d'abord été rédigées à partir du matériel publié *avant* le cours (dossier `pid_avant_cours.20260912/`). Une fois la version réellement publiée *après* le cours récupérée, plusieurs corrections ont été apportées (constantes `PID_CHARSET`/`PID_APPLICATION_SESSION_ITEM_NAME`, paramètre `false` de `class_exists` dans la boucle de retry, fusion `CPersonne2` → `CPersonne`) et le concept `CApplication`/`CMonApp`/`CPage` — absent du matériel avant-cours — a été ajouté.
 >
@@ -30,11 +30,19 @@ flowchart TD
         CA["6. CApplication / CMonApp / CPage<br/>singleton applicatif + charset"]
         POO2["4bis. CPersonne + CAutre<br/>fusionnees dans un seul fichier"]
     end
+    subgraph "19/09 — Le framework a son dossier"
+        D["7. Dossier .pid + prefixe *<br/>framework separe du site"]
+        PG["8. CPage complete<br/>WriteDocument + hooks + IntoHtml"]
+        TR["9. TCssJsFiles + CFileCollection<br/>trait + collection + Iterator"]
+    end
     S0 -.evolue vers.-> B
     A --> R
     P -.consolide en.-> POO2
     B --> CA
     A --> CA
+    CA --> D
+    D --> PG
+    TR --> PG
 ```
 
 ---
@@ -53,6 +61,9 @@ flowchart TD
 - [[Glossaire PHP — Tokenisation (token_get_all)]] — analyser la structure du code source sans l'exécuter
 - [[Glossaire PHP — include, require et résolution de chemins]] — le mécanisme natif que `PID_Include` corrige
 - [[Glossaire — Le motif de conception Singleton]] — le design pattern général derrière `CApplication`
+- [[Glossaire PHP — Traits]] — `trait`/`use`, partager du code sans héritage (19/09)
+- [[Glossaire PHP — Interface Iterator et foreach]] — rendre un objet parcourable avec `foreach` (19/09)
+- [[Glossaire — Échappement HTML et faille XSS]] — `IntoHtml`/`IntoAttr` et l'injection de code (19/09)
 
 ## Concepts fondamentaux
 *À maîtriser en premier — le "où suis-je et comment je m'y retrouve"*
@@ -65,9 +76,12 @@ flowchart TD
 - [[Structure POO — CPersonne, CPersonne2 et CAutre]] — les classes d'exercice concrètes que l'autoloader charge (encapsulation, accesseurs validants)
 
 ## Concepts avancés
-*Raffinement et extension observés dans l'évolution du cours (12/09)*
+*Raffinement et extension observés dans l'évolution du cours (12/09, 19/09)*
 - [[Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209)]] — le 12/09, ajout d'une vérification `class_exists(..., false)`/`eval` après include + un retry, pour ne plus faire confiance aveuglément au cache
 - [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — le 12/09, nouveau motif Singleton persistant en session + gestion centralisée du charset (ANSI/UTF-8) — concept entièrement nouveau, absent du 05/09
+- [[Dossier .pid et préfixe étoile — Séparer le framework du site]] — le 19/09, le code du framework quitte la racine pour `.pid/` ; nouvelle constante `PID_FOLDER_PATH`, préfixe `*` de `PID_PathTo`, exploration des dossiers cachés
+- [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — le 19/09, `CPage` génère une page complète : titre/contenu en chaîne, `false` ou fonction, classe fille via `WriteHead`/`WriteBody`, échappement `IntoHtml`
+- [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] — le 19/09, un trait partagé par `CApplication` et `CPage` + une collection parcourable (`Iterator`) de fichiers CSS/JS
 
 ## Ordre d'apprentissage recommandé
 0. (Si PHP est nouveau) [[Introduction au PHP — Bases pour débutant]] — variables, fonctions, tableaux, POO minimale
@@ -77,6 +91,10 @@ flowchart TD
 4. [[Autoloading PID — spl_autoload_register et le Cache]] — comprendre comment ces classes sont chargées automatiquement
 5. [[Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209)]] — voir comment le mécanisme a été durci une semaine plus tard
 6. [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — voir comment le même principe de persistance en session est formalisé en motif Singleton réutilisable
+7. [[Dossier .pid et préfixe étoile — Séparer le framework du site]] — voir où vit désormais le framework et comment on l'adresse
+8. [[Glossaire PHP — Traits]] puis [[Glossaire PHP — Interface Iterator et foreach]] — les deux outils de conception nécessaires pour la suite
+9. [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] — la brique qui les utilise
+10. [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — l'aboutissement : une page complète, avec [[Glossaire — Échappement HTML et faille XSS]] pour la sécurité
 
 ## Questions de révision globale
 > **Q :** Si tu devais résumer en 2 phrases ce que fait ce framework maison au professeur d'examen, que dirais-tu ?
@@ -92,4 +110,4 @@ flowchart TD
 - `docs/FOUNDATION.md` (§5, pont pédagogique explicite entre le cours et le projet Laravel)
 - `Suivit_Cours/Synthèse/plan_du_cours.20260824 (1).txt` — objectifs du squelette sécurisé visé par le cours
 - `Suivit_Cours/Synthèse/modalites_examen.20260824 (2).txt` — grille de cotation (traitement PHP /20, sécurité PHP /20, framework/généricité /20)
-- Code source de référence : `Suivit_Cours/05_09_2026/pid.20260905/_htdocs/` (version de base, 05/09) et `Suivit_Cours/12_09_2026/` (version réellement publiée **après** le cours du 12/09 — CApplication/CMonApp/CPage, boucle de retry corrigée) ; `Suivit_Cours/12_09_2026/pid_avant_cours.20260912/_htdocs/` est conservé pour mémoire mais **ne fait plus référence** — c'est le matériel publié avant le cours, incomplet/imprécis par endroits.
+- Code source de référence (nomenclature des dossiers de cours : `Suivit_Cours/pid.aaaammjj/`) : `Suivit_Cours/pid.20260905/pid.20260905/_htdocs/` (version de base, 05/09) ; `Suivit_Cours/pid.20260912/` (version réellement publiée **après** le cours du 12/09 — CApplication/CMonApp/CPage, boucle de retry corrigée) ; `Suivit_Cours/pid.20260919/_htdocs/` (19/09 — dossier `.pid/`, CPage complète, trait et collection CSS/JS) ; `Suivit_Cours/pid.20260912/pid_avant_cours.20260912/_htdocs/` est conservé pour mémoire mais **ne fait plus référence** — c'est le matériel publié avant le cours, incomplet/imprécis par endroits.

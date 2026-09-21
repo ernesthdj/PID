@@ -80,6 +80,9 @@ Premier appel de `new CPersonne("Duchemin", "Robert")` dans `test_poo.php` : le 
 
 > ⚠️ **Correction (12/09, publication post-cours)** : la première version de ce cahier avait été rédigée sur la base du matériel publié *avant* le cours du 12/09, qui plaçait encore `CPersonne` dans `dir1/truc/machin/personne.php` (chemin utilisé le 05/09). La version réellement publiée après le cours déplace/renomme cette classe vers `dir1/dir2/personne.php` — c'est ce chemin qui est aujourd'hui dans `.class.register.php`. `dir1/truc/machin/personne.php` n'existe plus.
 
+## Évolution du 19/09 — l'exploration voit les dossiers cachés
+L'exploration récursive (et l'action `updateIndexes`) utilise `glob($path . "*")` **plus** `glob($path . ".*")`, car `*` ignore les dossiers dont le nom commence par un point — comme `.pid/`, où le framework a déménagé. Le registre `.class.register.php` contient maintenant des entrées comme `"CPage" => ".pid/Page.php"`. Voir [[Dossier .pid et préfixe étoile — Séparer le framework du site]]. Nouveau type de fichier chargé : le trait `TCssJsFiles` (préfixe **T**, fichier `trait.CssJsFiles.php`) — voir [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]].
+
 ## Connexions
 
 - [[Glossaire PHP — Closures et fonctions anonymes]] — toute la logique de l'autoloader est écrite dans la fonction anonyme passée à `spl_autoload_register()`.

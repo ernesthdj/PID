@@ -71,6 +71,9 @@ flowchart TD
 
 Tu es dans `dir1/truc/machin/index.php`. `__FILE__` contient 3 occurrences de `/` après le nom du site (approximativement — la boucle part large). Tour 1 : `./.pid.config.php` — absent. Tour 2 : `../.pid.config.php` — absent. Tour 3 : `../../.pid.config.php` — absent. Tour 4 : `../../../.pid.config.php` — trouvé ! `PID_PATH_TO_ROOT = "../../../"`. À partir de là, n'importe quelle fonction du framework appelée depuis ce fichier sait reconstruire un chemin absolu vers la racine.
 
+## Évolution du 19/09 — une 8ᵉ constante obligatoire
+La liste des constantes que le Bootstrap exige dans `.pid.config.php` passe de 7 à **8** : `PID_FOLDER_PATH` (chemin du dossier du framework, ex. `"/.pid"`) est ajoutée. Si elle manque, le `die("PID error : missing some constant(s)...")` habituel s'applique. Le sens de cette constante est détaillé dans [[Dossier .pid et préfixe étoile — Séparer le framework du site]]. À la fin de `index.php`, deux petites fonctions globales apparaissent aussi à côté de `PID_PathTo`/`PID_Include` : `PID_IsInteger` et `PID_IsReal` (vérifient qu'une valeur est un entier / un nombre).
+
 ## Connexions
 
 - [[Introduction au PHP — Bases pour débutant]] — bases de syntaxe (variables, constantes `define()`, boucles) si ce concept semble encore flou.

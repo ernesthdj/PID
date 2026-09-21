@@ -114,6 +114,11 @@ CApplication::Instance()->DoSomething(); // 2e appel : self::$s_Instance deja pe
 
 Avec `.pid.config.php` configurant `PID_APPLICATION_CLASSNAME = "CMonApp"` et `PID_APPLICATION_INSTANCIATOR_ARGUMENTS = [ "Voici de l'information pour mon application" ]`, le premier appel crée effectivement un `CMonApp` (pas un `CApplication` nu) avec cette chaîne passée à son constructeur, stockée dans `$this->m_Information`. `DoSomething()` affiche ensuite cette information — la preuve que la configuration déclarative (juste des `define()` dans `.pid.config.php`) pilote quelle classe concrète est réellement instanciée, sans que `CApplication::Instance()` n'ait besoin de connaître `CMonApp` à l'avance.
 
+## Évolution du 19/09 — la suite
+- **Déménagement** : `CApplication` et `CPage` vivent maintenant dans `.pid/` (framework), `CMonApp` reste à la racine (site) — voir [[Dossier .pid et préfixe étoile — Séparer le framework du site]].
+- **`CApplication` gagne** : le trait `TCssJsFiles` (listes de CSS/JS communs à tout le site, cf. [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]]) et deux méthodes d'échappement, `IntoHtml` et `IntoAttr` ([[Glossaire — Échappement HTML et faille XSS]]).
+- **`CPage` devient une vraie classe de génération de page** (titre, contenu, points d'extension) — traitée à part : [[CPage — Générer une page HTML (WriteDocument et points d'extension)]]. La section 5 ci-dessous décrit son état au 12/09 (squelette minimal).
+
 ## Connexions
 
 - [[Glossaire — Le motif de conception Singleton]] — le motif de conception général que `CApplication` implémente, indépendamment de PHP.
