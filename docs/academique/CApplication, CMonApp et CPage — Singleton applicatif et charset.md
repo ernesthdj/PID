@@ -1,159 +1,141 @@
 ---
 type: concept
-subject: CApplication (singleton), CMonApp, CPage — instance applicative unique et gestion du charset
-module: PID — Framework maison (samedis 29/08, 05/09, 12/09)
-tags: [#PID, #PHP, #POO, #singleton, #session, #charset]
-date: 2026-09-18
+subject: CApplication (singleton), CMonApp — instance applicative unique, persistée en session
+module: PID — Framework maison (séances 12/09, 19/09)
+source: cours
+seances: [2026-09-12, 2026-09-19]
+tags: [#PID, #PHP, #POO, #singleton, #session]
+date: 2026-09-21
 niveau: avancé
 statut: complet
 analogie_domaine: hôtellerie / réception unique
+critere_examen: framework / généricité (20), traitement PHP (20)
+prerequis: ["[[Autoloading PID — spl_autoload_register et le Cache]]", "[[Glossaire — Le motif de conception Singleton]]", "[[Glossaire PHP — Superglobales et sessions]]"]
 ---
 
-# CApplication, CMonApp et CPage — singleton applicatif et charset
+# `CApplication` et `CMonApp` — le singleton applicatif
 
-> Un hôtel n'a qu'une seule réception, peu importe par quelle porte ou quel étage un client entre : tout le monde qui demande "la réception" tombe sur le même bureau, la même personne, les mêmes informations à jour. `CApplication::Instance()` joue ce rôle pour le framework — un seul point d'accès partagé par tout le code, jamais une nouvelle réception créée à chaque demande.
-
-## En une phrase simple
-
-`CApplication` est une classe de base qui garantit qu'**une seule instance** existe pour toute la durée d'une session utilisateur (motif **Singleton**), accessible partout via `CApplication::Instance()` ; `CMonApp` en est une implémentation concrète configurée par le site, et `CPage` s'appuie dessus pour générer le HTML avec le bon encodage de caractères.
-
-## Pourquoi ça existe ?
-
-Le 12/09 (version publiée après le cours), le prof introduit un besoin nouveau : certaines informations (le charset du site, des données applicatives partagées) doivent être **identiques et accessibles partout**, sans qu'aucun script n'ait besoin de les recréer ou de les recalculer à chaque fois. Une variable globale classique ne survivrait pas d'une requête HTTP à l'autre (PHP redémarre son état à chaque requête). Le prof combine donc deux mécanismes déjà vus :
-1. Le motif **Singleton** (une seule instance, jamais deux) pour garantir l'unicité *pendant* une requête.
-2. Le **stockage en session** (`$_SESSION`, déjà vu avec `CPersonne` dans [[Structure POO — CPersonne, CPersonne2 et CAutre]]) pour faire survivre cette instance unique *entre* les requêtes d'un même visiteur.
-
-## Comment ça fonctionne ?
-
-### 1. Le Singleton protégé — `Instance()` et un constructeur inaccessible de l'extérieur
-
-```php
-protected function __construct()
-{
-    self::$s_Instance = $this;
-    $_SESSION[PID_APPLICATION_SESSION_ITEM_NAME] = $this;
-}
-```
-
-Le constructeur de `CApplication` est `protected`, pas `public` — impossible d'écrire `new CApplication()` depuis l'extérieur de la hiérarchie de classes (`test_poo.php` le tente en commentaire : `//$app = new CApplication(); // Impossible`). La **seule** porte d'entrée est la méthode statique `CApplication::Instance()`, qui centralise toute la logique de création.
-
-### 2. `Instance()` — cache mémoire d'abord, session ensuite, création en dernier recours
-
-```php
-public static function Instance()
-{
-    if (self::$s_Instance === null)
-    {
-        // ... vérifie $_SESSION[PID_APPLICATION_SESSION_ITEM_NAME], sinon crée via PID_APPLICATION_CLASSNAME
-    }
-    return self::$s_Instance;
-}
-```
-
-Trois niveaux, du plus rapide au plus coûteux :
-1. **Propriété statique `self::$s_Instance`** — si déjà peuplée (un appel précédent dans la *même* requête a déjà créé/récupéré l'instance), retour immédiat. C'est pour ça que le double appel `CApplication::Instance()->DoSomething();` de `test_poo.php` ne recrée rien la seconde fois : `self::$s_Instance` n'est déjà plus `null`.
-2. **Session `$_SESSION[PID_APPLICATION_SESSION_ITEM_NAME]`** — si une requête *précédente* (même visiteur, même session PHP) a déjà créé l'instance, PHP l'a désérialisée automatiquement au démarrage de la session ; on la récupère telle quelle plutôt que d'en recréer une.
-3. **Création via `PID_APPLICATION_CLASSNAME`** — si vraiment rien n'existe encore : instanciation dynamique de la classe dont le nom est donné par la constante de config `PID_APPLICATION_CLASSNAME` (ex. `"CMonApp"`), avec des arguments de constructeur eux aussi fournis par config (`PID_APPLICATION_INSTANCIATOR_ARGUMENTS`, tableau **ou** fonction qui en renvoie un — `new $className(...$arguments)` grâce à l'opérateur d'étalement `...`).
-
-### 3. `__wakeup()` — le signal "je reviens d'une session, pas d'une création"
-
-```php
-protected function __wakeup()
-{
-    var_dump("RECUPERATION D'UN OBJET DE TYPE CApplication");
-}
-```
-
-Méthode magique que PHP appelle automatiquement chaque fois qu'un objet est **désérialisé** — ce qui arrive précisément quand `$_SESSION[...]` est relue au démarrage d'une nouvelle requête HTTP. C'est le pendant de `__construct()`, mais pour "je reprends vie à partir d'un état sauvegardé" plutôt que "je nais pour la première fois". `CMonApp` surcharge les deux (`__construct`/`__wakeup`) et appelle systématiquement `parent::` pour ne pas casser la mécanique du singleton.
-
-### 4. La conversion de charset — `PID_CHARSET`, `ToUtf8()`/`FromUtf8()`
-
-```php
-define("PID_ANSI", "windows-1252");
-define("PID_UTF8", "utf-8");
-// PID_CHARSET vaut PID_ANSI ou PID_UTF8, defini dans .pid.config.php, valide au bootstrap
-```
-
-`CApplication` sait dans quel encodage le site travaille (`Charset()`, `CharsetIsAnsi()`, `CharsetIsUtf8()`) et fournit deux méthodes de conversion récursives (`ToUtf8`/`FromUtf8`, via `mb_convert_encoding`) qui parcourent chaînes, tableaux et — partiellement, avec un `TODO` explicite du prof — objets. Le but : que le reste du code applicatif n'ait jamais besoin de choisir lui-même l'encodage, il délègue systématiquement à `CApplication::Instance()`.
-
-### 5. `CPage` — consommateur de `CApplication` pour générer du HTML cohérent
-
-```php
-public static function DeclareContentType()
-{
-    header("content-type:text/html;charset=" . CApplication::Instance()->Charset(), true);
-}
-```
-
-`CPage` est la classe de base de toute page HTML du framework. `WriteDocument()` génère un squelette HTML minimal (doctype, `<head>` avec `<meta charset>`, `<body>`) — et c'est elle qui est désormais appelée depuis `index.content.php` (`new CPage()->WriteDocument();`), remplaçant le HTML écrit à la main dans la version d'avant-cours. Le charset envoyé dans l'en-tête HTTP et dans le HTML provient toujours de `CApplication::Instance()->Charset()` — un seul endroit à changer (`PID_CHARSET` dans `.pid.config.php`) pour reconfigurer tout le site.
-
-## Schéma
+> **En 30 secondes** — `CApplication` garantit qu'**une seule instance** existe pour toute la session d'un visiteur, accessible partout par `CApplication::Instance()`. `CMonApp` en est la version concrète, choisie par la configuration. L'instance est **rangée en session** pour survivre d'une requête à l'autre. Charset, échappement HTML, fichiers CSS/JS et `CPage` ont leurs propres notes.
 
 ```mermaid
 flowchart TD
-    Call["CApplication::Instance()<br/>appele n'importe ou dans le code"] --> S1{"self::s_Instance<br/>deja peuplee ?"}
-    S1 -- oui, meme requete --> Return["return self::s_Instance<br/>(rien d'autre ne s'execute)"]
-    S1 -- non --> S2{"$_SESSION[...] contient<br/>deja une instance valide ?"}
-    S2 -- oui, requete precedente --> Wake["__wakeup() declenche<br/>par la desererialisation session"]
-    Wake --> Return
-    S2 -- non, premiere fois --> Create["new PID_APPLICATION_CLASSNAME(...)<br/>ex: new CMonApp(...)"]
-    Create --> Ctor["__construct() : stocke dans<br/>self::s_Instance ET $_SESSION[...]"]
-    Ctor --> Return
+    Call["CApplication::Instance()"] --> S1{"self::s_Instance<br/>deja remplie ?"}
+    S1 -- oui --> Ret["retourner l'instance"]
+    S1 -- non --> S2{"instance valide<br/>dans $_SESSION ?"}
+    S2 -- oui --> Wake["__wakeup() (restauration)"]
+    Wake --> Ret
+    S2 -- non --> Create["new PID_APPLICATION_CLASSNAME(...)<br/>ex. CMonApp"]
+    Create --> Reg["constructeur : range dans<br/>self::s_Instance ET $_SESSION"]
+    Reg --> Ret
 ```
 
-## Exemple concret
+---
 
-Tiré de `dir.0/test_poo.php` (12/09) :
+## 1. Vue Macro & Utilité (le « Pourquoi »)
+
+- **Problématique** — Certaines informations doivent être **identiques et accessibles partout** (le charset du site, des données applicatives), sans qu'aucun script n'ait à les recréer. Une variable globale ne convient pas : PHP **redémarre de zéro à chaque requête HTTP**, rien ne survit d'une page à la suivante. Il faut à la fois **l'unicité** (une seule instance) et la **persistance** (elle survit entre les requêtes).
+- **Emplacement dans la carte globale** : quatrième maillon — Bootstrap → adressage → autoloader → **état applicatif partagé** → pages. C'est l'équivalent du **conteneur de services** de Laravel ([[Laravel ↔ framework PID — Correspondances]]).
+- **Analogie (hôtellerie)** : un hôtel n'a qu'**une seule réception**, quelle que soit la porte par laquelle on entre : tout le monde tombe sur le même bureau, la même personne, les mêmes informations à jour. `CApplication::Instance()` est ce point d'accès unique — jamais une nouvelle réception créée à chaque demande.
+
+## 2. Le Pont Systémique (sous le capot)
+
+Trois mémoires, de la plus rapide à la plus coûteuse :
+
+1. **Propriété statique `self::$s_Instance`** — vit dans la **RAM du processus PHP**, donc **le temps d'une seule requête**. À la requête suivante, elle est de nouveau `null` : PHP ne garde rien ([[Glossaire PHP — Propriétés et méthodes statiques]]).
+2. **Session `$_SESSION[...]`** — à la **fin** de la requête, PHP **sérialise** l'objet (le convertit en texte) dans un **fichier de session sur le disque du serveur**, associé à un identifiant transmis par un cookie du navigateur ; au **début** de la requête suivante, `session_start()` relit ce fichier et **désérialise** l'objet — **sans** appeler `__construct`, mais **avec** `__wakeup()` ([[Glossaire PHP — Méthodes magiques]]). Si la classe n'est pas encore connue, PHP appelle l'autoloader pour la charger. *(Le dossier exact et le format dépendent de la configuration de PHP — ⚠️ Probable.)*
+3. **Création** — en dernier recours : `new` sur la classe désignée par la configuration.
+
+Seules les **propriétés** de l'objet sont sérialisées : les propriétés statiques ne le sont pas, d'où le double rangement (statique **et** session).
+
+## 3. Analyse du Code & Logique
+
+**Étape 1 — Un constructeur `protected` qui s'enregistre**
 
 ```php
-//$app = new CApplication(); // Impossible — constructeur protected
-
-CApplication::Instance()->DoSomething(); // 1er appel : cree (ou recupere de session) l'instance
-CApplication::Instance()->DoSomething(); // 2e appel : self::$s_Instance deja peuplee, retour immediat
+protected function __construct($cssFiles = null, $jsFiles = null)
+{
+    self::$s_Instance = $this;
+    $_SESSION[PID_APPLICATION_SESSION_ITEM_NAME] = $this;
+    $this->TCssJsFiles_Initialize($cssFiles, $jsFiles);   // 19/09
+}
 ```
+`protected` interdit `new CApplication()` depuis l'extérieur ([[Glossaire PHP — Visibilité et encapsulation]]) — le prof le note lui-même : `//$app = new CApplication(); // Impossible`. Le constructeur range l'instance dans **les deux** mémoires.
 
-Avec `.pid.config.php` configurant `PID_APPLICATION_CLASSNAME = "CMonApp"` et `PID_APPLICATION_INSTANCIATOR_ARGUMENTS = [ "Voici de l'information pour mon application" ]`, le premier appel crée effectivement un `CMonApp` (pas un `CApplication` nu) avec cette chaîne passée à son constructeur, stockée dans `$this->m_Information`. `DoSomething()` affiche ensuite cette information — la preuve que la configuration déclarative (juste des `define()` dans `.pid.config.php`) pilote quelle classe concrète est réellement instanciée, sans que `CApplication::Instance()` n'ait besoin de connaître `CMonApp` à l'avance.
+**Étape 2 — `Instance()` : mémoire, session, création**
 
-## Évolution du 19/09 — la suite
-- **Déménagement** : `CApplication` et `CPage` vivent maintenant dans `.pid/` (framework), `CMonApp` reste à la racine (site) — voir [[Dossier .pid et préfixe étoile — Séparer le framework du site]].
-- **`CApplication` gagne** : le trait `TCssJsFiles` (listes de CSS/JS communs à tout le site, cf. [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]]) et deux méthodes d'échappement, `IntoHtml` et `IntoAttr` ([[Glossaire — Échappement HTML et faille XSS]]).
-- **`CPage` devient une vraie classe de génération de page** (titre, contenu, points d'extension) — traitée à part : [[CPage — Générer une page HTML (WriteDocument et points d'extension)]]. La section 5 ci-dessous décrit son état au 12/09 (squelette minimal).
+```php
+if (self::$s_Instance === null)
+{
+    /* démarre la session si besoin ; lit PID_APPLICATION_CLASSNAME (sinon "CApplication") */
+    /* si $_SESSION[...] contient une instance de cette classe → on la reprend, sinon on l'efface */
+    /* si rien en session : $instance = @new $className(...$arguments); */
+}
+return self::$s_Instance;
+```
+- **Contrôle de cohérence** : une instance trouvée en session n'est reprise que si `is_a($instance, "CApplication")` **et** `get_class($instance) == $className` ; sinon elle est supprimée (la configuration a changé, par exemple).
+- **Création pilotée par la configuration** : `PID_APPLICATION_CLASSNAME` (ex. `"CMonApp"`) désigne la classe ; `PID_APPLICATION_INSTANCIATOR_ARGUMENTS` fournit les arguments du constructeur — un **tableau** ou une **fonction** qui en renvoie un. `new $className(...$arguments)` ([[Glossaire PHP — Opérateur d'étalement (...)]]) permet d'instancier **n'importe quelle** classe fille sans que `CApplication` la connaisse à l'avance.
 
-## Connexions
+**Étape 3 — `CMonApp extends CApplication`**
 
-- [[Glossaire — Le motif de conception Singleton]] — le motif de conception général que `CApplication` implémente, indépendamment de PHP.
-- [[Glossaire PHP — Propriétés et méthodes statiques]] — détail complet de `self::$s_Instance` et de sa portée limitée à une seule requête.
-- [[Glossaire PHP — Méthodes magiques]] — détail complet de `__construct()`/`__wakeup()` et de la différence entre création et restauration.
-- [[Glossaire PHP — Superglobales et sessions]] — détail complet de `$_SESSION` et de la sérialisation automatique des objets.
-- [[Glossaire PHP — Visibilité et encapsulation]] — pourquoi un constructeur `protected` bloque `new CApplication()` depuis l'extérieur.
-- [[Bootstrap PID — Detection de la Racine du Site]] — valide la présence de `PID_CHARSET` et `PID_APPLICATION_SESSION_ITEM_NAME` dès le bootstrap, avant que `CApplication` ne soit utilisable.
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — même principe de persistance en session (`$_SESSION[...]`) déjà vu avec `CPersonne`, ici formalisé en motif Singleton réutilisable.
-- [[Autoloading PID — spl_autoload_register et le Cache]] — `CApplication`, `CMonApp`, `CPage` sont chargées comme n'importe quelle autre classe, via le même `.class.register.php`.
+```php
+class CMonApp extends CApplication
+{
+    public function __construct($information = null) { parent::__construct(); $this->Information($information); }
+    protected function __wakeup() { parent::__wakeup(); }
+    public function DoSomething() { var_dump("Je fais quelque chose avec \"" . $this->m_Information . "\""); }
+}
+```
+`parent::__construct()` est **obligatoire** : sans lui, l'instance n'est jamais rangée en statique ni en session ([[Glossaire PHP — Héritage (extends et parent)]]). `Information()` est un accesseur à double usage, comme `Nom()` dans [[Structure POO — CPersonne et CAutre]].
 
-## Questions de rappel actif
+**Étape 4 — Ce que montre `test_poo.php`**
 
-> **Q :** Pourquoi le constructeur de `CApplication` est-il `protected` plutôt que `public` ?
-> **R :** Pour empêcher `new CApplication()` depuis l'extérieur — la seule façon valide d'obtenir une instance est de passer par `CApplication::Instance()`, qui garantit qu'il n'en existe jamais qu'une seule. C'est la garde-fou standard du motif Singleton.
+```php
+CApplication::Instance()->DoSomething();   // 1er appel : crée (ou reprend de la session) l'instance
+CApplication::Instance()->DoSomething();   // 2e appel : self::$s_Instance déjà remplie, retour immédiat
+```
+Le second appel ne recrée rien et ne relit pas la session. Au passage, c'est cet appel qui **démarre la session** utilisée ensuite par `$_SESSION["personne"]`.
 
-> **Q :** Si `CApplication::Instance()` est appelée deux fois dans le même script, la seconde fois recrée-t-elle un objet ou relit-elle la session ?
-> **R :** Ni l'un ni l'autre : la propriété statique `self::$s_Instance` est déjà peuplée depuis le premier appel (dans la même requête PHP), donc la seconde fois retourne immédiatement cette valeur sans retoucher à `$_SESSION`.
+**Étape 5 — Ce qui a changé le 19/09**
 
-> **Q :** À quel moment précis `__wakeup()` est-il appelé, et pourquoi pas `__construct()` dans ce cas ?
-> **R :** `__wakeup()` est appelé automatiquement par PHP lors de la désérialisation d'un objet — ici, quand `$_SESSION[PID_APPLICATION_SESSION_ITEM_NAME]` est relue au démarrage d'une nouvelle requête. `__construct()` ne s'exécute que lors d'une création *initiale* avec `new`, pas lors d'une restauration depuis un état déjà sérialisé.
+- Le prof a **retiré les `var_dump` de debug** du constructeur et de `__wakeup()` (dans `CApplication` **et** `CMonApp`) : `__wakeup()` est désormais vide. Le mécanisme est inchangé.
+- `.pid.config.php` a `PID_APPLICATION_INSTANCIATOR_ARGUMENTS = [ /* to do */ ]` (vide) : `CMonApp` est créé **sans** information et `DoSomething()` afficherait probablement `Je fais quelque chose avec ""`. *(La version du 12/09 passait `"Voici de l'information pour mon application"`.)*
+- La classe gagne le trait `TCssJsFiles` et les méthodes `IntoHtml`/`IntoAttr` ; le charset (`PID_CHARSET`, `ToUtf8`/`FromUtf8`) et `CPage` ont leurs notes : [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]], [[Glossaire — Échappement HTML et faille XSS]], [[Glossaire — Encodage des caractères (windows-1252 vs UTF-8)]], [[CPage — Générer une page HTML (WriteDocument et points d'extension)]]. Les deux classes ont aussi déménagé dans `.pid/` ([[Dossier .pid et préfixe étoile — Séparer le framework du site]]).
 
-> **Q :** Comment le framework sait-il qu'il doit instancier `CMonApp` et pas `CApplication` directement ?
-> **R :** Via la constante de config `PID_APPLICATION_CLASSNAME` (ex. `"CMonApp"`), lue par `Instance()` : `new $className(...$arguments)` où `$className` est cette chaîne — une instanciation dynamique pilotée entièrement par configuration, sans que le code de `CApplication` ne mentionne `CMonApp` en dur.
+**Bonnes pratiques** : point d'accès unique ; création pilotée par la configuration plutôt que codée en dur ; contrôle de cohérence de ce qui vient de la session.
 
-## Pièges fréquents
+> ⚠️ **À confirmer au prochain cours** — `__wakeup()` est déclarée `protected`. Sous PHP 8, une méthode magique non publique provoque probablement un **avertissement** (« must have public visibility »). *Probable : lu dans le code, non exécuté.* Et, faute d'argument dans la configuration, le comportement exact de `DoSomething()` au 19/09 reste à vérifier.
 
-- ⚠️ **Essayer `new CApplication()` directement** — échoue silencieusement en erreur fatale PHP (constructeur `protected` non accessible) ; c'est volontaire, voir le commentaire `// Impossible` du prof lui-même dans `test_poo.php`.
-- ⚠️ **Croire que `CApplication` "sait" que `CMonApp` existe** — faux, c'est l'inverse : `CMonApp` *hérite* de `CApplication`, et c'est la configuration (`PID_APPLICATION_CLASSNAME`) qui indique à `Instance()` quelle sous-classe instancier. La classe de base ne connaît jamais ses sous-classes à l'avance.
-- ⚠️ **Confondre la portée de `self::$s_Instance` (le temps d'une requête PHP) et celle de `$_SESSION[...]` (plusieurs requêtes, tant que la session dure)** — la propriété statique est réinitialisée à `null` à chaque nouvelle requête, c'est justement pour ça que la relecture en session est nécessaire.
+## 4. Synthèse & Prochaine Étape
 
-## À retenir absolument
-- Singleton = un seul point d'entrée (`Instance()`), constructeur inaccessible de l'extérieur.
-- Trois niveaux de coût croissant dans `Instance()` : mémoire (statique) → session → création complète.
-- `CMonApp` et `CPage` ne réinventent rien : elles réutilisent respectivement l'unicité du singleton et le charset qu'il expose.
+**À retenir (3 puces max)**
+- Singleton = un seul point d'entrée (`Instance()`) et un constructeur inaccessible de l'extérieur.
+- Trois niveaux de coût croissant : statique (RAM, une requête) → session (disque, plusieurs requêtes) → création.
+- `CMonApp` ne réinvente rien : la **configuration** désigne la classe concrète ; la classe de base ne connaît jamais ses filles.
 
-## Explorer ensuite
-- Retour à [[Structure POO — CPersonne, CPersonne2 et CAutre]] pour comparer avec la persistance "manuelle" en session de `CPersonne`, moins formalisée que ce Singleton.
+**Lien avec la suite** : où vit désormais ce code, et comment on l'adresse → [[Dossier .pid et préfixe étoile — Séparer le framework du site]].
+
+**Rappel actif**
+> **Q :** Pourquoi le constructeur de `CApplication` est-il `protected` ?
+> **R :** Pour interdire `new CApplication()` depuis l'extérieur : la seule voie est `Instance()`, qui garantit l'unicité.
+
+> **Q :** Si `Instance()` est appelée deux fois dans le même script, le second appel recrée-t-il l'objet ou relit-il la session ?
+> **R :** Ni l'un ni l'autre : `self::$s_Instance` est déjà remplie, retour immédiat.
+
+> **Q :** Quand `__wakeup()` est-elle appelée, et pas `__construct()` ?
+> **R :** À la **désérialisation**, quand `$_SESSION[...]` est relue au début d'une nouvelle requête ; `__construct()` ne s'exécute que pour une création initiale avec `new`.
+
+> **Q :** Comment le framework sait-il qu'il doit instancier `CMonApp` et pas `CApplication` ?
+> **R :** Par la constante `PID_APPLICATION_CLASSNAME` lue dans `Instance()` : `new $className(...$arguments)`, sans que le code de `CApplication` ne mentionne `CMonApp`.
+
+**Pièges fréquents**
+- ⚠️ **Croire que `CApplication` connaît `CMonApp`** — c'est l'inverse : `CMonApp` hérite, et c'est la configuration qui désigne la classe.
+- ⚠️ **Confondre la portée de `self::$s_Instance` (une requête) et celle de `$_SESSION[...]` (plusieurs requêtes)** — la statique est remise à `null` à chaque requête, d'où la relecture en session.
+- ⚠️ **Oublier `parent::__construct()` dans une classe fille** — le singleton ne s'enregistre pas.
+
+**Connexions**
+- [[Glossaire — Le motif de conception Singleton]] — le motif général.
+- [[Glossaire PHP — Superglobales et sessions]] — `$_SESSION` et la sérialisation automatique.
+- [[Glossaire PHP — Héritage (extends et parent)]] — `CMonApp extends CApplication`.
+- [[Glossaire PHP — Visibilité et encapsulation]] — pourquoi un constructeur `protected`.
+- [[Bootstrap PID — Detection de la Racine du Site]] — valide `PID_CHARSET` et `PID_APPLICATION_SESSION_ITEM_NAME` dès le départ.
+- [[Autoloading PID — spl_autoload_register et le Cache]] — `CApplication`, `CMonApp` et `CPage` sont chargées comme n'importe quelle classe.

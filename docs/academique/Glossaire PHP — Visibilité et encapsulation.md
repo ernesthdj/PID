@@ -2,7 +2,7 @@
 type: glossaire
 subject: Visibilité (public/protected/private) et encapsulation en PHP
 tags: [#PHP, #glossaire, #POO, #encapsulation]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Trois portes avec trois niveaux d'accès sur le même bâtiment : `public` — porte d'entrée ouverte à tout le monde ; `protected` — porte réservée au personnel **et** aux stagiaires qui ont fait leur formation dans ce bâtiment (les classes filles) ; `private` — porte dont seul l'occupant exact du bureau a la clé, même son propre remplaçant n'y a pas accès s'il travaille dans un bureau "hérité".
 
-## En une phrase simple
+## En 30 secondes
 
 `public`, `protected` et `private` sont trois mots-clés qui contrôlent **depuis où** une propriété ou une méthode d'une classe PHP peut être lue/appelée, et l'**encapsulation** est le principe général qui consiste à cacher les données internes d'un objet derrière des méthodes qui contrôlent tout accès.
 
@@ -49,9 +49,14 @@ Sans `private`, n'importe quel code extérieur pourrait écrire `$p->m_Nom = 3.1
 
 Une confusion très fréquente : `private` ne bloque pas *seulement* l'extérieur, il bloque **aussi** les classes filles. Si `CApplication` déclare `private static $s_Instance`, une classe `CMonApp extends CApplication` ne peut **pas** accéder directement à `$s_Instance` — elle doit passer par des méthodes `public`/`protected` de la classe parente. Seul `protected` autoriserait cet accès direct depuis une classe fille.
 
+## Sous le capot
+- PHP range, pour chaque propriété et chaque méthode d'une classe, un **drapeau de visibilité** dans la définition de la classe. À **chaque accès**, le moteur regarde **depuis quelle classe** le code s'exécute et compare : c'est un contrôle **à l'exécution** (en C# ou C++, il a lieu à la compilation). Une violation lève une erreur fatale du type « Cannot access private property ».
+- Un objet fille contient en mémoire **toutes** les propriétés de sa mère, y compris les `private` : elles existent, mais le code de la fille n'a pas le droit de les toucher.
+- Un constructeur non public fait refuser `new` par le moteur partout ailleurs que dans la classe (base du Singleton).
+
 ## Utilisé dans ce cours
 
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — `private $m_Nom`/`$m_Prenom`, accès uniquement via `Nom()`/`Prenom()` publiques.
+- [[Structure POO — CPersonne et CAutre]] — `private $m_Nom`/`$m_Prenom`, accès uniquement via `Nom()`/`Prenom()` publiques.
 - [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — le constructeur `protected` de `CApplication` empêche `new CApplication()` depuis l'extérieur ; c'est la même logique de visibilité appliquée non pas à une propriété mais à une méthode (le constructeur).
 
 ## Questions de rappel actif

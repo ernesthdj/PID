@@ -1,133 +1,109 @@
 ---
 type: concept
 subject: Dossier .pid, constante PID_FOLDER_PATH et préfixe * de PID_PathTo — séparer le framework du site
-module: PID — Framework maison (samedis 29/08, 05/09, 12/09, 19/09)
+module: PID — Framework maison (séances 29/08 → 19/09)
+source: cours
+seances: [2026-09-19]
 tags: [#PID, #PHP, #architecture, #bootstrap, #autoloader]
 date: 2026-09-21
 niveau: intermédiaire
 statut: complet
 analogie_domaine: restauration / cuisine centrale
+critere_examen: framework / généricité (20)
+prerequis: ["[[Bootstrap PID — Detection de la Racine du Site]]", "[[PID_PathTo, PID_Include et PID_IncludeOnce]]", "[[Autoloading PID — spl_autoload_register et le Cache]]"]
 ---
 
 # Dossier `.pid` et préfixe `*` — séparer le framework du site
 
-> Un restaurant a une **salle** (ce que voient les clients : le site) et une **cuisine centrale** (ce qui fait tourner la maison : le framework). Jusqu'au 12/09, les casseroles du framework traînaient dans la salle, mélangées aux tables. Le 19/09, le prof construit la cuisine : un dossier `.pid/` où vit tout le code du framework, et un raccourci (`*`) pour dire "va me chercher ça **en cuisine**" sans connaître le chemin.
+> **En 30 secondes** — Le 19/09, le code du framework quitte la racine du site pour un dossier dédié `.pid/`. Une nouvelle constante `PID_FOLDER_PATH` dit où il est, `PID_PathTo` gagne un raccourci `*` pour l'atteindre, et l'autoloader apprend à explorer les dossiers dont le nom commence par un point.
 
-## En une phrase simple
+```mermaid
+flowchart LR
+    CFG[".pid.config.php<br/>PID_FOLDER_PATH = /.pid"] --> F["Framework<br/>.pid/ : CApplication, CPage,<br/>TCssJsFiles, CFileCollection"]
+    REG[".class.register.php<br/>nom de classe -> fichier"] --> F
+    REG --> S["Site (racine)<br/>CMonApp, CPersonne"]
+    S -->|"herite de"| F
+```
 
-Le code du framework (`CApplication`, `CPage`, `TCssJsFiles`, `CFileCollection`) quitte la racine du site pour un dossier dédié `.pid/`, déclaré par une nouvelle constante `PID_FOLDER_PATH`, et `PID_PathTo` apprend un nouveau raccourci : un chemin qui commence par `*` est cherché **dans ce dossier**, pas à la racine.
+---
 
-## Pourquoi ça existe ?
+## 1. Vue Macro & Utilité (le « Pourquoi »)
 
-Au 12/09, `application.php` et `page.php` (le framework) cohabitaient à la racine avec `monapp.php` (le code **du site**). Deux problèmes :
-1. **Mélange des rôles** — impossible de voir d'un coup d'œil ce qui appartient au framework (à ne pas toucher) et ce qui appartient à l'application (à écrire soi-même).
-2. **Framework non isolable** — pour le réutiliser sur un autre site, il faudrait trier les fichiers un par un.
+- **Problématique** : jusqu'au 12/09, `application.php` et `page.php` (le framework) cohabitaient à la racine avec `monapp.php` (le code **du site**). Impossible de voir d'un coup d'œil ce qu'on ne doit pas toucher, et de réutiliser le framework sur un autre site sans trier les fichiers un par un.
+- **Emplacement dans la carte globale** : couche **organisation des fichiers** de l'application, entre la configuration (Bootstrap) et le chargement des classes (autoloader). Elle décide *où vit* le code avant même qu'on l'exécute.
+- **Analogie (restauration)** : un restaurant a une **salle** (ce que voient les clients : le site) et une **cuisine centrale** (ce qui fait tourner la maison : le framework). Avant, les casseroles traînaient dans la salle. Le 19/09 le prof construit la cuisine ; le préfixe `*` est le raccourci « va me chercher ça **en cuisine** ».
 
-Ranger le framework dans un dossier unique règle les deux. Le point devant le nom (`.pid`) est la convention "dossier technique / caché" — comme `.git` ou `.vscode`.
+## 2. Le Pont Systémique (sous le capot)
 
-## Comment ça fonctionne ?
+Tout se joue sur le **système de fichiers** du serveur, pas en mémoire :
 
-### 1. Une 8ᵉ constante obligatoire : `PID_FOLDER_PATH`
+1. Apache reçoit la requête HTTP et lance PHP sur le `index.php` du dossier demandé.
+2. Pour connaître la racine du site, ce fichier remonte les dossiers (Bootstrap). Ensuite `PID_PathTo` ne fait que **concaténer des chaînes** : `PID_PATH_TO_ROOT . "/.pid/page.php"` — aucun accès disque à ce stade.
+3. Quand l'autoloader ne connaît pas une classe, il **explore le disque** : chaque `glob()` demande au système d'exploitation la liste des sous-dossiers, ce qui coûte des **lectures de répertoire** (entrées/sorties disque). C'est exactement pourquoi le résultat est mémorisé dans `.class.register.php` : le cache transforme un parcours du disque en une simple recherche dans un tableau en RAM.
+4. Le nom `.pid` commence par un point : c'est la convention Unix des dossiers « cachés ». Le motif `*` de `glob` **ne les voit pas** ; il faut demander `.*` explicitement — et `.*` renvoie aussi `.` (dossier courant) et `..` (parent), à écarter pour ne pas tourner en rond.
 
-Dans `.pid.config.php` :
+## 3. Analyse du Code & Logique
+
 ```php
+// .pid.config.php — 8e constante obligatoire
 define("PID_FOLDER_PATH", "/.pid");
 ```
-Et le Bootstrap ([[Bootstrap PID — Detection de la Racine du Site]]) l'ajoute à sa liste de constantes **obligatoires** : si elle manque, `die("PID error : missing some constant(s)...")`. On passe de 7 à 8 constantes vérifiées.
-
-### 2. Le préfixe `*` dans `PID_PathTo`
+- **Étape 1 — Déclarer.** Le Bootstrap ajoute `PID_FOLDER_PATH` à sa liste de constantes exigées (7 → 8). Absente : `die("PID error : missing some constant(s)…")` ([[Bootstrap PID — Detection de la Racine du Site]]).
 
 ```php
+// PID_PathTo — nouveau préfixe *
 if (str_starts_with($url, "*"))
 {
-    $url = substr($url, 1);                          // retire l'étoile
+    $url = substr($url, 1);
     if (str_starts_with($url, "/")) $url = substr($url, 1);
     $url = PID_FOLDER_PATH . (str_ends_with(PID_FOLDER_PATH, "/") ? "" : "/") . $url;
 }
 ```
-Lecture : `PID_PathTo("*page.php")` → `"/.pid/page.php"`, puis le reste de la fonction fait comme d'habitude (`PID_PATH_TO_ROOT . $url`). Sans étoile, le comportement reste celui vu au 05/09 ([[PID_PathTo, PID_Include et PID_IncludeOnce]]).
+- **Étape 2 — Raccourci `*`.** `PID_PathTo("*page.php")` → `"/.pid/page.php"`, puis la fonction continue comme d'habitude (`PID_PATH_TO_ROOT` devant). Sans étoile, rien ne change ([[PID_PathTo, PID_Include et PID_IncludeOnce]]). *Défini mais **pas encore utilisé** dans le code du 19/09 — préparé pour la suite.*
 
-> ℹ️ **État au 19/09** : le préfixe `*` est **défini** dans `PID_PathTo` mais **aucun fichier du code du prof ne l'utilise encore**. C'est une fonctionnalité préparée pour la suite (par exemple, référencer une feuille CSS ou un script fournis par le framework lui-même). À ne pas présenter comme "utilisé" à l'examen.
-
-### 3. Le registre de classes pointe désormais vers `.pid/`
-
-`.class.register.php` :
 ```php
-"CPage"           => ".pid/Page.php",
-"TCssJsFiles"     => ".pid/trait.CssJsFiles.php",
-"CApplication"    => ".pid/Application.php",
-"CFileCollection" => ".pid/FileCollection.php",
-"CMonApp"         => "MonApp.php",              // reste à la racine : c'est le code DU SITE
-"CPersonne"       => "dir1/dir2/Personne.php"
+// .class.register.php — la frontière est visible
+"CPage"        => ".pid/Page.php",      // framework
+"CApplication" => ".pid/Application.php",
+"CMonApp"      => "MonApp.php",          // site
 ```
-La frontière est visible dans le registre lui-même : ce qui commence par `.pid/` est le framework, le reste est l'application.
+- **Étape 3 — Le registre trace la frontière** : `.pid/…` = framework, le reste = application.
 
-### 4. L'exploration inclut maintenant les dossiers "cachés"
-
-Autoloader ([[Autoloading PID — spl_autoload_register et le Cache]]) **et** action `updateIndexes` utilisaient `glob($path . "*", GLOB_ONLYDIR)` — or `*` ne matche **pas** les noms commençant par un point. Sans correction, `.pid/` serait invisible. Le prof ajoute :
 ```php
+// Autoloader et action updateIndexes
 $subDirectories = array_merge(glob($path . "*", GLOB_ONLYDIR), glob($path . ".*", GLOB_ONLYDIR));
 ```
-`.*` matche aussi `.` (dossier courant) et `..` (parent) — d'où les lignes déjà présentes `if (str_ends_with($subPath, "/./") || str_ends_with($subPath, "/../")) continue;` qui les écartent.
+- **Étape 4 — Voir les dossiers cachés.** Sans `glob(".*")`, `.pid/` serait invisible. Effet collatéral : `updateIndexes` recopie aussi `index.php` dans `.pid/`.
 
-Conséquence : `updateIndexes` recopie aussi `index.php` **dans `.pid/`** (le fichier `.pid/index.php` est identique à celui de la racine).
+**Bonnes pratiques** : séparer le générique (framework) du spécifique (site) ; une constante de configuration plutôt qu'un chemin en dur ; un registre qui rend la frontière lisible.
 
-## Schéma
+## 4. Synthèse & Prochaine Étape
 
-```mermaid
-flowchart LR
-    subgraph Salle["SALLE — le site (racine)"]
-        IDX["index.php + index.content.php"]
-        MON["monapp.php<br/>CMonApp"]
-        PER["dir1/dir2/personne.php<br/>CPersonne"]
-    end
-    subgraph Cuisine["CUISINE — le framework (.pid/)"]
-        APP["application.php<br/>CApplication"]
-        PAG["page.php<br/>CPage"]
-        TRA["trait.cssjsfiles.php<br/>TCssJsFiles"]
-        COL["filecollection.php<br/>CFileCollection"]
-    end
-    CFG[".pid.config.php<br/>PID_FOLDER_PATH = /.pid"]
-    REG[".class.register.php<br/>nom de classe -> fichier"]
-    CFG -->|"dit ou est la cuisine"| Cuisine
-    REG -->|"CPage => .pid/Page.php"| Cuisine
-    REG -->|"CMonApp => MonApp.php"| Salle
-    MON -->|"herite de"| APP
-```
+**À retenir (3 puces max)**
+- Framework = `.pid/`, site = le reste ; `PID_FOLDER_PATH` dit où est le framework.
+- `*fichier` dans `PID_PathTo` = « cherche dans `.pid/` » (défini, pas encore utilisé).
+- Sans `glob(".*")`, l'autoloader est aveugle aux dossiers cachés.
 
-## Exemple concret
+**Lien avec la suite** : la classe la plus visible qui vit désormais dans `.pid/` → [[CPage — Générer une page HTML (WriteDocument et points d'extension)]].
 
-Tu demandes `CPage` pour la première fois. L'autoloader consulte le registre : `"CPage" => ".pid/Page.php"`. Il appelle `PID_Include(".pid/Page.php")` → `PID_PathTo` ajoute `PID_PATH_TO_ROOT` devant → le fichier est chargé **depuis n'importe quelle profondeur** (`dir1/truc/machin/` compris). Si le registre est vide (premier lancement), l'exploration descend dans `.pid/` grâce au `glob(".*")` et le retrouve seule.
-
-## Connexions
-
-- [[Bootstrap PID — Detection de la Racine du Site]] — valide `PID_FOLDER_PATH` comme constante obligatoire.
-- [[PID_PathTo, PID_Include et PID_IncludeOnce]] — porte le nouveau préfixe `*`.
-- [[Autoloading PID — spl_autoload_register et le Cache]] — exploration élargie aux dossiers commençant par un point.
-- [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — les classes qui ont déménagé dans `.pid/`.
-- [[Glossaire PHP — include, require et résolution de chemins]] — rappel du mécanisme natif que tout ceci corrige.
-
-## Questions de rappel actif
-
-> **Q :** Pourquoi `glob($path . "*")` ne suffisait-il plus pour trouver les classes ?
-> **R :** Parce que `*` ne correspond pas aux noms de dossiers qui commencent par un point. `.pid/` étant justement un tel dossier, il fallait ajouter `glob($path . ".*")` — et écarter `.` et `..` pour ne pas boucler sur soi-même.
+**Rappel actif**
+> **Q :** Pourquoi `glob($path . "*")` ne suffisait-il plus ?
+> **R :** `*` ne correspond pas aux noms commençant par un point ; `.pid/` en est un. Il faut `glob(".*")` et écarter `.` et `..`.
 
 > **Q :** Que vaut `PID_PathTo("*page.php")` si `PID_FOLDER_PATH` vaut `"/.pid"` ?
-> **R :** `"/.pid/page.php"` d'abord, puis `PID_PATH_TO_ROOT` est ajouté devant (ex. `"../../" . "/.pid/page.php"`). Le double slash est inoffensif pour le système de fichiers.
+> **R :** `"/.pid/page.php"` d'abord, puis `PID_PATH_TO_ROOT` est ajouté devant. Le double slash éventuel est inoffensif.
 
-> **Q :** Dans le registre, comment repère-t-on d'un coup d'œil une classe du framework et une classe du site ?
-> **R :** Le chemin du framework commence par `.pid/` ; celui du site non (`MonApp.php`, `dir1/dir2/Personne.php`).
+> **Q :** Pourquoi le cache `.class.register.php` compte-t-il encore plus avec `.pid/` ?
+> **R :** L'exploration du disque (`glob`) coûte des lectures de répertoire ; le cache les remplace par une recherche en RAM.
 
-## Pièges fréquents
+**Pièges fréquents**
+- ⚠️ **Croire que `*` est déjà utilisé partout** — défini dans `PID_PathTo`, mais aucun appel du cours ne s'en sert au 19/09.
+- ⚠️ **Oublier `PID_FOLDER_PATH`** dans un nouveau `.pid.config.php` — le Bootstrap s'arrête (`die`) : voulu.
+- ⚠️ **`glob(".*")` explore tout** — y compris `.git` ou `.vscode` s'ils sont sous la racine du site : lenteur et découvertes inattendues à surveiller.
 
-- ⚠️ **Croire que `*` est déjà utilisé partout** — au 19/09 il est seulement prévu dans `PID_PathTo`, aucun appel du cours ne s'en sert encore.
-- ⚠️ **Oublier `PID_FOLDER_PATH` dans un nouveau `.pid.config.php`** — le Bootstrap s'arrête net (`die`) : c'est voulu, la constante est obligatoire depuis le 19/09.
-- ⚠️ **Effet de bord de `glob(".*")` à garder en tête pour le projet** — l'exploration parcourt désormais *tous* les sous-dossiers de la racine, y compris `.git`, `.vscode`, etc. si on les place sous la racine du site. À surveiller si on garde cette approche plus tard (lenteur, et découverte de classes inattendues).
-
-## À retenir absolument
-- Framework = `.pid/`, site = le reste ; `PID_FOLDER_PATH` dit où est le framework.
-- `*monfichier` dans `PID_PathTo` = "cherche dans `.pid/`" (défini, pas encore utilisé).
-- Sans `glob(".*")`, l'autoloader serait aveugle aux dossiers cachés.
-
-## Explorer ensuite
-- [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — la classe la plus visible qui vit désormais dans `.pid/`.
+**Connexions**
+- [[Bootstrap PID — Detection de la Racine du Site]] — valide `PID_FOLDER_PATH`.
+- [[PID_PathTo, PID_Include et PID_IncludeOnce]] — porte le préfixe `*`.
+- [[Autoloading PID — spl_autoload_register et le Cache]] — exploration élargie aux dossiers cachés.
+- [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — les classes qui ont déménagé.
+- [[Glossaire PHP — include, require et résolution de chemins]] — le mécanisme natif que tout ceci corrige.

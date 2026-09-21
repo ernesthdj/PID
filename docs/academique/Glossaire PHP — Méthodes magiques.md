@@ -2,7 +2,7 @@
 type: glossaire
 subject: Méthodes magiques PHP (__construct, __wakeup, __destruct, __toString...)
 tags: [#PHP, #glossaire, #POO, #methodes-magiques]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Ce sont des sonnettes automatiques : tu ne les actionnes jamais toi-même directement (on n'écrit jamais `$obj->__construct()`), c'est PHP qui les déclenche tout seul quand un évènement précis du cycle de vie de l'objet se produit — naissance, réveil, destruction...
 
-## En une phrase simple
+## En 30 secondes
 
 Une méthode magique est une méthode dont le nom commence par `__` (deux underscores) et que PHP **appelle automatiquement** à un moment précis du cycle de vie d'un objet — jamais appelée explicitement par le développeur.
 
@@ -50,9 +50,16 @@ protected function __wakeup()
 
 **Différence fondamentale avec `__construct`** : `__construct` s'exécute pour une création **initiale** (`new`), `__wakeup` s'exécute pour une **restauration** depuis un état déjà existant (désérialisation) — l'objet n'est jamais "recréé de zéro" dans ce second cas, juste réactivé.
 
+## Sous le capot
+- Le moteur PHP tient, pour chaque classe, la liste de ses méthodes. À certains **évènements du cycle de vie** — création (`new`), reconstruction depuis un texte (`unserialize`), fin de vie — il **cherche** si une méthode au nom réservé existe et l'appelle lui-même.
+- `__construct` est appelée **après** l'allocation de la mémoire de l'objet ; `__wakeup` est appelée **après** que `unserialize` a rempli les propriétés à partir du texte sauvegardé (typiquement le fichier de session).
+- PHP 8 attend ces méthodes **publiques** : une `__wakeup` déclarée `protected` (comme dans `CApplication`) provoque probablement un avertissement *(⚠️ Probable : lu, non exécuté)*.
+
+> ⚠️ **Correction du 19/09** — le `var_dump("RECUPERATION D'UN OBJET DE TYPE CApplication")` montré plus haut date du 12/09 : le prof l'a **retiré** le 19/09, `__wakeup()` est désormais vide (dans `CApplication` et `CMonApp`). Le mécanisme reste identique.
+
 ## Utilisé dans ce cours
 
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — `__construct($nom, $prenom)` appelle les accesseurs plutôt que d'écrire directement les propriétés, pour garantir la validation dès la création.
+- [[Structure POO — CPersonne et CAutre]] — `__construct($nom, $prenom)` appelle les accesseurs plutôt que d'écrire directement les propriétés, pour garantir la validation dès la création.
 - [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — `__construct` (protected) crée l'instance unique et la stocke en session ; `__wakeup` la restaure lors des requêtes suivantes. `CMonApp` surcharge les deux et appelle `parent::__construct()`/`parent::__wakeup()` pour ne pas casser la mécanique de la classe de base.
 
 ## Questions de rappel actif

@@ -2,7 +2,7 @@
 type: glossaire
 subject: Closures et fonctions anonymes en PHP
 tags: [#PHP, #glossaire, #fonctions, #closures]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Une fonction anonyme, c'est un post-it avec des instructions dessus, sans nom écrit en haut — on ne peut pas l'appeler par son nom plus tard, seulement la donner directement à quelqu'un ("tiens, voici quoi faire quand il le faudra") au moment où on la crée.
 
-## En une phrase simple
+## En 30 secondes
 
 Une **fonction anonyme** est une fonction sans nom, définie à l'endroit même où on l'utilise (souvent passée en argument à une autre fonction) ; une **closure** est une fonction anonyme qui, en plus, "se souvient" des variables de son contexte de création.
 
@@ -49,6 +49,11 @@ echo $saluer("Duchemin");   // "M. Duchemin"
 ```
 
 Sans le mot-clé `use`, une fonction anonyme ne voit **aucune** variable de son environnement extérieur — chaque fonction a normalement sa propre portée (scope) isolée. `use ($prefixe)` **capture** explicitement la variable `$prefixe` telle qu'elle valait à la création de la closure, et la rend disponible à l'intérieur. C'est cette capture qui transforme une simple "fonction anonyme" en véritable "closure" (fermeture) au sens strict.
+
+## Sous le capot
+- En PHP, une fonction anonyme est un **objet** (de la classe interne `Closure`) créé en mémoire au moment où l'exécution rencontre le mot-clé `function`. La variable qui la « contient » ne détient qu'un identifiant vers cet objet.
+- `use ($x)` **copie la valeur** de `$x` **au moment de la création** de la closure (elle ne suit pas les changements ultérieurs, sauf capture par référence avec `&`).
+- `spl_autoload_register(function(...) {...})` range cet objet dans une **pile interne** du moteur ; c'est là que PHP va le rappeler quand une classe est inconnue.
 
 ## Utilisé dans ce cours
 

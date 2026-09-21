@@ -2,7 +2,7 @@
 type: glossaire
 subject: Superglobales PHP et $_SESSION (persistance entre requêtes HTTP)
 tags: [#PHP, #glossaire, #session, #http]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Chaque requête HTTP est comme un visiteur amnésique qui frappe à la porte, discute, puis repart et oublie tout. `$_SESSION` est le badge qu'on lui donne à sa première visite : à chaque nouvelle visite, s'il présente le même badge (un cookie contenant un identifiant), le serveur retrouve son dossier — sinon, c'est reparti de zéro comme pour un inconnu.
 
-## En une phrase simple
+## En 30 secondes
 
 Les **superglobales** sont des tableaux PHP automatiquement disponibles partout dans le code sans rien déclarer (`$_SESSION`, `$_GET`, `$_POST`, `$_SERVER`...) ; `$_SESSION` en particulier est le seul mécanisme natif qui permette de **conserver des données entre plusieurs requêtes HTTP successives** d'un même visiteur.
 
@@ -40,9 +40,14 @@ $p1 = $_SESSION["personne"];       // la relit
 
 Quand un **objet** (pas juste une chaîne ou un nombre) est stocké dans `$_SESSION`, PHP le convertit automatiquement en texte (`serialize()`) pour le sauvegarder, puis le reconvertit en objet (`unserialize()`) à la requête suivante quand on le relit. C'est précisément ce moment de reconversion qui déclenche la méthode magique `__wakeup()` si la classe en définit une — voir [[Glossaire PHP — Méthodes magiques]].
 
+## Sous le capot
+- Les superglobales (`$_GET`, `$_POST`, `$_SERVER`, `$_SESSION`…) sont **remplies par le moteur avant l'exécution du script** : `$_GET` à partir de la query string de l'URL, `$_SERVER` par le serveur web.
+- **Session** : `session_start()` lit le cookie d'identifiant envoyé par le navigateur, puis **relit le fichier de session** correspondant sur le disque du serveur et **désérialise** son contenu dans `$_SESSION`. À la **fin** de la requête, PHP **réécrit** ce fichier avec l'état courant. Le cookie est posé par un **en-tête HTTP** ([[Glossaire — En-têtes HTTP et header()]]).
+- Par défaut, PHP **verrouille** le fichier de session tant que la session est ouverte : deux requêtes simultanées du même visiteur s'exécutent l'une après l'autre. *(⚠️ Probable : comportement par défaut, dépend de la configuration.)*
+
 ## Utilisé dans ce cours
 
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — `$_SESSION["personne"]` conserve l'objet `CPersonne` d'une exécution de `test_poo.php` à l'autre, preuve concrète qu'un objet PHP "survit" au rechargement de la page.
+- [[Structure POO — CPersonne et CAutre]] — `$_SESSION["personne"]` conserve l'objet `CPersonne` d'une exécution de `test_poo.php` à l'autre, preuve concrète qu'un objet PHP "survit" au rechargement de la page.
 - [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — `$_SESSION[PID_APPLICATION_SESSION_ITEM_NAME]` formalise exactement le même principe pour le singleton applicatif, avec `__wakeup()` en plus pour tracer la restauration.
 
 ## Questions de rappel actif

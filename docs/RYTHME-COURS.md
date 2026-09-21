@@ -13,7 +13,7 @@
 | 29/08 | Racine du site, `index.php` par dossier, marqueur de racine, chemin « montant », configuration du framework, aide au développeur | (texte du cours) |
 | 05/09 | Bootstrap, `PID_PathTo`/`PID_Include`, autoloader + cache, premières classes (`CPersonne`) | [[Bootstrap PID — Detection de la Racine du Site]] · [[Autoloading PID — spl_autoload_register et le Cache]] |
 | 12/09 | Autoloader durci (retry), `CApplication` singleton en session, charset, `CPage` squelette | [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] |
-| 19/09 | Dossier `.pid/`, `CPage` complète (hooks, `IntoHtml`), trait + collection CSS/JS | [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] |
+| 19/09 | Dossier `.pid/`, `CPage` complète (hooks, `IntoHtml`), trait + collection CSS/JS ; le prof retire les traces de debug (`var_dump`). Notions introduites (glossaire) : héritage, encodage des caractères, en-têtes HTTP, opérateur d'étalement | [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] |
 
 ## 2. Ce que le cours **vise** (plan du 24/08) et où on en est
 
@@ -36,6 +36,8 @@
 **Lecture :** 4 séances sur les fondations du framework ; **tout le cœur « comptes/sécurité/base de données/AJAX » reste devant nous.** Or la Phase 1 du pipeline est déjà écrite pour l'ensemble.
 
 ## 3. Ce que la Phase 1 suppose, brique par brique
+
+Correspondances détaillées avec Laravel : [[Laravel ↔ framework PID — Correspondances]].
 
 Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cours · ➕ hors cours (spécifique au sujet, autorisé par le plan : « contenu intéressant… ce qui n'aura pas été réalisé dans le cadre du squelette »).
 
@@ -72,8 +74,16 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 
 **Règle de porte :** avant chaque tâche d'implémentation, vérifier dans ce tableau que la notion de cours correspondante est passée à ✅ ; sinon la tâche attend.
 
-## 6. Questions ouvertes (à confirmer par mentalyas)
+## 6. Calendrier
 
-- [ ] L'état « vu / pas vu » du §2 correspond-il à ce que le prof a réellement dit en classe (notamment sur MySQL, sessions et comptes) ?
-- [ ] Combien de séances restent, et à quelle date est l'examen ? Sans calendrier, impossible de dire si le séquencement 2a→2e tient dans les délais.
-- [ ] Faut-il rejouer la Phase 1 (Fortify, dompdf, `/ajax/`) pour l'aligner sur ce que le prof enseignera (auth maison, PDO), ou la conserver comme cible de fin de projet avec les ponts pédagogiques du FOUNDATION §5 ?
+- **Séances faites :** 4 (29/08, 05/09, 12/09, 19/09).
+- **Dernier cours :** samedi **30/01/2027** (confirmé par mentalyas le 2026-09-21).
+- **Samedis restants au maximum :** 19 (1 en septembre, 5 en octobre, 4 en novembre, 4 en décembre, 5 en janvier). Le nombre réel sera plus bas si le prof saute des samedis (congés, interruptions) — à ajuster au fil de l'eau.
+- **Date de l'examen oral :** non connue (postérieure au 30/01/2027).
+- **Conséquence :** au rythme actuel (4 séances pour les fondations), le prof dispose d'environ 19 séances pour enseigner tout le reste du plan (MySQL, comptes, sécurité, JS/jQuery, AJAX). Les étapes 2b→2d du §5 se débloquent donc **au fil des mois, pas d'un coup** ; l'étape 2a est la seule qui peut avancer dès maintenant.
+
+## 7. Décisions
+
+- ✅ **« Vu / pas vu » du §2 validé** par mentalyas (2026-09-21).
+- ✅ **Phase 1 (Fortify, dompdf, `/ajax/`) conservée comme cible de fin de projet**, non réécrite maintenant. Chaque porte 2b/2c/2d est l'occasion de **re-valider** la décision correspondante contre ce que le prof aura réellement enseigné (ex. si le prof enseigne une authentification maison et PDO, l'Architecte réévalue Fortify/Eloquent avant d'implémenter — le pont pédagogique du FOUNDATION §5 reste la règle). Décision prise par Claude, mentalyas ayant laissé le choix (« comme tu le sens »).
+- ✅ **Notes de cours : introduction systématique.** Quand le prof aborde une matière ou une techno « en plein milieu » (sans l'avoir introduite), la note de cours commence par un récapitulatif **« c'est quoi et comment ça marche »** avant le détail de ce qui a été montré en classe.

@@ -2,7 +2,7 @@
 type: glossaire
 subject: eval() et exécution dynamique de code en PHP
 tags: [#PHP, #glossaire, #eval, #securite]
-date: 2026-09-18
+date: 2026-09-21
 niveau: avancé
 ---
 
@@ -10,7 +10,7 @@ niveau: avancé
 
 > `eval()`, c'est écrire une phrase sur un bout de papier et la donner à quelqu'un en lui disant "fais exactement ce que dit ce papier" — sans jamais avoir vérifié à l'avance ce qu'il y a d'écrit dessus. Pratique si tu écris toi-même le papier ; dangereux si quelqu'un d'autre a pu y toucher avant toi.
 
-## En une phrase simple
+## En 30 secondes
 
 `eval()` est une fonction native de PHP qui **prend une chaîne de caractères et l'exécute comme si c'était du vrai code PHP écrit directement dans le fichier** — elle permet de construire du code "à la volée" plutôt que de l'écrire figé à l'avance.
 
@@ -39,6 +39,10 @@ Ici, `eval()` sert à construire dynamiquement le **nom de la fonction** à appe
 ### Pourquoi c'est dangereux (et pourquoi ce n'est pas la meilleure pratique)
 
 `eval()` exécute **n'importe quel** code PHP contenu dans la chaîne — s'il arrivait qu'une donnée venant de l'utilisateur (un formulaire, une URL) se retrouve, même indirectement, dans la chaîne passée à `eval()`, un visiteur malveillant pourrait faire exécuter du code arbitraire sur le serveur (faille d'injection de code, une des pires catégories de vulnérabilités web). Dans le cas du cours, `$kindName` provient d'une convention de nommage interne (premier caractère du nom de classe), pas d'une entrée utilisateur directe — le risque concret est donc faible ici, mais le principe général reste : **éviter `eval()` dès qu'une alternative existe**. Une structure `match()` ou `switch()` explicite ferait exactement la même chose sans exécuter de code construit par concaténation de chaînes.
+
+## Sous le capot
+- Pour un fichier, PHP enchaîne : **analyse lexicale** (découper en tokens — [[Glossaire PHP — Tokenisation (token_get_all)]]), **analyse syntaxique**, **compilation** en instructions internes, **exécution**. `eval()` déclenche **exactement ce pipeline sur une chaîne**, en mémoire, à chaque appel.
+- Contrairement à un fichier, cette compilation **n'est pas mise en cache** : `eval` la refait à chaque fois *(⚠️ Probable : général à PHP)*. Autre raison d'éviter `eval` dans du code exécuté souvent.
 
 ## Utilisé dans ce cours
 

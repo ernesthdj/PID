@@ -1,110 +1,132 @@
 ---
 type: concept
-subject: Bootstrap PID — détection de la racine du site
-module: PID — Framework maison (samedis 29/08, 05/09, 12/09)
-tags: [#PID, #PHP, #bootstrap, #topologie]
-date: 2026-09-12
+subject: Bootstrap PID — détection de la racine du site (index.php, .pid.config.php, PID_PATH_TO_ROOT)
+module: PID — Framework maison (séances 29/08 → 19/09)
+source: cours
+seances: [2026-08-29, 2026-09-05, 2026-09-12, 2026-09-19]
+tags: [#PID, #PHP, #bootstrap, #topologie, #securite]
+date: 2026-09-21
 niveau: intermédiaire
 statut: complet
 analogie_domaine: multiprise / électricité
+critere_examen: framework / généricité (20), traitement PHP (20), sécurité PHP (20)
+prerequis: ["[[Introduction au PHP — Bases pour débutant]]"]
 ---
 
-# Bootstrap PID — Détection de la racine du site
+# Bootstrap PID — détection de la racine du site
 
-> Chaque `index.php` du site, où qu'il soit dans l'arborescence, se comporte comme une rallonge électrique qui remonte automatiquement jusqu'au tableau électrique principal avant de faire quoi que ce soit — il ne fait confiance à aucune prise locale, il vérifie toujours d'où vient le courant.
-
-![[attachments/schema-bootstrap-autoloader-avant-apres.png]]
-*Schéma avant/après (index.php dupliqué + chemins en dur → Bootstrap + PID_PathTo/Include + Autoloader). Couvre aussi [[PID_PathTo, PID_Include et PID_IncludeOnce]] et [[Autoloading PID — spl_autoload_register et le Cache]] — vérifié fidèle au code du cours le 2026-09-18.*
-
-## En une phrase simple
-
-Avant de faire quoi que ce soit, chaque `index.php` remonte l'arborescence de dossiers, un cran à la fois, jusqu'à trouver un fichier-marqueur (`.pid.config.php`) qui signale "ici, c'est la racine du site" — et il retient ce chemin dans une constante globale, `PID_PATH_TO_ROOT`, que tout le reste du framework va réutiliser.
-
-## Pourquoi ça existe ?
-
-Le prof a codé un `index.php` **identique**, copié-collé dans `dir1/`, `dir1/dir2/`, `dir1/truc/machin/`, etc. (il y a même une action `pidAction=updateIndexes` qui propage ce fichier dans tous les sous-dossiers automatiquement). Problème : un `index.php` dans `dir1/dir2/` n'est pas au même "étage" qu'un `index.php` à la racine. Si le code écrivait `"../../.pid.config.php"` en dur, il casserait dès qu'on déplace un dossier.
-
-Il fallait un mécanisme qui **s'auto-localise**, peu importe sa profondeur dans l'arborescence — exactement comme une rallonge qu'on peut brancher n'importe où dans la maison, tant qu'elle finit par retrouver le tableau électrique.
-
-## Comment ça fonctionne ?
-
-### 1. Comptage de la profondeur
-
-```php
-$relativePathToRoot = "./";
-for ($remainingUpSteps = substr_count(str_replace("\\", "/", __FILE__), "/"); $remainingUpSteps > 0; $remainingUpSteps--)
-```
-
-`__FILE__` donne le chemin absolu du fichier courant. Compter ses `/` donne une majoration du nombre de dossiers à remonter — la boucle ne peut pas tourner indéfiniment (garde-fou).
-
-### 2. La remontée pas à pas
-
-À chaque tour de boucle : est-ce que `.pid.config.php` existe dans `$relativePathToRoot` ? Si non, on ajoute un `"../"` et on réessaie. Dès qu'il est trouvé, `PID_PATH_TO_ROOT` est figé (via `define`, donc une **constante** — immuable pour le reste de la requête) et la boucle s'arrête (`break`).
-
-### 3. Le fichier-marqueur `.pid.config.php`
-
-Ce fichier n'a qu'un rôle : **exister à la racine** et définir les constantes de configuration du framework. Version du 05/09 : `PID_SETUP_ACTION_NAME`, `PID_INDEX_CONTENT_FILENAME`, `PID_DEFAULT_INDEX_CONTENT`, `PID_CLASS_REGISTER_FILENAME`. Depuis le 12/09, deux constantes obligatoires supplémentaires sont apparues — `PID_CHARSET` et `PID_APPLICATION_SESSION_ITEM_NAME` — qui configurent le nouveau singleton applicatif (voir [[CApplication, CMonApp et CPage — Singleton applicatif et charset]]). S'il manque une de ces constantes après son inclusion, `index.php` s'arrête net avec `die()` — validation défensive dès le bootstrap. `index.php` va même plus loin pour `PID_CHARSET` : après avoir vérifié sa présence, il vérifie aussi que sa **valeur** vaut bien `PID_ANSI` ou `PID_UTF8` (deux constantes techniques définies en tout début d'`index.php` lui-même, pas dans `.pid.config.php`) — sinon nouveau `die()`, distinct du premier.
-
-### 4. Distinguer requête HTTP directe vs inclusion
-
-```php
-$httpRequestOfIndexFile = (count(get_included_files()) == 1);
-```
-
-Si ce `index.php` est le tout premier fichier chargé (aucun autre fichier PHP ne l'a inclus avant), c'est que le navigateur l'a demandé directement en HTTP. Sinon, c'est qu'un autre script (ex. `test_poo.php`) l'a inclus lui-même pour "activer" le framework sans vouloir afficher la page d'accueil du dossier. Cette distinction pilote la suite (afficher `index.content.php` ou ne rien afficher).
-
-## Schéma
+> **En 30 secondes** — Un `index.php` identique est placé dans **chaque dossier** du site : il empêche le navigateur de lister le contenu des dossiers, et il sait retrouver tout seul la racine du site (en remontant jusqu'au fichier-marqueur `.pid.config.php`) pour activer le framework, quelle que soit sa profondeur.
 
 ```mermaid
 flowchart TD
     A["index.php execute<br/>(peu importe le dossier)"] --> B{".pid.config.php<br/>existe ici ?"}
     B -- non --> C["remonter d'un cran<br/>(../ ajoute)"]
     C --> B
-    B -- oui --> D["define PID_PATH_TO_ROOT<br/>(fige le chemin trouve)"]
-    D --> E["include_once .pid.config.php<br/>(charge les constantes du framework)"]
-    E --> F{"toutes les constantes<br/>requises presentes ?"}
-    F -- non --> G["die() — erreur explicite"]
-    F -- oui --> H["framework pret :<br/>PID_PATH_TO_ROOT disponible partout"]
+    B -- oui --> D["define PID_PATH_TO_ROOT"]
+    D --> E["include .pid.config.php<br/>+ verifier les constantes"]
+    E --> F{"requete HTTP directe<br/>sur ce dossier ?"}
+    F -- oui --> G["afficher index.content.php<br/>ou rediriger vers le parent"]
+    F -- non --> H["simple inclusion :<br/>framework actif, rien affiche"]
 ```
 
-## Exemple concret
+![[attachments/schema-bootstrap-autoloader-avant-apres.png]]
+*Schéma avant/après (index.php dupliqué + chemins en dur → Bootstrap + PID_PathTo/Include + Autoloader) — vérifié fidèle au code du cours le 2026-09-18.*
 
-Tu es dans `dir1/truc/machin/index.php`. `__FILE__` contient 3 occurrences de `/` après le nom du site (approximativement — la boucle part large). Tour 1 : `./.pid.config.php` — absent. Tour 2 : `../.pid.config.php` — absent. Tour 3 : `../../.pid.config.php` — absent. Tour 4 : `../../../.pid.config.php` — trouvé ! `PID_PATH_TO_ROOT = "../../../"`. À partir de là, n'importe quelle fonction du framework appelée depuis ce fichier sait reconstruire un chemin absolu vers la racine.
+---
 
-## Évolution du 19/09 — une 8ᵉ constante obligatoire
-La liste des constantes que le Bootstrap exige dans `.pid.config.php` passe de 7 à **8** : `PID_FOLDER_PATH` (chemin du dossier du framework, ex. `"/.pid"`) est ajoutée. Si elle manque, le `die("PID error : missing some constant(s)...")` habituel s'applique. Le sens de cette constante est détaillé dans [[Dossier .pid et préfixe étoile — Séparer le framework du site]]. À la fin de `index.php`, deux petites fonctions globales apparaissent aussi à côté de `PID_PathTo`/`PID_Include` : `PID_IsInteger` et `PID_IsReal` (vérifient qu'une valeur est un entier / un nombre).
+## 1. Vue Macro & Utilité (le « Pourquoi »)
 
-## Connexions
+- **Problématique** — Deux problèmes, résolus par le même fichier :
+  1. **Sécurité** : si un dossier n'a pas de fichier d'accueil, le serveur web peut en afficher la **liste des fichiers**. Le cours du 29/08 pose l'objectif dès le départ : *« interdiction de l'exploration des répertoires via le navigateur par l'ajout de fichier `index.php` dans chaque répertoire »*. C'est une mesure contre l'exposition d'informations (catégorie de failles répertoriée par l'OWASP — *Open Web Application Security Project*, référence de la sécurité web).
+  2. **Localisation** : cet `index.php`, **strictement identique** partout, ne sait pas à quelle profondeur il se trouve. Un chemin en dur (`"../../.pid.config.php"`) casserait dès qu'on déplace un dossier. Il doit **s'auto-localiser**.
+- **Emplacement dans la carte globale** : c'est le **tout premier maillon** de la chaîne : requête HTTP → serveur web → `index.php` (bootstrap) → adressage des fichiers (`PID_PathTo`) → chargement des classes (autoloader) → application (`CApplication`, `CPage`).
+- **Analogie (multiprise)** : chaque `index.php` est une **rallonge** qu'on peut brancher dans n'importe quelle pièce : avant de faire quoi que ce soit, elle remonte les prises une à une jusqu'au **tableau électrique** (la racine), sans faire confiance à aucune prise locale.
 
-- [[Introduction au PHP — Bases pour débutant]] — bases de syntaxe (variables, constantes `define()`, boucles) si ce concept semble encore flou.
-- [[PID_PathTo, PID_Include et PID_IncludeOnce]] — utilisent directement `PID_PATH_TO_ROOT` pour construire des chemins fiables.
-- [[Autoloading PID — spl_autoload_register et le Cache]] — le registre de classes est cherché et écrit à partir de cette même racine.
-- [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] — ses deux constantes de configuration (`PID_CHARSET`, `PID_APPLICATION_SESSION_ITEM_NAME`) sont désormais validées ici même, dès le bootstrap, avant que quoi que ce soit d'autre ne s'exécute.
+## 2. Le Pont Systémique (sous le capot)
 
-## Questions de rappel actif
+1. **Le serveur web** (Apache) reçoit l'URL, la traduit en chemin de fichier, et **lance PHP** sur ce fichier. Si le dossier demandé n'a pas de fichier d'index, Apache peut en afficher la liste — d'où l'`index.php` partout.
+2. **PHP redémarre de zéro à chaque requête** : aucune variable, aucune constante ne survit d'une requête à l'autre. Le bootstrap **se rejoue donc intégralement à chaque requête**. Son coût : quelques `file_exists`, chacun étant un **appel système au disque** (le système d'exploitation vérifie l'entrée dans le répertoire).
+3. **`__FILE__`** est le chemin absolu du fichier en cours d'exécution ; **`define()`** inscrit une constante dans la mémoire du processus PHP pour la durée de la requête ; **`get_included_files()`** renvoie la liste que le moteur tient des fichiers déjà chargés.
+4. **`die()`** arrête le script sur place : la réponse HTTP s'interrompt avec le message affiché — c'est le mécanisme d'erreur « défensive » du bootstrap.
 
-> **Q :** Pourquoi le framework ne peut-il pas simplement écrire `include("../../.pid.config.php")` en dur dans chaque `index.php` ?
-> **R :** Parce que chaque copie d'`index.php` se trouve à une profondeur différente dans l'arborescence — un chemin en dur ne fonctionnerait que pour un seul niveau de profondeur et casserait partout ailleurs. Il faut une remontée dynamique qui s'adapte à la position réelle du fichier.
+## 3. Analyse du Code & Logique
 
-> **Q :** Que se passe-t-il si `.pid.config.php` n'existe nulle part en remontant jusqu'à la racine du disque (dans la limite du compteur) ?
-> **R :** `PID_PATH_TO_ROOT` n'est jamais défini, la condition `!defined("PID_PATH_TO_ROOT")` est vraie, et le script s'arrête avec un `die()` explicite demandant d'ajouter le fichier manuellement.
+**Étape 1 — Remonter jusqu'à la racine**
 
-> **Q :** À quoi sert la distinction entre "requête HTTP directe" et "inclusion par un autre script" ?
-> **R :** Elle permet à `index.php` de savoir s'il doit afficher le contenu de la page (`index.content.php`) ou simplement "activer" le framework en arrière-plan pour un script comme `test_poo.php` qui l'inclut sans vouloir de sortie HTML de sa part.
+```php
+$relativePathToRoot = "./";
+for ($remainingUpSteps = substr_count(str_replace("\\", "/", __FILE__), "/"); $remainingUpSteps > 0; $remainingUpSteps--)
+{
+    if (file_exists($relativePathToRoot . PID_CONFIG_FILENAME)) { define("PID_PATH_TO_ROOT", $relativePathToRoot); break; }
+    $relativePathToRoot = ($relativePathToRoot == "./") ? "../" : $relativePathToRoot . "../";
+}
+```
+`substr_count(..., "/")` compte **tous** les `/` du chemin **absolu** du fichier (par exemple 7 pour `C:/xampp/htdocs/site/dir1/truc/machin/index.php`) : c'est un **majorant** du nombre de dossiers à remonter, qui sert de garde-fou (la boucle ne tourne jamais indéfiniment). Depuis `dir1/truc/machin/`, on essaie `./`, `../`, `../../`, puis `../../../` : trouvé au 4ᵉ tour → `PID_PATH_TO_ROOT = "../../../"`. S'il n'est trouvé nulle part, `die("PID error : missing .pid.config.php…")`.
 
-> **Q :** Pourquoi utiliser `define()` plutôt qu'une simple variable `$pathToRoot` pour stocker le résultat ?
-> **R :** Une constante ne peut plus être modifiée après sa définition — cela garantit que tout le reste du framework (fonctions globales, autoloader) lit toujours la même valeur figée pour cette requête, sans risque d'écrasement accidentel.
+**Étape 2 — Le fichier-marqueur et ses constantes obligatoires**
 
-## Pièges fréquents
+`.pid.config.php` a un seul rôle : **exister à la racine** et définir la configuration. Juste après l'avoir inclus, `index.php` vérifie que toutes les constantes attendues existent (sinon `die()`), et que la **valeur** de `PID_CHARSET` est `PID_ANSI` ou `PID_UTF8` (deux constantes techniques définies dans `index.php` lui-même).
 
-- ⚠️ **Confondre `PID_CONFIG_FILENAME` et `PID_PATH_TO_ROOT`** — le premier est le *nom* du fichier-marqueur (`.pid.config.php`, toujours le même), le second est le *chemin relatif calculé* pour l'atteindre (change selon la profondeur du fichier courant).
-- ⚠️ **Penser que `.pid.config.php` contient la logique du framework** — non, il ne fait que *définir des constantes de configuration*. La logique (autoloading, inclusion) est dans `index.php` lui-même.
-- ⚠️ **Oublier que `index.php` est dupliqué partout** — ce n'est pas un unique fichier central inclus depuis chaque dossier, mais bien une copie identique du même code présente physiquement dans chaque sous-dossier (mise à jour via l'action `pidAction=updateIndexes`).
+| Séance | Constantes exigées | Ajout |
+|--------|-------------------|-------|
+| 05/09 | 5 | `PID_SETUP_ACTION_NAME`, `PID_SETUP_INDEX_FILES`, `PID_INDEX_CONTENT_FILENAME`, `PID_DEFAULT_INDEX_CONTENT`, `PID_CLASS_REGISTER_FILENAME` |
+| 12/09 | 7 | `PID_CHARSET`, `PID_APPLICATION_SESSION_ITEM_NAME` ([[CApplication, CMonApp et CPage — Singleton applicatif et charset]]) |
+| 19/09 | 8 | `PID_FOLDER_PATH` ([[Dossier .pid et préfixe étoile — Séparer le framework du site]]) |
 
-## À retenir absolument
-- `PID_PATH_TO_ROOT` = le point de référence absolu que tout le framework réutilise ensuite.
-- La remontée s'arrête au premier `.pid.config.php` trouvé — c'est le marqueur physique de la racine du site.
-- Sans ce bootstrap, aucune des fonctions `PID_*` ne pourrait localiser quoi que ce soit correctement.
+**Étape 3 — Requête HTTP directe ou simple inclusion ?**
 
-## Explorer ensuite
-- [[PID_PathTo, PID_Include et PID_IncludeOnce]] — la première chose que ce bootstrap rend possible.
+```php
+$httpRequestOfIndexFile = (count(get_included_files()) == 1);
+```
+Si `index.php` est le **seul** fichier chargé, c'est le navigateur qui l'a demandé (requête directe). Sinon un autre script (ex. `test_poo.php`) l'a inclus juste pour **activer le framework** : rien ne doit s'afficher.
+
+**Étape 4 — Que faire d'une requête directe ?** (c'est ici que se joue l'interdiction du listing)
+
+```php
+if (file_exists(PID_INDEX_CONTENT_FILENAME))      { @include_once(PID_INDEX_CONTENT_FILENAME); }   // 1. contenu d'accueil du dossier
+else if (!file_exists(PID_CONFIG_FILENAME))       { header("location:../"); die(); }              // 2. pas la racine : on remonte
+else { /* racine sans contenu : crée index.content.php par défaut, puis die(message) */ }          // 3. racine
+```
+1. Le dossier a un `index.content.php` → il est affiché. 2. Il n'en a pas et ce **n'est pas la racine** (pas de `.pid.config.php` ici) → redirection HTTP vers le dossier parent ([[Glossaire — En-têtes HTTP et header()]]) : **jamais de liste de fichiers**. 3. À la racine sans contenu → le framework **crée** un `index.content.php` par défaut et s'arrête avec un message.
+
+**Étape 5 — L'action de maintenance `updateIndexes`**
+
+`?pidAction=updateIndexes` recopie l'`index.php` de la racine dans **tous** les sous-dossiers (y compris `.pid/` depuis le 19/09). Ça garantit un `index.php` partout après l'ajout d'un dossier.
+
+**Bonnes pratiques** : validation défensive dès le départ avec un message d'erreur explicite ; constantes immuables plutôt que variables ; un même fichier, une seule source de vérité (copiée mécaniquement).
+
+> ⚠️ **À confirmer au prochain cours** — l'action `updateIndexes` est déclenchée par une simple **URL** et écrit des fichiers sur le serveur, sans contrôle d'accès dans le code lu. Ce serait un point sensible en production ; le prof la restreindra peut-être plus tard. *Probable : lu dans le code, non exécuté.*
+
+## 4. Synthèse & Prochaine Étape
+
+**À retenir (3 puces max)**
+- Un `index.php` partout = pas de listing des dossiers **et** amorçage du framework de n'importe quelle profondeur.
+- `PID_PATH_TO_ROOT` (calculé en remontant jusqu'à `.pid.config.php`) est le point de référence de tout le framework.
+- Le bootstrap **se rejoue à chaque requête** : PHP ne garde rien en mémoire d'une requête à l'autre.
+
+**Lien avec la suite** : avec la racine connue, on peut adresser n'importe quel fichier depuis n'importe où → [[PID_PathTo, PID_Include et PID_IncludeOnce]].
+
+**Rappel actif**
+> **Q :** Pourquoi le prof place-t-il un `index.php` dans chaque dossier ?
+> **R :** Pour interdire l'exploration des répertoires depuis le navigateur (un dossier sans index pourrait afficher la liste de ses fichiers) ; chaque `index.php` redirige vers le parent ou affiche le contenu d'accueil du dossier.
+
+> **Q :** Que compte `substr_count(__FILE__, "/")` et pourquoi ce chiffre est-il « trop grand » ?
+> **R :** Tous les `/` du chemin absolu du fichier ; c'est un majorant du nombre de dossiers à remonter, utilisé comme garde-fou pour que la boucle s'arrête toujours.
+
+> **Q :** Que fait `index.php` quand il est inclus par un autre script plutôt que demandé par le navigateur ?
+> **R :** Il active seulement le framework (constantes, autoloader) sans rien afficher : `count(get_included_files()) == 1` est faux dans ce cas.
+
+> **Q :** Pourquoi le bootstrap est-il exécuté à chaque requête ?
+> **R :** PHP n'a aucune mémoire entre deux requêtes : constantes et variables sont recréées à chaque fois.
+
+**Pièges fréquents**
+- ⚠️ **Confondre `PID_CONFIG_FILENAME` et `PID_PATH_TO_ROOT`** — le premier est le *nom* du fichier-marqueur (`.pid.config.php`), le second le *chemin relatif calculé* (change selon la profondeur).
+- ⚠️ **Croire que `.pid.config.php` contient la logique** — il ne définit que des constantes ; la logique est dans `index.php`.
+- ⚠️ **Croire que `index.php` est un fichier central inclus depuis chaque dossier** — c'est une **copie identique** dans chaque dossier (mise à jour par `updateIndexes`).
+
+**Connexions**
+- [[PID_PathTo, PID_Include et PID_IncludeOnce]] — utilisent `PID_PATH_TO_ROOT`.
+- [[Autoloading PID — spl_autoload_register et le Cache]] — le registre de classes est cherché à partir de cette racine.
+- [[Glossaire — En-têtes HTTP et header()]] — la redirection `location:../`.
+- [[Glossaire — Encodage des caractères (windows-1252 vs UTF-8)]] — la valeur de `PID_CHARSET`.
+- [[Introduction au PHP — Bases pour débutant]] — `define()`, boucles et constantes si ce concept semble encore flou.

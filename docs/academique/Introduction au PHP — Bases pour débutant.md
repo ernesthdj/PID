@@ -43,7 +43,7 @@ $rien = null;               // null (absence de valeur)
 $liste = ["a", "b", "c"];  // array (tableau)
 ```
 
-Toute variable commence par `$`. PHP est **typé dynamiquement** (on ne déclare jamais le type à l'avance, contrairement à Java ou C#) et **faiblement typé** (PHP convertit automatiquement entre types quand c'est ambigu — source classique de bugs si on n'y prête pas attention). On peut tester le type réel d'une valeur avec des fonctions natives : `is_string($x)`, `is_array($x)`, `is_int($x)`, `is_null($x)`, etc. — ces fonctions reviennent constamment dans le code du cours (voir par exemple la validation dans [[Structure POO — CPersonne, CPersonne2 et CAutre]]).
+Toute variable commence par `$`. PHP est **typé dynamiquement** (on ne déclare jamais le type à l'avance, contrairement à Java ou C#) et **faiblement typé** (PHP convertit automatiquement entre types quand c'est ambigu — source classique de bugs si on n'y prête pas attention). On peut tester le type réel d'une valeur avec des fonctions natives : `is_string($x)`, `is_array($x)`, `is_int($x)`, `is_null($x)`, etc. — ces fonctions reviennent constamment dans le code du cours (voir par exemple la validation dans [[Structure POO — CPersonne et CAutre]]).
 
 ### Les constantes — des variables qui ne changent plus jamais
 
@@ -109,7 +109,7 @@ $propre = trim("   Robert   ");    // "Robert" — enlève les espaces en début
 $position = strpos("CPersonne", "C"); // 0 — position de la première occurrence
 ```
 
-Le point `.` concatène (assemble) des chaînes — ce n'est **pas** une addition. Entre guillemets **doubles** (`"..."`), PHP interpole automatiquement les variables (`"$prenom"` insère la valeur) ; entre guillemets **simples** (`'...'`), rien n'est interprété, tout est pris littéralement. `trim()`, `strpos()`, `substr()` sont des fonctions natives de manipulation de chaînes qu'on retrouve constamment dans le cours (validation des accesseurs `Nom()`/`Prenom()` dans [[Structure POO — CPersonne, CPersonne2 et CAutre]], décodage du nom de classe dans [[Autoloading PID — spl_autoload_register et le Cache]]).
+Le point `.` concatène (assemble) des chaînes — ce n'est **pas** une addition. Entre guillemets **doubles** (`"..."`), PHP interpole automatiquement les variables (`"$prenom"` insère la valeur) ; entre guillemets **simples** (`'...'`), rien n'est interprété, tout est pris littéralement. `trim()`, `strpos()`, `substr()` sont des fonctions natives de manipulation de chaînes qu'on retrouve constamment dans le cours (validation des accesseurs `Nom()`/`Prenom()` dans [[Structure POO — CPersonne et CAutre]], décodage du nom de classe dans [[Autoloading PID — spl_autoload_register et le Cache]]).
 
 ## 7. Inclure d'autres fichiers
 
@@ -138,7 +138,7 @@ $p->nom = "Robert";
 $p->direBonjour();
 ```
 
-Une **classe** est un plan/modèle (comme un plan de maison) ; un **objet** est une instance concrète créée à partir de ce plan (`new Personne()`, comme une maison construite à partir du plan). `$this` (à l'intérieur d'une méthode) désigne toujours l'objet courant sur lequel la méthode a été appelée. Les **propriétés** sont les variables attachées à l'objet, les **méthodes** sont les fonctions attachées à l'objet. C'est la base absolue de la POO — le cours va nettement plus loin (encapsulation, visibilité, constructeurs, héritage, méthodes statiques, méthodes magiques) : voir [[Glossaire PHP — Visibilité et encapsulation]] et [[Glossaire PHP — Méthodes magiques]] pour la suite, puis directement [[Structure POO — CPersonne, CPersonne2 et CAutre]] pour voir ces notions appliquées dans le cours.
+Une **classe** est un plan/modèle (comme un plan de maison) ; un **objet** est une instance concrète créée à partir de ce plan (`new Personne()`, comme une maison construite à partir du plan). `$this` (à l'intérieur d'une méthode) désigne toujours l'objet courant sur lequel la méthode a été appelée. Les **propriétés** sont les variables attachées à l'objet, les **méthodes** sont les fonctions attachées à l'objet. C'est la base absolue de la POO — le cours va nettement plus loin (encapsulation, visibilité, constructeurs, héritage, méthodes statiques, méthodes magiques) : voir [[Glossaire PHP — Visibilité et encapsulation]] et [[Glossaire PHP — Méthodes magiques]] pour la suite, puis directement [[Structure POO — CPersonne et CAutre]] pour voir ces notions appliquées dans le cours.
 
 ## Où aller ensuite
 

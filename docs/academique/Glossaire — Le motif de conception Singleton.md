@@ -2,7 +2,7 @@
 type: glossaire
 subject: Le motif de conception Singleton (design pattern, indépendant de PHP)
 tags: [#glossaire, #design-pattern, #POO, #singleton]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Une ville n'a qu'une seule mairie officielle. On peut construire d'autres bâtiments qui ressemblent à une mairie, mais un seul est **la** mairie reconnue par tout le monde — et il existe une procédure unique et contrôlée pour savoir laquelle c'est, jamais de "construis-en une nouvelle si t'en as besoin".
 
-## En une phrase simple
+## En 30 secondes
 
 Le Singleton est un motif de conception (design pattern — une solution réutilisable à un problème récurrent, indépendante d'un langage précis) qui garantit qu'**une classe ne peut jamais avoir plus d'une seule instance** à un instant donné, et fournit un point d'accès global unique vers cette instance.
 
@@ -46,6 +46,10 @@ Certaines ressources n'ont de sens qu'en un seul exemplaire dans un programme : 
 ### La limite à connaître (hors périmètre strict du cours)
 
 Le Singleton est un motif parfois critiqué en génie logiciel : il introduit un état global implicite (accessible de partout, donc difficile à tracer) et complique les tests automatisés (impossible de remplacer facilement l'instance unique par une version de test). Le cours ne l'aborde pas sous cet angle critique — il l'utilise tel quel comme illustration du motif, ce qui est suffisant pour le niveau visé.
+
+## Sous le capot
+- La propriété statique est stockée **une seule fois avec la définition de la classe** (pas dans chaque objet), dans la **RAM du processus PHP**. Un constructeur non public fait refuser `new` par le moteur hors de la classe.
+- **Nuance importante** : « une seule instance » vaut **par processus / par requête**. Deux visiteurs simultanés ont chacun leur exécution PHP, donc chacun sa propre instance. Et l'objet rangé en session est **copié en texte** : à la requête suivante c'est un **nouvel objet reconstruit**, pas « le même » — l'unicité est alors maintenue par la logique d'`Instance()` qui reprend la session (voir [[CApplication, CMonApp et CPage — Singleton applicatif et charset]]).
 
 ## Utilisé dans ce cours
 

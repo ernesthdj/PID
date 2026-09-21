@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Dans une cuisine, un bon de commande ne doit contenir **que des plats**. Si un client écrit sur le bon "*et le chef doit vider la caisse*", le cuisinier ne l'exécute pas : il le lit comme du **texte**, pas comme un ordre. Échapper du HTML, c'est apposer sur ce qui vient de l'extérieur un tampon "**ceci est du texte, pas une instruction**".
 
-## En une phrase simple
+## En 30 secondes
 
 **XSS** (*Cross-Site Scripting* — injection de code dans une page vue par d'autres visiteurs) arrive quand un site affiche une donnée non maîtrisée sans la neutraliser ; **échapper** consiste à remplacer les caractères spéciaux du HTML par des équivalents inoffensifs pour qu'ils s'affichent comme du texte.
 
@@ -41,6 +41,11 @@ public function IntoAttr($value)   // pour une valeur DANS un attribut ( ex. val
 ### Exemple fourni par le prof
 
 `CettePage` affiche le titre `"Liste de <fruits> & légumes"` et le fruit `"Tomate & cerise"` via `IntoHtml` : le navigateur montre littéralement `<fruits>` et `&`, sans jamais interpréter `<fruits>` comme une balise.
+
+## Sous le capot
+- Le navigateur reçoit du **texte HTML** et l'**analyse** (*parse*) pour construire l'arbre de la page. Toute balise `<script>` qu'il y trouve est **exécutée avec les droits de la page** : accès à son contenu, à ses cookies non protégés, etc. Il ne sait pas si ce script vient de l'auteur du site ou d'une donnée injectée.
+- **Échapper**, c'est remplacer `<`, `>`, `&` par des **entités** (`&lt;`, `&gt;`, `&amp;`) : le navigateur les affiche comme des **caractères** sans jamais les interpréter comme des balises.
+- `str_replace` avec des tableaux applique les remplacements **dans l'ordre**, d'où `&` en premier. PHP fournit aussi une fonction native équivalente, `htmlspecialchars()` *(non vue en cours à ce stade)*.
 
 ## Utilisé dans ce cours
 

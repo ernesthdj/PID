@@ -2,7 +2,7 @@
 type: glossaire
 subject: Propriétés et méthodes statiques en PHP (static, self::)
 tags: [#PHP, #glossaire, #POO, #static]
-date: 2026-09-18
+date: 2026-09-21
 niveau: intermédiaire
 ---
 
@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Une propriété normale, c'est un tiroir personnel à chaque employé (chaque objet a le sien). Une propriété `static`, c'est **une seule armoire partagée**, accrochée au mur du bureau (la classe) lui-même, pas à un employé en particulier — tous les employés de ce service regardent la même armoire.
 
-## En une phrase simple
+## En 30 secondes
 
 `static` déclare une propriété ou une méthode qui appartient à la **classe elle-même**, pas à une instance particulière — une seule copie existe, partagée par tout le code qui utilise cette classe.
 
@@ -44,6 +44,10 @@ Une méthode `static` s'appelle avec `::` sur le nom de la classe, sans avoir be
 ### La portée réelle d'une propriété statique : le temps d'une requête PHP
 
 Point crucial et souvent mal compris : une propriété `static` n'est partagée que **pendant l'exécution d'un seul script PHP** (une seule requête HTTP). PHP ne garde aucun état en mémoire entre deux requêtes différentes (contrairement à un serveur Node.js ou une application desktop qui tournerait en continu) — chaque requête HTTP redémarre tout à zéro, `self::$s_Instance` revaut `null` au tout début de chaque nouvelle requête. C'est précisément pour ça que `CApplication` a aussi besoin de `$_SESSION` en plus du `static` : `static` = unique *pendant* une requête, `$_SESSION` = persistant *entre* les requêtes.
+
+## Sous le capot
+- Une propriété `static` n'est **pas** dans l'objet : elle est stockée **une fois** avec la définition de la classe, en RAM. `self::` est résolu vers la classe où le code est **écrit** (à la différence de `$this`, qui désigne une instance).
+- Comme PHP redémarre à chaque requête, cette mémoire est **vidée à la fin de la requête** : c'est pourquoi `self::$s_Instance` revaut `null` au début de la suivante.
 
 ## Utilisé dans ce cours
 

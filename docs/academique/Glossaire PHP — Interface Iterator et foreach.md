@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Un **convoyeur** de cuisine (dans Satisfactory : un tapis roulant) sort les plats un par un. Pour qu'un serveur puisse dire "donne-moi tous les plats, un après l'autre", le convoyeur doit savoir répondre à cinq questions simples : *"recommence au début", "y a-t-il encore un plat ?", "quel numéro ?", "quel plat ?", "passe au suivant"*. Ces cinq questions sont l'interface `Iterator`.
 
-## En une phrase simple
+## En 30 secondes
 
 Une **interface** est un contrat ("cette classe promet d'avoir ces méthodes"), et `Iterator` est le contrat qui dit à PHP **comment parcourir un objet** avec `foreach`.
 
@@ -52,6 +52,11 @@ La collection garde ses éléments, l'itérateur ne garde **que la position** (`
 ### Les `: void`, `: bool`, `: mixed`
 
 Ce sont des **types de retour** déclarés : `void` (ne renvoie rien), `bool` (vrai/faux), `mixed` (n'importe quoi). PHP 8.1+ les attend pour `Iterator` afin de respecter la signature du contrat (leur absence provoque un avis de dépréciation).
+
+## Sous le capot
+- Une **interface** est un contrat vérifié au **chargement de la classe** : si l'une des cinq méthodes manque, PHP refuse la classe (erreur fatale) avant même qu'un objet existe.
+- Quand le moteur exécute `foreach` sur un objet `Iterator`, il enchaîne lui-même : `rewind()` une fois, puis en boucle `valid()` → `current()` (et `key()`) → corps de la boucle → `next()`, jusqu'à ce que `valid()` renvoie `false`.
+- L'itérateur ne garde en **RAM** que sa **position** (`$m_Index`) : plusieurs parcours indépendants d'une même collection sont possibles en parallèle.
 
 ## Utilisé dans ce cours
 

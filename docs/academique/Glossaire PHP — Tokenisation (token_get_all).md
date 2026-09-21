@@ -2,7 +2,7 @@
 type: glossaire
 subject: Tokenisation PHP — token_get_all() et l'analyse lexicale du code source
 tags: [#PHP, #glossaire, #tokenisation, #parsing]
-date: 2026-09-18
+date: 2026-09-21
 niveau: avancé
 ---
 
@@ -10,7 +10,7 @@ niveau: avancé
 
 > Lire le code source d'un fichier comme du texte brut, c'est comme lire une partition de musique en ne voyant qu'une suite de taches d'encre. La tokenisation, c'est repasser dessus avec des surligneurs de couleurs différentes : jaune pour les notes, vert pour les silences, bleu pour les mesures — d'un coup, la structure musicale saute aux yeux au lieu d'être noyée dans le dessin brut.
 
-## En une phrase simple
+## En 30 secondes
 
 `token_get_all()` est une fonction native de PHP qui découpe le **code source** d'un fichier PHP en une liste de "tokens" (unités lexicales identifiées : mot-clé, nom, chaîne, commentaire, espace...) — exactement le travail que fait l'interpréteur PHP lui-même avant d'exécuter le code, mais rendu accessible pour l'inspecter sans l'exécuter.
 
@@ -37,10 +37,14 @@ Renvoie un tableau où chaque élément est soit un simple caractère (`{`, `}`,
 
 En cherchant la **séquence de tokens** `T_CLASS` suivi (en ignorant les `T_WHITESPACE`/`T_COMMENT` intercalés) d'un `T_STRING` valant exactement `"CPersonne"`, l'autoloader du cours confirme que le fichier contient **réellement** une déclaration de classe `CPersonne` — peu importe qu'il y ait un commentaire glissé entre `class` et le nom, ou une autre classe (`CAutre`) déclarée juste avant dans le même fichier. C'est une lecture de la **structure syntaxique** du code, pas une simple recherche de texte.
 
+## Sous le capot
+- `token_get_all` expose la **toute première étape** du pipeline de PHP, l'**analyse lexicale** : le texte du fichier est parcouru **caractère par caractère** et découpé en tokens. Les étapes suivantes (syntaxe, compilation, exécution) **ne sont pas lancées**.
+- Le coût est proportionnel à la **taille du texte** : c'est pourquoi l'autoloader ne tokenise que les **fichiers candidats** (dont le nom correspond), pas tout le disque.
+
 ## Utilisé dans ce cours
 
 - [[Autoloading PID — spl_autoload_register et le Cache]] — la recherche à froid (`$exploreToFind`) utilise `token_get_all()` pour confirmer qu'un fichier candidat contient bien la déclaration `class Personne` avant de l'ajouter au cache.
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — le commentaire `class /* OUPS un commentaire */ CPersonne` (12/09) est précisément un cas de test conçu pour vérifier que la tokenisation reste robuste face à ce genre de "bruit" syntaxique valide.
+- [[Structure POO — CPersonne et CAutre]] — le commentaire `class /* OUPS un commentaire */ CPersonne` (12/09) est précisément un cas de test conçu pour vérifier que la tokenisation reste robuste face à ce genre de "bruit" syntaxique valide.
 
 ## Questions de rappel actif
 

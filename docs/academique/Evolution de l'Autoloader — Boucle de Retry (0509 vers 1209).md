@@ -1,36 +1,54 @@
 ---
 type: concept
-subject: Évolution de l'autoloader PID — boucle de retry (class_exists + eval)
-module: PID — Framework maison (samedis 29/08, 05/09, 12/09)
+subject: Évolution de l'autoloader PID — boucle de retry (class_exists + eval), 05/09 → 12/09
+module: PID — Framework maison (séances 05/09, 12/09)
+source: cours
+seances: [2026-09-12]
 tags: [#PID, #PHP, #autoloading, #fiabilisation]
-date: 2026-09-12
+date: 2026-09-21
 niveau: avancé
 statut: complet
 analogie_domaine: cuisine / recettes
+critere_examen: traitement PHP (20), sécurité / fiabilité PHP (20)
+prerequis: ["[[Autoloading PID — spl_autoload_register et le Cache]]", "[[Glossaire PHP — eval() et exécution dynamique]]"]
 ---
 
 # Évolution de l'autoloader — boucle de retry (05/09 → 12/09)
 
-> Le 05/09, le cuisinier sort le plat du four et le sert directement, sans y goûter, en se fiant à la fiche recette. Le 12/09, il a ajouté un réflexe : goûter avant de servir — et si le plat n'est pas bon, il jette la fiche recette recopiée à la va-vite et refait l'essai **une seule fois** à partir de zéro, avant d'abandonner franchement.
+> **En 30 secondes** — Le 05/09, l'autoloader inclut le fichier trouvé sans vérifier que la classe y est bien. Le 12/09, le prof ajoute une **vérification après inclusion** (`class_exists`, `interface_exists`, `trait_exists`) ; si elle échoue, l'entrée de cache est **jetée** et la recherche est **retentée une seule fois**.
 
-## En une phrase simple
+```mermaid
+flowchart TD
+    S["Autoloader declenche"] --> T1["Tour 1 : cache ou recherche<br/>puis PID_Include"]
+    T1 --> Q1{"la classe existe<br/>maintenant ?"}
+    Q1 -- oui --> R["return"]
+    Q1 -- non --> U["unset du cache<br/>pour cette classe"]
+    U --> T2["Tour 2 : recherche complete<br/>puis PID_Include"]
+    T2 --> Q2{"la classe existe ?"}
+    Q2 -- oui --> R
+    Q2 -- non --> F["fin sans succes"]
+```
 
-Entre le 05/09 et le 12/09, le prof a ajouté **une vérification après l'inclusion** du fichier de classe : "le nom que je cherchais existe-t-il vraiment maintenant ?" (`class_exists`/`interface_exists`/`trait_exists`), et si non, il **efface l'entrée du cache et retente une fois** une recherche complète — au lieu de faire une confiance aveugle au chemin trouvé.
+---
 
-## Pourquoi ce changement ?
+## 1. Vue Macro & Utilité (le « Pourquoi »)
 
-Dans la version du 05/09 (voir [[Autoloading PID — spl_autoload_register et le Cache]]), une fois `$filePath` trouvé (par cache ou par recherche), l'autoloader fait juste `PID_Include($filePath); ` et s'arrête là — **sans jamais vérifier que la classe a réellement été déclarée**. Si le cache contient un chemin obsolète (fichier déplacé, renommé, ou modifié pour ne plus contenir cette classe), `PID_Include` réussit à inclure *un* fichier, mais `CPersonne` n'existe toujours pas — et PHP plante juste après avec une erreur fatale bien plus difficile à diagnostiquer ("Class not found"), loin de la vraie cause (cache pourri).
+- **Problématique** — Un cache est une **optimisation, pas une garantie**. Si `.class.register.php` pointe vers un fichier déplacé, renommé ou modifié pour ne plus contenir la classe, `PID_Include` réussit à inclure *un* fichier… mais `CPersonne` n'existe toujours pas. PHP plante alors juste après avec un « Class not found » très éloigné de la vraie cause (un cache périmé).
+- **Emplacement dans la carte globale** : **durcissement** du maillon « chargement des classes » ([[Autoloading PID — spl_autoload_register et le Cache]]) — le passage d'un outil qui « marche » à un outil qui **se surveille**.
+- **Analogie (cuisine)** : le 05/09, le cuisinier sort le plat du four et le sert **sans y goûter**, en se fiant à la fiche recette. Le 12/09, il **goûte avant de servir** ; si le plat n'est pas bon, il jette la fiche recopiée à la va-vite et refait l'essai **une seule fois** à partir de zéro, avant d'abandonner franchement.
 
-Le 12/09, le prof **fiabilise** cette étape en ajoutant un contrôle de qualité après l'inclusion, avec une possibilité de rattrapage automatique.
+## 2. Le Pont Systémique (sous le capot)
 
-## Comment ça fonctionne ? (code du 12/09)
+- **`class_exists($nom, $autoload)`** consulte la **table interne des classes** du processus. Avec `$autoload = true` (valeur par défaut), si le nom est absent, PHP appelle **les fonctions enregistrées par `spl_autoload_register`** — c'est-à-dire **l'autoloader lui-même**, dans lequel on se trouve déjà. Avec `false`, il se contente de répondre « déjà connue ou non », **sans rien charger**. D'où le `false` : il évite une **récursion** (l'autoloader qui se rappelle lui-même en pleine vérification).
+- **`eval()`** demande au moteur de **compiler en mémoire** une chaîne, puis de l'exécuter comme du code écrit dans le fichier ([[Glossaire PHP — eval() et exécution dynamique]]). Ici la chaîne est construite avec `$kindName` (`class`, `interface` ou `trait`).
+- **`unset`** n'agit que sur le **tableau en RAM** `$PID_CLASS_REGISTER` : le fichier de cache sur le disque n'est **pas** touché à ce moment. Il ne sera réécrit qu'au tour suivant, quand la recherche à froid trouvera un nouveau chemin.
 
-### 1. La boucle englobante — deux tentatives maximum
+## 3. Analyse du Code & Logique
 
 ```php
 for ($step = 0; $step < 2; $step++)
 {
-    if (!isset($PID_CLASS_REGISTER[$className])) { /* recherche + mise en cache */ }
+    if (!isset($PID_CLASS_REGISTER[$className])) { /* recherche à froid + réécriture du cache */ }
     else { $filePath = $PID_CLASS_REGISTER[$className]; }
     PID_Include($filePath);
     eval("\$exists = $kindName" . "_exists(\"$className\", false);");
@@ -39,85 +57,43 @@ for ($step = 0; $step < 2; $step++)
 }
 ```
 
-> ⚠️ **Correction (12/09, publication post-cours)** : la première version de cette note avait été rédigée à partir du matériel publié *avant* le cours, qui omettait le second argument `false` de `class_exists`/`interface_exists`/`trait_exists`. Ce paramètre n'est pas un détail cosmétique — voir §2 ci-dessous, il change le comportement de fond de cette vérification.
+- **Étape 1 — La boucle de 2 tours.** Tout le corps de la fonction du 05/09 est enveloppé dans un `for`. Tour 0 : même comportement qu'avant (cache ou recherche, puis inclusion). **Limitée à 2** pour ne jamais boucler indéfiniment : mieux vaut échouer clairement.
+- **Étape 2 — La vérification.** `eval("\$exists = class_exists(\"CPersonne\", false);")` — un raccourci pour appeler dynamiquement la bonne fonction (`class_exists`, `interface_exists` ou `trait_exists`) sans `switch`. Le **`false`** est **critique** (voir Pont Systémique).
+- **Étape 3 — Le verdict.** `if ($exists) return;` : tout va bien, PHP a ce qu'il lui fallait.
+- **Étape 4 — Le rattrapage.** Sinon `unset` de l'entrée : au tour suivant, `!isset(...)` redevient vrai → **recherche complète à froid**, avec mise à jour du fichier de cache. Si la recherche ne trouve rien du tout, `die("PID error : can't find …")` a déjà été déclenché ; si elle trouve un fichier qui ne contient toujours pas la classe, la boucle se termine sans `return` et PHP échoue ensuite avec l'erreur habituelle.
 
-Tout le corps de la closure de 05/09 est maintenant **enveloppé dans un `for` de 2 tours**. Premier tour (`$step = 0`) : comportement identique à avant (cache ou recherche, puis include). Nouveauté : juste après l'`include`, on vérifie.
+**Bonnes pratiques** : ne jamais faire confiance à un cache sans le vérifier **après usage** ; borner les tentatives de rattrapage ; échouer avec un message explicite.
 
-### 2. La vérification dynamique — `eval` + `class_exists`/`interface_exists`/`trait_exists`
+> ℹ️ **Historique de fiabilité** — cette note a d'abord été rédigée sur le matériel publié *avant* le cours du 12/09, qui omettait le `false` de `class_exists`. Corrigée après la publication post-cours : ce paramètre change le comportement de fond de la vérification.
 
-```php
-eval("\$exists = $kindName" . "_exists(\"$className\", false);");
-```
+## 4. Synthèse & Prochaine Étape
 
-`$kindName` vaut `"class"`, `"interface"` ou `"trait"` (décodé à partir du préfixe, voir la note sur l'autoloading). Le code construit **dynamiquement** la chaîne `"$exists = class_exists(\"CPersonne\", false);"` (ou `interface_exists`/`trait_exists` selon le cas), puis `eval()` l'exécute comme du vrai code PHP. `eval()` est une fonction native qui **compile et exécute une chaîne de caractères comme si c'était du code écrit directement** — ici, c'est un raccourci pour appeler dynamiquement la bonne fonction de vérification (`class_exists`, `interface_exists` ou `trait_exists`) sans écrire un `switch` à la main.
+**À retenir (3 puces max)**
+- Un cache est une optimisation, pas une garantie : **vérifier après usage**.
+- La boucle de retry offre **une** chance de rattrapage automatique, pas une garantie de succès.
+- Le `false` de `class_exists` empêche l'autoloader de se rappeler lui-même.
 
-**Le second argument `false` n'est pas optionnel ici, il est critique.** `class_exists($nom)` appelé avec son comportement par défaut (`$autoload = true`) **déclenche lui-même l'autoloader** si la classe n'est pas encore connue de PHP — c'est-à-dire qu'il **rappellerait la closure `spl_autoload_register` dans laquelle on se trouve déjà**, en pleine exécution de cette même vérification. Passer `false` désactive ce déclenchement : la fonction se contente de répondre "PHP connaît-il *déjà* ce nom, oui ou non ?", sans tenter de le charger lui-même. Sans ce `false`, le premier `class_exists("CPersonne")` sur un cache invalide risquerait de ré-entrer dans l'autoloader avant même que la boucle `for` n'ait eu la main pour gérer proprement le retry — un comportement de bord difficile à prévoir plutôt qu'un simple `false`/`true` propre.
+**Lien avec la suite** : les classes concrètes que cet autoloader durci finit par charger → [[Structure POO — CPersonne et CAutre]]. À l'oral (traitement et fiabilité PHP), c'est un bon exemple de **détection puis correction** d'un état incohérent plutôt que de plantage silencieux.
 
-### 3. Le verdict et la sortie normale
+**Rappel actif**
+> **Q :** Quel problème de la version du 05/09 la boucle de retry résout-elle ?
+> **R :** L'autoloader faisait confiance au chemin trouvé sans vérifier après l'inclusion que la classe existait ; un cache obsolète menait à une erreur peu explicite plus loin.
 
-```php
-if ($exists) return;
-```
+> **Q :** Pourquoi le second argument `false` de `class_exists` est-il indispensable ici ?
+> **R :** Par défaut `class_exists` déclencherait lui-même l'autoloader, qui se rappellerait en pleine vérification (récursion) ; `false` demande seulement si PHP connaît **déjà** le nom.
 
-Si la classe/interface/trait existe bel et bien après l'inclusion : tout va bien, la closure se termine (`return`), PHP a maintenant ce qu'il lui fallait.
+> **Q :** Pourquoi limiter la boucle à 2 tours ?
+> **R :** Pour éviter une boucle infinie si le problème persiste ; une tentative de rattrapage suffit, au-delà on échoue clairement.
 
-### 4. Le rattrapage — invalider le cache et retenter
+> **Q :** Que se passe-t-il pour `$PID_CLASS_REGISTER` entre les deux tours ?
+> **R :** L'entrée de la classe est supprimée **en mémoire** (`unset`), ce qui relance la recherche à froid au tour 2 ; le fichier de cache n'est réécrit que si un nouveau chemin est trouvé.
 
-```php
-unset($PID_CLASS_REGISTER[$className]);
-```
+**Pièges fréquents**
+- ⚠️ **Recopier `class_exists($className)` « de mémoire » sans le `false`** — l'autoloader se rappellerait lui-même.
+- ⚠️ **Penser qu'`eval()` est nécessaire ici** — un `match($kindName)` ferait la même chose sans exécuter de code construit par concaténation ; c'est un choix pédagogique du prof, à ne pas copier sans réfléchir.
+- ⚠️ **Croire que la boucle répare tout** — elle ne fait que forcer une nouvelle recherche.
 
-Si `$exists` est faux : l'entrée de cache est **supprimée** de `$PID_CLASS_REGISTER`. Au tour suivant de la boucle (`$step = 1`), la condition `!isset($PID_CLASS_REGISTER[$className])` redevient vraie → une **recherche complète à froid** est relancée (comme si rien n'était en cache), avec mise à jour du fichier `.class.register.php`. Si cette seconde tentative échoue aussi, la boucle se termine sans avoir fait de `return` — et selon le chemin de recherche interne, `die("PID error : can't find $kindName '$className' !")` a déjà été déclenché plus tôt si `$exploreToFind` n'a rien trouvé du tout.
-
-## Schéma
-
-```mermaid
-flowchart TD
-    Start["Autoloader declenche<br/>pour $className"] --> Step0["Tour 1 : cache ou recherche<br/>puis PID_Include(chemin)"]
-    Step0 --> Check1{"class_exists /<br/>interface_exists /<br/>trait_exists ?"}
-    Check1 -- oui --> Done["return — classe prete"]
-    Check1 -- non --> Invalidate["unset cache[$className]<br/>(cache jete)"]
-    Invalidate --> Step1["Tour 2 : recherche complete<br/>forcee (cache vide)<br/>puis PID_Include(nouveau chemin)"]
-    Step1 --> Check2{"class_exists ... ?"}
-    Check2 -- oui --> Done2["return — classe prete"]
-    Check2 -- non --> Fail["Boucle terminee sans succes<br/>(die() deja leve si recherche infructueuse)"]
-```
-
-## Exemple concret
-
-Imagine que le cache contienne `"CPersonne" => "dir1/truc/machin/personne.php"`, mais qu'entre-temps le fichier ait été renommé ou que la classe ait été retirée de ce fichier (erreur de manipulation, refactor en cours). Version 05/09 : `PID_Include` inclut le fichier, la classe n'y est pas → PHP plante juste après avec une erreur "Class CPersonne not found", très déroutante puisqu'on est censé être passé par l'autoloader. Version 12/09 : `class_exists("CPersonne")` renvoie `false` juste après l'include → le cache est invalidé → une recherche complète relance et retrouve (si possible) le bon fichier ailleurs dans l'arborescence → la classe finit par se charger correctement, **sans intervention manuelle**.
-
-## Connexions
-
-- [[Glossaire PHP — eval() et exécution dynamique]] — explication complète de `eval()`, de son usage ici, et des raisons pour lesquelles c'est une fonction à manier avec précaution en général.
-- [[Autoloading PID — spl_autoload_register et le Cache]] — cette note documente la version de référence (05/09) que celle-ci vient corriger.
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — ce sont les classes concrètes testées par ce mécanisme (`CPersonne`, `CPersonne2`, `CAutre`).
-
-## Questions de rappel actif
-
-> **Q :** Quel problème concret de la version du 05/09 la boucle de retry du 12/09 vient-elle résoudre ?
-> **R :** Le fait que l'autoloader faisait une confiance aveugle au chemin trouvé (via cache ou recherche) sans jamais vérifier, après l'inclusion, que la classe/interface/trait attendue existait réellement — un cache obsolète menait alors à une erreur PHP peu explicite plus loin dans l'exécution.
-
-> **Q :** Que fait exactement la ligne `eval("\$exists = $kindName" . "_exists(\"$className\", false);");` ?
-> **R :** Elle construit dynamiquement une chaîne de code PHP (par exemple `$exists = class_exists("CPersonne", false);`) puis l'exécute avec `eval()`, ce qui permet d'appeler la bonne fonction de vérification (`class_exists`, `interface_exists` ou `trait_exists`) sans écrire un `if`/`switch` explicite sur `$kindName`. Le `false` final empêche cet appel de vérification de redéclencher lui-même l'autoloader.
-
-> **Q :** Pourquoi la boucle est-elle limitée à exactement 2 tours (`$step < 2`) et pas illimitée ?
-> **R :** Pour éviter une boucle infinie si le problème persiste (fichier définitivement introuvable ou classe définitivement absente) — une seule tentative de rattrapage est jugée suffisante ; au-delà, mieux vaut échouer clairement que de re-scanner indéfiniment toute l'arborescence.
-
-> **Q :** Que se passe-t-il précisément avec `$PID_CLASS_REGISTER` entre le premier et le second tour de boucle en cas d'échec ?
-> **R :** L'entrée correspondant à `$className` est supprimée (`unset`) après le premier échec, ce qui force la condition `!isset(...)` à redevenir vraie au tour suivant — la recherche complète est donc relancée comme si aucune information n'était en cache.
-
-## Pièges fréquents
-
-- ⚠️ **Oublier le `false` de `class_exists($className, false)` en le recopiant "de mémoire"** — sans lui, `class_exists` utilise son comportement par défaut (`$autoload = true`) et peut redéclencher l'autoloader depuis l'intérieur même de l'autoloader. C'est précisément l'erreur commise dans la version de cette note rédigée avant que le cours du 12/09 ne soit publié — corrigée ci-dessus.
-- ⚠️ **Penser que `eval()` est nécessaire ici** — techniquement, un simple `match($kindName) { "class" => class_exists($className, false), ... }` ferait la même chose sans les risques de sécurité et de lisibilité liés à `eval()` (exécution de code arbitraire construit par concaténation de chaînes). C'est un choix pédagogique du prof pour montrer la mécanique, pas une bonne pratique à copier sans réfléchir en dehors du cours.
-- ⚠️ **Croire que la boucle "répare" n'importe quel problème** — elle ne fait que forcer une nouvelle recherche ; si la classe n'existe réellement nulle part dans l'arborescence, le second tour échouera exactement comme le premier (et `$exploreToFind` aura déjà déclenché un `die()` avant même d'atteindre le second `class_exists`).
-- ⚠️ **Oublier que `$exists` est une variable créée par `eval()`, pas déclarée avant** — elle n'existe dans la portée de la closure qu'après l'exécution de cet `eval()`, ce qui peut surprendre en debug si on cherche `$exists` plus haut dans le code.
-
-## À retenir absolument
-- Le principe général : **ne jamais faire confiance à un cache sans le vérifier après usage** — un cache est une optimisation, pas une garantie.
-- La boucle de retry = 1 chance de rattrapage automatique, pas une garantie de succès absolu.
-- C'est un excellent exemple à citer à l'examen oral pour le critère "traitement en PHP" et "sécurité/fiabilité en PHP" : détecter puis corriger un état incohérent plutôt que de planter silencieusement.
-
-## Explorer ensuite
-- [[Structure POO — CPersonne, CPersonne2 et CAutre]] — les classes concrètes que cet autoloader durci finit par charger.
+**Connexions**
+- [[Glossaire PHP — eval() et exécution dynamique]] — `eval()` et ses risques.
+- [[Autoloading PID — spl_autoload_register et le Cache]] — la version de référence du 05/09 que celle-ci corrige.
+- [[Structure POO — CPersonne et CAutre]] — les classes testées par ce mécanisme.

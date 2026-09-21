@@ -10,7 +10,7 @@ niveau: intermédiaire
 
 > Un hôtel livre le même **kit de service** (savon, serviettes, cintres) dans chaque chambre, quel que soit le type de chambre. Le kit n'est pas une chambre, ni une "chambre-mère" dont on hériterait : c'est une **caisse standard** qu'on dépose dans n'importe quelle pièce qui en a besoin. C'est un trait.
 
-## En une phrase simple
+## En 30 secondes
 
 Un **trait** est un bloc de propriétés et de méthodes qu'on peut "coller" dans plusieurs classes différentes avec le mot-clé `use`, **sans** créer de lien d'héritage entre elles.
 
@@ -51,6 +51,11 @@ Après `use`, `CApplication` et `CPage` se comportent **exactement comme si** `C
 ### Convention de nommage vue dans le cours
 
 Le trait `TCssJsFiles` commence par **T** : l'autoloader du framework ([[Autoloading PID — spl_autoload_register et le Cache]]) déduit le type de la **première lettre** du nom (`C` = class, `I` = interface, `T` = trait) et cherche des fichiers `trait.NomDuTrait.php`.
+
+## Sous le capot
+- Quand le moteur PHP **compile** une classe qui fait `use MonTrait;`, il **recopie** dans cette classe les propriétés et les méthodes du trait. À l'exécution il n'y a donc **aucune indirection** : `Css()` est une méthode de `CPage` comme une autre.
+- Chaque classe qui utilise le trait obtient **sa propre copie** : propriétés séparées en mémoire (et propriétés statiques séparées).
+- Le trait lui-même n'est **pas** un type : il n'apparaît pas dans la hiérarchie d'héritage, on ne peut ni l'instancier ni s'en servir pour typer un argument.
 
 ## Utilisé dans ce cours
 
