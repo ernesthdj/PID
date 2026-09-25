@@ -9,6 +9,11 @@
 
 ## Historique
 
+### [2026-09-21 20:49] SESSION — End
+**Resume :** session du 21/09 : cloture de la session du 18/09 ; cours du 19/09 integre ; `docs/RYTHME-COURS.md` (projet au rythme du cours, dernier cours le 30/01/2027) ; refonte du skill professeur global puis test reel ; refonte de tout le parcours academique (gabarit en 4 sections, 6 notes de concept, 12 glossaires, 4 glossaires d'introduction, note pont Laravel). Graphify non mis a jour (dernier graphe : 12/09). Pipeline non relance : la Phase 2 attend le cours (prochaine seance le 26/09, materiel a deposer dans `Suivit_Cours/pid.20260926/` puis `/professor cours`).
+**Branche :** master
+**Commits pushes :** 8 (dernier 178dd2d) — cette entree de journal n'est pas commitee
+
 ### [2026-09-21] DOCS — /professor parcours --refonte tout
 **Resume :** refonte de l'ensemble du parcours au gabarit en 4 sections (plan valide par mentalyas, sauvegarde prealable du dossier hors depot). **Lot 1** : 6 notes de concept reecrites (Bootstrap, PathTo/Include, Autoloading, Retry, CApplication/CMonApp, POO) avec scan « En 30 secondes » et Pont Systemique. **Lot 2** : 9 glossaires completes (« Sous le capot ») + precision sur la resolution des chemins relatifs de `include`. **Lot 3** : note « Structure POO — CPersonne, CPersonne2 et CAutre » renommee « … CPersonne et CAutre » (10 references de lien mises a jour dans 7 fichiers).
 **Corrections de fond :** (E1) exemple du Bootstrap : `substr_count` compte tous les `/` du chemin absolu (majorant), pas 3 ; (E2) raison d'etre des `index.php` par dossier = interdire le listing des repertoires (cours du 29/08) + logique de redirection `location:../` et creation de `index.content.php` ; (E3) 5 constantes exigees au 05/09, pas 4 ; (E4) `PID_PathTo` teste l'existence sans la query string ; (E5) le registre stocke le nom de fichier cherche, pas le nom reel (casse : Windows OK, Linux a surveiller) ; (E6) `test_poo.php` utilise `$_SESSION` grace au `session_start()` de `CApplication::Instance()`.
