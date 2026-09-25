@@ -9,6 +9,15 @@
 
 ## Historique
 
+### [2026-09-25 23:30] SESSION — End
+**Resume :** ouverture apres fermeture differee de la session `archiviste-cours-it` ; menage (entree de journal du 21/09 commitee, `.obsidian/` racine ignore, `Sans titre.base` supprime). Brainstorm : nouvelle fiche `L2-catalogue-services.md` validee (catalogue de services parametrable, noyau + modules, OSRM, modeles Prototype, instantane tarifaire) ; niveau 3 choisi comme prochaine etape. Graphe projet mis a jour (dernier : 12/09 ; 841 noeuds, noeuds fantomes des anciens chemins de cours retires). Cours academique : 4 glossaires POO ajoutes (hors seance, 25/09), MOC et RYTHME-COURS §8 mis a jour. Prochaine seance le 26/09 : deposer `Suivit_Cours/pid.20260926/` puis `/professor cours`.
+**Branche :** master
+**Commits pushes :** 4 (1 de menage + 3 de cloture)
+
+### [2026-09-25] DOCS — brainstorm L2 : catalogue de services paramétrable
+**Fichiers :** `docs/brainstorm/L2-catalogue-services.md` (nouveau)
+**Resume :** nouvelle fonctionnalité qui remplace `types_prestation` + `parametres_tarifaires` globaux. Un service = noyau minimal (nom, description, prix) + modules optionnels (événements, lieu, déplacement, options, suppléments, délai, informations client). Décisions mentalyas : forfait minimum par événement avec tarif heure sup propre, arrondi à la demi-heure entamée, sans réduction ; déplacement sur l'itinéraire complet (départ → événements → retour), seuil général 25 km puis 0,50 €/km, distance routière OSRM ; 3 rôles conservés (catalogue réservé au Photographe) ; événements propres au service + duplication + modèles (motif Prototype) ; statuts brouillon/publié/archivé. Règle clé ajoutée : instantané tarifaire figé dans le devis à la validation. Fiche validée par mentalyas ; niveau 3 choisi comme prochaine étape.
+
 ### [2026-09-21 20:49] SESSION — End
 **Resume :** session du 21/09 : cloture de la session du 18/09 ; cours du 19/09 integre ; `docs/RYTHME-COURS.md` (projet au rythme du cours, dernier cours le 30/01/2027) ; refonte du skill professeur global puis test reel ; refonte de tout le parcours academique (gabarit en 4 sections, 6 notes de concept, 12 glossaires, 4 glossaires d'introduction, note pont Laravel). Graphify non mis a jour (dernier graphe : 12/09). Pipeline non relance : la Phase 2 attend le cours (prochaine seance le 26/09, materiel a deposer dans `Suivit_Cours/pid.20260926/` puis `/professor cours`).
 **Branche :** master
