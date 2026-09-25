@@ -1,4 +1,39 @@
 {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\app.json": {
+    "mtime": 1790323805.1985977,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\appearance.json": {
+    "mtime": 1790323805.2005944,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\community-plugins.json": {
+    "mtime": 1790323805.3193538,
+    "ast_hash": "d751713988987e9331980363e24189ce",
+    "semantic_hash": "d751713988987e9331980363e24189ce"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\core-plugins.json": {
+    "mtime": 1790323804.7514036,
+    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "semantic_hash": "7c877bea49eaeabb100563bd157b9051"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\workspace.json": {
+    "mtime": 1790365697.5262406,
+    "ast_hash": "04fea7948079c122858e5d3c3d049c49",
+    "semantic_hash": "04fea7948079c122858e5d3c3d049c49"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\plugins\\obsidian-excalidraw-plugin\\main.js": {
+    "mtime": 1789850109.9232666,
+    "ast_hash": "6eaa56ad1a6ad59da2e5314311f28e98",
+    "semantic_hash": "6eaa56ad1a6ad59da2e5314311f28e98"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.obsidian\\plugins\\obsidian-excalidraw-plugin\\manifest.json": {
+    "mtime": 1789850109.46075,
+    "ast_hash": "e06793ec533de07b4c4b4b4559f10de8",
+    "semantic_hash": "e06793ec533de07b4c4b4b4559f10de8"
+  },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.specify\\init-options.json": {
     "mtime": 1789204279.154236,
     "ast_hash": "9df117b3d97f0aaa182294c7aed96181",
@@ -84,195 +119,400 @@
     "ast_hash": "e3adff9c37751d18bd0bd35919304303",
     "semantic_hash": "e3adff9c37751d18bd0bd35919304303"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\.class.register.php": {
-    "mtime": 1789194607.880721,
-    "ast_hash": "bb26119077ebe1e331c56323d582370b",
-    "semantic_hash": "bb26119077ebe1e331c56323d582370b"
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\.obsidian\\app.json": {
+    "mtime": 1789838326.8442545,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\.pid.config.php": {
-    "mtime": 1789194607.891016,
-    "ast_hash": "6d852551c9d5aa4de3534ec4aa8980e4",
-    "semantic_hash": "6d852551c9d5aa4de3534ec4aa8980e4"
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\.obsidian\\appearance.json": {
+    "mtime": 1789838326.846256,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\index.content.php": {
-    "mtime": 1789194607.8975248,
-    "ast_hash": "53071af35e1ab6b58dfd543a69df7806",
-    "semantic_hash": "53071af35e1ab6b58dfd543a69df7806"
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\.obsidian\\core-plugins.json": {
+    "mtime": 1789838326.3943694,
+    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "semantic_hash": "7c877bea49eaeabb100563bd157b9051"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\index.php": {
-    "mtime": 1789194607.9035244,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\.obsidian\\workspace.json": {
+    "mtime": 1789838326.9781854,
+    "ast_hash": "fab72032c4bedec65424285c1f86b153",
+    "semantic_hash": "fab72032c4bedec65424285c1f86b153"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir.0\\index.php": {
-    "mtime": 1789194607.914035,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir.0\\test_poo.php": {
-    "mtime": 1789194607.9195428,
-    "ast_hash": "fe2e18fb0832a86d2c724e06f480d767",
-    "semantic_hash": "fe2e18fb0832a86d2c724e06f480d767"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\index.content.php": {
-    "mtime": 1789194607.933055,
-    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
-    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\index.php": {
-    "mtime": 1789194607.9395692,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\dir2\\a_inclure.php": {
-    "mtime": 1789194607.9528239,
-    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
-    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\dir2\\index.php": {
-    "mtime": 1789194607.958875,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\dir2\\page12.php": {
-    "mtime": 1789194607.9648755,
-    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
-    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\dir2\\personne.php": {
-    "mtime": 1789194607.9703858,
-    "ast_hash": "5f7f344f2fa42e545ab098306748af02",
-    "semantic_hash": "5f7f344f2fa42e545ab098306748af02"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\truc\\index.php": {
-    "mtime": 1789194607.9884102,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\truc\\machin\\index.php": {
-    "mtime": 1789194608.0039227,
-    "ast_hash": "922e03af81dab60962c233ced148d657",
-    "semantic_hash": "922e03af81dab60962c233ced148d657"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\pid.20260905\\_htdocs\\dir1\\truc\\machin\\personne.php": {
-    "mtime": 1789194608.0110166,
-    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
-    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\.class.register.php": {
-    "mtime": 1789194682.1455555,
-    "ast_hash": "bb26119077ebe1e331c56323d582370b",
-    "semantic_hash": "bb26119077ebe1e331c56323d582370b"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\.pid.config.php": {
-    "mtime": 1789194682.160602,
-    "ast_hash": "6d852551c9d5aa4de3534ec4aa8980e4",
-    "semantic_hash": "6d852551c9d5aa4de3534ec4aa8980e4"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\index.content.php": {
-    "mtime": 1789194682.1661136,
-    "ast_hash": "53071af35e1ab6b58dfd543a69df7806",
-    "semantic_hash": "53071af35e1ab6b58dfd543a69df7806"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\index.php": {
-    "mtime": 1789194682.1726248,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir.0\\index.php": {
-    "mtime": 1789194682.1856387,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir.0\\test_poo.php": {
-    "mtime": 1789194682.1916432,
-    "ast_hash": "fe2e18fb0832a86d2c724e06f480d767",
-    "semantic_hash": "fe2e18fb0832a86d2c724e06f480d767"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\index.content.php": {
-    "mtime": 1789194682.2051764,
-    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
-    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\index.php": {
-    "mtime": 1789194682.2112172,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\a_inclure.php": {
-    "mtime": 1789194682.223727,
-    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
-    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\index.php": {
-    "mtime": 1789194682.230793,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\page12.php": {
-    "mtime": 1789194682.2368698,
-    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
-    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\personne.php": {
-    "mtime": 1789194682.24387,
-    "ast_hash": "5f7f344f2fa42e545ab098306748af02",
-    "semantic_hash": "5f7f344f2fa42e545ab098306748af02"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\index.php": {
-    "mtime": 1789194682.263235,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\machin\\index.php": {
-    "mtime": 1789194682.279297,
-    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
-    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\machin\\personne.php": {
-    "mtime": 1789194682.285808,
-    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
-    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\.pid.config.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\.pid.config.php": {
     "mtime": 1789194554.2429898,
     "ast_hash": "4c7f5660fd6da0eba745dfe68c46001c",
     "semantic_hash": "4c7f5660fd6da0eba745dfe68c46001c"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\index.content.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\index.content.php": {
     "mtime": 1789194554.2545,
     "ast_hash": "f3368a35a4c84a03124e15b3f518f9d5",
     "semantic_hash": "f3368a35a4c84a03124e15b3f518f9d5"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\index.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\index.php": {
     "mtime": 1789194554.260008,
     "ast_hash": "9b6db3bde3fe912744976bdcc09648ff",
     "semantic_hash": "9b6db3bde3fe912744976bdcc09648ff"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\dir.0\\index.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\dir.0\\index.php": {
     "mtime": 1789194554.2705257,
     "ast_hash": "9b6db3bde3fe912744976bdcc09648ff",
     "semantic_hash": "9b6db3bde3fe912744976bdcc09648ff"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\dir1\\index.content.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\dir1\\index.content.php": {
     "mtime": 1789194554.2830358,
     "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
     "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\dir1\\index.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\dir1\\index.php": {
     "mtime": 1789194554.2885442,
     "ast_hash": "9b6db3bde3fe912744976bdcc09648ff",
     "semantic_hash": "9b6db3bde3fe912744976bdcc09648ff"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\pid.20260829\\_htdocs\\dir1\\dir2\\index.php": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\pid.20260829\\_htdocs\\dir1\\dir2\\index.php": {
     "mtime": 1789194554.3003924,
     "ast_hash": "9b6db3bde3fe912744976bdcc09648ff",
     "semantic_hash": "9b6db3bde3fe912744976bdcc09648ff"
   },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\.class.register.php": {
+    "mtime": 1789194607.880721,
+    "ast_hash": "bb26119077ebe1e331c56323d582370b",
+    "semantic_hash": "bb26119077ebe1e331c56323d582370b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\.pid.config.php": {
+    "mtime": 1789194607.891016,
+    "ast_hash": "6d852551c9d5aa4de3534ec4aa8980e4",
+    "semantic_hash": "6d852551c9d5aa4de3534ec4aa8980e4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\index.content.php": {
+    "mtime": 1789194607.8975248,
+    "ast_hash": "53071af35e1ab6b58dfd543a69df7806",
+    "semantic_hash": "53071af35e1ab6b58dfd543a69df7806"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\index.php": {
+    "mtime": 1789194607.9035244,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir.0\\index.php": {
+    "mtime": 1789194607.914035,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir.0\\test_poo.php": {
+    "mtime": 1789194607.9195428,
+    "ast_hash": "fe2e18fb0832a86d2c724e06f480d767",
+    "semantic_hash": "fe2e18fb0832a86d2c724e06f480d767"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\index.content.php": {
+    "mtime": 1789194607.933055,
+    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
+    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\index.php": {
+    "mtime": 1789194607.9395692,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\dir2\\a_inclure.php": {
+    "mtime": 1789194607.9528239,
+    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
+    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\dir2\\index.php": {
+    "mtime": 1789194607.958875,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\dir2\\page12.php": {
+    "mtime": 1789194607.9648755,
+    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
+    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\dir2\\personne.php": {
+    "mtime": 1789194607.9703858,
+    "ast_hash": "5f7f344f2fa42e545ab098306748af02",
+    "semantic_hash": "5f7f344f2fa42e545ab098306748af02"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\truc\\index.php": {
+    "mtime": 1789194607.9884102,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\truc\\machin\\index.php": {
+    "mtime": 1789194608.0039227,
+    "ast_hash": "922e03af81dab60962c233ced148d657",
+    "semantic_hash": "922e03af81dab60962c233ced148d657"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\pid.20260905\\_htdocs\\dir1\\truc\\machin\\personne.php": {
+    "mtime": 1789194608.0110166,
+    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
+    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\.class.register.php": {
+    "mtime": 1789728423.1642067,
+    "ast_hash": "9b63091eac96a0e55f5f7092a396e7d1",
+    "semantic_hash": "9b63091eac96a0e55f5f7092a396e7d1"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\.pid.config.php": {
+    "mtime": 1789728423.1782064,
+    "ast_hash": "784656c6541e6c152afe950dd1af74ef",
+    "semantic_hash": "784656c6541e6c152afe950dd1af74ef"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\application.php": {
+    "mtime": 1789728423.184564,
+    "ast_hash": "1d6c123b0c964273e4d39a48025c8405",
+    "semantic_hash": "1d6c123b0c964273e4d39a48025c8405"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\index.content.php": {
+    "mtime": 1789728423.1915667,
+    "ast_hash": "319d820cfac8d7621e0671f445e412f2",
+    "semantic_hash": "319d820cfac8d7621e0671f445e412f2"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\index.php": {
+    "mtime": 1789728423.1975665,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\monapp.php": {
+    "mtime": 1789728423.2025638,
+    "ast_hash": "fa90ecd6febfbd3aaf510cf9f11e4323",
+    "semantic_hash": "fa90ecd6febfbd3aaf510cf9f11e4323"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\page.php": {
+    "mtime": 1789728423.208166,
+    "ast_hash": "10cc945211139660816efd5737d752f3",
+    "semantic_hash": "10cc945211139660816efd5737d752f3"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir.0\\index.php": {
+    "mtime": 1789728423.2171717,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir.0\\test_poo.php": {
+    "mtime": 1789728423.2231734,
+    "ast_hash": "2efd6aa24eea03e2b8e859b132ef3808",
+    "semantic_hash": "2efd6aa24eea03e2b8e859b132ef3808"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\index.content.php": {
+    "mtime": 1789728423.2341714,
+    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
+    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\index.php": {
+    "mtime": 1789728423.2397263,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\dir2\\a_inclure.php": {
+    "mtime": 1789728423.249725,
+    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
+    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\dir2\\index.php": {
+    "mtime": 1789728423.255246,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\dir2\\page12.php": {
+    "mtime": 1789728423.2602468,
+    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
+    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\dir2\\personne.php": {
+    "mtime": 1789728423.2662444,
+    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
+    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\truc\\index.php": {
+    "mtime": 1789728423.2805982,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\dir1\\truc\\machin\\index.php": {
+    "mtime": 1789728423.2915993,
+    "ast_hash": "8fe2a9699963e013ed592c75ed017178",
+    "semantic_hash": "8fe2a9699963e013ed592c75ed017178"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\.class.register.php": {
+    "mtime": 1789194682.1455555,
+    "ast_hash": "bb26119077ebe1e331c56323d582370b",
+    "semantic_hash": "bb26119077ebe1e331c56323d582370b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\.pid.config.php": {
+    "mtime": 1789194682.160602,
+    "ast_hash": "6d852551c9d5aa4de3534ec4aa8980e4",
+    "semantic_hash": "6d852551c9d5aa4de3534ec4aa8980e4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\index.content.php": {
+    "mtime": 1789194682.1661136,
+    "ast_hash": "53071af35e1ab6b58dfd543a69df7806",
+    "semantic_hash": "53071af35e1ab6b58dfd543a69df7806"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\index.php": {
+    "mtime": 1789194682.1726248,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir.0\\index.php": {
+    "mtime": 1789194682.1856387,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir.0\\test_poo.php": {
+    "mtime": 1789194682.1916432,
+    "ast_hash": "fe2e18fb0832a86d2c724e06f480d767",
+    "semantic_hash": "fe2e18fb0832a86d2c724e06f480d767"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\index.content.php": {
+    "mtime": 1789194682.2051764,
+    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
+    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\index.php": {
+    "mtime": 1789194682.2112172,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\a_inclure.php": {
+    "mtime": 1789194682.223727,
+    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
+    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\index.php": {
+    "mtime": 1789194682.230793,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\page12.php": {
+    "mtime": 1789194682.2368698,
+    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
+    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\dir2\\personne.php": {
+    "mtime": 1789194682.24387,
+    "ast_hash": "5f7f344f2fa42e545ab098306748af02",
+    "semantic_hash": "5f7f344f2fa42e545ab098306748af02"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\index.php": {
+    "mtime": 1789194682.263235,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\machin\\index.php": {
+    "mtime": 1789194682.279297,
+    "ast_hash": "64dea888c34f96da6aa47fc48287a6c8",
+    "semantic_hash": "64dea888c34f96da6aa47fc48287a6c8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\_htdocs\\dir1\\truc\\machin\\personne.php": {
+    "mtime": 1789194682.285808,
+    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
+    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.class.register.php": {
+    "mtime": 1789990673.6106935,
+    "ast_hash": "f0727bab2c092529295a41d99869087b",
+    "semantic_hash": "f0727bab2c092529295a41d99869087b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid.config.php": {
+    "mtime": 1789990673.6198509,
+    "ast_hash": "dfcff29ba48647c9a687f9d29d4d2ea8",
+    "semantic_hash": "dfcff29ba48647c9a687f9d29d4d2ea8"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\index.content.php": {
+    "mtime": 1789990673.6244464,
+    "ast_hash": "8b86e90d5a1ccbb7fa24de3511b407b2",
+    "semantic_hash": "8b86e90d5a1ccbb7fa24de3511b407b2"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\index.php": {
+    "mtime": 1789990673.6307988,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\monapp.php": {
+    "mtime": 1789990673.6353948,
+    "ast_hash": "38a62415cd0c1e4eddc7ff8fd63c61ac",
+    "semantic_hash": "38a62415cd0c1e4eddc7ff8fd63c61ac"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid\\application.php": {
+    "mtime": 1789990673.644148,
+    "ast_hash": "2fb0a0b3f753f9919461fa2d0c5eaf44",
+    "semantic_hash": "2fb0a0b3f753f9919461fa2d0c5eaf44"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid\\filecollection.php": {
+    "mtime": 1789990673.650251,
+    "ast_hash": "19250f19f362606ccc925da6db92ea85",
+    "semantic_hash": "19250f19f362606ccc925da6db92ea85"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid\\index.php": {
+    "mtime": 1789990673.6548438,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid\\page.php": {
+    "mtime": 1789990673.6600766,
+    "ast_hash": "8f9c1a312f0f243efc4f1522e5644cf7",
+    "semantic_hash": "8f9c1a312f0f243efc4f1522e5644cf7"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\.pid\\trait.cssjsfiles.php": {
+    "mtime": 1789990673.6656582,
+    "ast_hash": "b2496246c2b424e9cbb109c69d2c3760",
+    "semantic_hash": "b2496246c2b424e9cbb109c69d2c3760"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir.0\\index.php": {
+    "mtime": 1789990673.6749098,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir.0\\test_poo.php": {
+    "mtime": 1789990673.679497,
+    "ast_hash": "2efd6aa24eea03e2b8e859b132ef3808",
+    "semantic_hash": "2efd6aa24eea03e2b8e859b132ef3808"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\index.content.php": {
+    "mtime": 1789990673.6881475,
+    "ast_hash": "d3488e9e1a854172ea2a5f5db8d70ace",
+    "semantic_hash": "d3488e9e1a854172ea2a5f5db8d70ace"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\index.php": {
+    "mtime": 1789990673.6942716,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\dir2\\a_inclure.php": {
+    "mtime": 1789990673.7035725,
+    "ast_hash": "7d256209f9e1c3ff20e76a78b949e4c4",
+    "semantic_hash": "7d256209f9e1c3ff20e76a78b949e4c4"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\dir2\\index.php": {
+    "mtime": 1789990673.7081616,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\dir2\\page12.php": {
+    "mtime": 1789990673.7127562,
+    "ast_hash": "c325e322a34fb883f4c30f3cfa0dbd53",
+    "semantic_hash": "c325e322a34fb883f4c30f3cfa0dbd53"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\dir2\\personne.php": {
+    "mtime": 1789990673.718973,
+    "ast_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10",
+    "semantic_hash": "e4ab755ac78f1ccaf5c1c06d146a3d10"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\truc\\index.php": {
+    "mtime": 1789990673.728147,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260919\\_htdocs\\dir1\\truc\\machin\\index.php": {
+    "mtime": 1789990673.737379,
+    "ast_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6",
+    "semantic_hash": "0a855d13b27efe8bf3e2af61c4d0a1b6"
+  },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\CLAUDE.md": {
-    "mtime": 1789201252.8325477,
-    "ast_hash": "e4b2e998edfc28441c4ac8b9060a2358",
-    "semantic_hash": "e4b2e998edfc28441c4ac8b9060a2358"
+    "mtime": 1789993353.8855176,
+    "ast_hash": "00af7ff4119c9490071bcac655c26516",
+    "semantic_hash": "00af7ff4119c9490071bcac655c26516"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\.claude\\skills\\speckit-analyze\\SKILL.md": {
     "mtime": 1789204278.6472101,
@@ -385,14 +625,19 @@
     "semantic_hash": "5c6d524b197974dd993d1608ad5e1fc2"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\JOURNAL.md": {
-    "mtime": 1789216458.3324776,
-    "ast_hash": "cd9eabc28fad7c64d2bd8f8932aae4e8",
-    "semantic_hash": "cd9eabc28fad7c64d2bd8f8932aae4e8"
+    "mtime": 1790371182.3288455,
+    "ast_hash": "dd647cfbb1f649d756b5ab0564324786",
+    "semantic_hash": "dd647cfbb1f649d756b5ab0564324786"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\PALETTE.md": {
     "mtime": 1789207750.831465,
     "ast_hash": "4b74d3d8c361c883eb2896470a60a333",
     "semantic_hash": "4b74d3d8c361c883eb2896470a60a333"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\RYTHME-COURS.md": {
+    "mtime": 1789995523.4460616,
+    "ast_hash": "32601cb4802361ca67517b140d7a81fe",
+    "semantic_hash": "32601cb4802361ca67517b140d7a81fe"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\UI-DESIGN.md": {
     "mtime": 1789216202.2428803,
@@ -403,6 +648,146 @@
     "mtime": 1789206267.7310824,
     "ast_hash": "f27ac804a352fa4f77b050dc77bdd922",
     "semantic_hash": "f27ac804a352fa4f77b050dc77bdd922"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Autoloading PID \u2014 spl_autoload_register et le Cache.md": {
+    "mtime": 1789996258.9970229,
+    "ast_hash": "3732ab1e66ccc776e33b27532095d029",
+    "semantic_hash": "3732ab1e66ccc776e33b27532095d029"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Bootstrap PID \u2014 Detection de la Racine du Site.md": {
+    "mtime": 1789996154.3817177,
+    "ast_hash": "b832eb60f6fb3e698e0d9f1bced6f547",
+    "semantic_hash": "b832eb60f6fb3e698e0d9f1bced6f547"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\CApplication, CMonApp et CPage \u2014 Singleton applicatif et charset.md": {
+    "mtime": 1789996331.64946,
+    "ast_hash": "d8560ebb5705a52853e1a69f2ead69a2",
+    "semantic_hash": "d8560ebb5705a52853e1a69f2ead69a2"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\CPage \u2014 G\u00e9n\u00e9rer une page HTML (WriteDocument et points d'extension).md": {
+    "mtime": 1789995575.652602,
+    "ast_hash": "30e4f54ecb528cc58b1a575f8668eb0a",
+    "semantic_hash": "30e4f54ecb528cc58b1a575f8668eb0a"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Dossier .pid et pr\u00e9fixe \u00e9toile \u2014 S\u00e9parer le framework du site.md": {
+    "mtime": 1789995575.7352462,
+    "ast_hash": "a738f6615b5b16bc84871af3120abdb3",
+    "semantic_hash": "a738f6615b5b16bc84871af3120abdb3"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Evolution de l'Autoloader \u2014 Boucle de Retry (0509 vers 1209).md": {
+    "mtime": 1789996286.9130855,
+    "ast_hash": "7101e51b4f0be2c6b8445cff422efc97",
+    "semantic_hash": "7101e51b4f0be2c6b8445cff422efc97"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Closures et fonctions anonymes.md": {
+    "mtime": 1789996460.775586,
+    "ast_hash": "808e80faad49834908fb176073086897",
+    "semantic_hash": "808e80faad49834908fb176073086897"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 eval() et ex\u00e9cution dynamique.md": {
+    "mtime": 1789996460.7765863,
+    "ast_hash": "db0fec9e22071c1dc7ae6599f3b81bdd",
+    "semantic_hash": "db0fec9e22071c1dc7ae6599f3b81bdd"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 H\u00e9ritage (extends et parent).md": {
+    "mtime": 1789995411.6233048,
+    "ast_hash": "b509bdc49a1ff167c601d467df9d606c",
+    "semantic_hash": "b509bdc49a1ff167c601d467df9d606c"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 include, require et r\u00e9solution de chemins.md": {
+    "mtime": 1789996460.7825859,
+    "ast_hash": "034b4e4b3687b02599b9f3e49bcfbc9a",
+    "semantic_hash": "034b4e4b3687b02599b9f3e49bcfbc9a"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Interface Iterator et foreach.md": {
+    "mtime": 1789996538.609159,
+    "ast_hash": "c8485ae7fb96d4bcef5eed6220f8fb04",
+    "semantic_hash": "c8485ae7fb96d4bcef5eed6220f8fb04"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 M\u00e9thodes magiques.md": {
+    "mtime": 1789996460.7871006,
+    "ast_hash": "d9f5a3ac61e479347da2a379d80225b0",
+    "semantic_hash": "d9f5a3ac61e479347da2a379d80225b0"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Op\u00e9rateur d'\u00e9talement (...).md": {
+    "mtime": 1789995452.5905418,
+    "ast_hash": "919b5e0501656838ebd5a14226698f11",
+    "semantic_hash": "919b5e0501656838ebd5a14226698f11"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Propri\u00e9t\u00e9s et m\u00e9thodes statiques.md": {
+    "mtime": 1789996460.7785861,
+    "ast_hash": "4b50e700640643bb64f3da1a82b6ae26",
+    "semantic_hash": "4b50e700640643bb64f3da1a82b6ae26"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Superglobales et sessions.md": {
+    "mtime": 1789996460.7881002,
+    "ast_hash": "b53217bae90650dbfed0004066d3cfa3",
+    "semantic_hash": "b53217bae90650dbfed0004066d3cfa3"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Tokenisation (token_get_all).md": {
+    "mtime": 1789996460.7881002,
+    "ast_hash": "967be01ebe15e084a850b90b4f6cbb57",
+    "semantic_hash": "967be01ebe15e084a850b90b4f6cbb57"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Traits.md": {
+    "mtime": 1789996538.6064985,
+    "ast_hash": "f6f68d31c9333551ee6d6a093d1c4248",
+    "semantic_hash": "f6f68d31c9333551ee6d6a093d1c4248"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire PHP \u2014 Visibilit\u00e9 et encapsulation.md": {
+    "mtime": 1789996460.7906113,
+    "ast_hash": "3d5d64bd0e3828076d661ef4cdba5305",
+    "semantic_hash": "3d5d64bd0e3828076d661ef4cdba5305"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire \u2014 En-t\u00eates HTTP et header().md": {
+    "mtime": 1789995440.5449452,
+    "ast_hash": "0243d95adc270aaf04d3fc3e042fe9ba",
+    "semantic_hash": "0243d95adc270aaf04d3fc3e042fe9ba"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire \u2014 Encodage des caract\u00e8res (windows-1252 vs UTF-8).md": {
+    "mtime": 1789995427.1093457,
+    "ast_hash": "5a3073281df0c1c316e85b8e72279cb1",
+    "semantic_hash": "5a3073281df0c1c316e85b8e72279cb1"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire \u2014 Le motif de conception Singleton.md": {
+    "mtime": 1789996460.7785861,
+    "ast_hash": "0cbcc7c547a7483871bd0653013d32d7",
+    "semantic_hash": "0cbcc7c547a7483871bd0653013d32d7"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Glossaire \u2014 \u00c9chappement HTML et faille XSS.md": {
+    "mtime": 1789996538.6101577,
+    "ast_hash": "8b440ce320f1b8635478cac31644130a",
+    "semantic_hash": "8b440ce320f1b8635478cac31644130a"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Introduction au PHP \u2014 Bases pour d\u00e9butant.md": {
+    "mtime": 1789996460.791613,
+    "ast_hash": "01a9aedb00bc06b1fd31d52c2cc440e6",
+    "semantic_hash": "01a9aedb00bc06b1fd31d52c2cc440e6"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Laravel \u2194 framework PID \u2014 Correspondances.md": {
+    "mtime": 1789995475.6016934,
+    "ast_hash": "14a7ab9d4b8a687c6045ddab31ce761b",
+    "semantic_hash": "14a7ab9d4b8a687c6045ddab31ce761b"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\MOC \u2014 PID.md": {
+    "mtime": 1789996507.2476945,
+    "ast_hash": "2dc722aca0ed25278d38134f5e3fb96d",
+    "semantic_hash": "2dc722aca0ed25278d38134f5e3fb96d"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\PID_PathTo, PID_Include et PID_IncludeOnce.md": {
+    "mtime": 1789996186.4291544,
+    "ast_hash": "da6f4e9922667d6b61f60d1089994cd2",
+    "semantic_hash": "da6f4e9922667d6b61f60d1089994cd2"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\Structure POO \u2014 CPersonne et CAutre.md": {
+    "mtime": 1789996367.5804727,
+    "ast_hash": "de7fdf3210647a7c7c679ac99da55ae9",
+    "semantic_hash": "de7fdf3210647a7c7c679ac99da55ae9"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\TCssJsFiles et CFileCollection \u2014 Collections de fichiers CSS et JS.md": {
+    "mtime": 1789995575.8280857,
+    "ast_hash": "6fd8807acc8364966cfc646292129206",
+    "semantic_hash": "6fd8807acc8364966cfc646292129206"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L1-fondation.md": {
     "mtime": 1789203051.960433,
@@ -418,6 +803,11 @@
     "mtime": 1789203389.7707136,
     "ast_hash": "a7d4086126ba53a3f15f46a887c45b30",
     "semantic_hash": "a7d4086126ba53a3f15f46a887c45b30"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-catalogue-services.md": {
+    "mtime": 1790371182.2802315,
+    "ast_hash": "b6dadd5ceb955861e2b8b67ff94cc575",
+    "semantic_hash": "b6dadd5ceb955861e2b8b67ff94cc575"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\brainstorm\\L2-devis-contrat.md": {
     "mtime": 1789203461.9124825,
@@ -454,20 +844,20 @@
     "ast_hash": "8ebcd7c7c975bb3f2b6fb5c56a4c41f5",
     "semantic_hash": "8ebcd7c7c975bb3f2b6fb5c56a4c41f5"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\05_09_2026\\Cours_05_09_2026.txt": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260829\\Cours_20_08_2026.txt": {
+    "mtime": 1789199143.0291667,
+    "ast_hash": "02fe00bf9a634820995e8139807fb300",
+    "semantic_hash": "02fe00bf9a634820995e8139807fb300"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260905\\Cours_05_09_2026.txt": {
     "mtime": 1789194577.9536028,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\12_09_2026\\12_09_2026.txt": {
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\pid.20260912\\pid_avant_cours.20260912\\12_09_2026.txt": {
     "mtime": 1789194645.4338713,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
-  },
-  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\29_08_2026\\Cours_20_08_2026.txt": {
-    "mtime": 1789199143.0291667,
-    "ast_hash": "02fe00bf9a634820995e8139807fb300",
-    "semantic_hash": "02fe00bf9a634820995e8139807fb300"
   },
   "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\Suivit_Cours\\Synth\u00e8se\\modalites_examen.20260824 (2).txt": {
     "mtime": 1789194447.4509268,
@@ -498,5 +888,10 @@
     "mtime": 1789207581.7716973,
     "ast_hash": "b9113d7614ebfe19760ef0e2460cd821",
     "semantic_hash": "b9113d7614ebfe19760ef0e2460cd821"
+  },
+  "C:\\Users\\ernes\\Desktop\\ProjectsMaster\\projects\\PID\\docs\\academique\\attachments\\schema-bootstrap-autoloader-avant-apres.png": {
+    "mtime": 1789741816.718868,
+    "ast_hash": "46998ce2290d6410820231f88cc9d3d7",
+    "semantic_hash": "46998ce2290d6410820231f88cc9d3d7"
   }
 }
