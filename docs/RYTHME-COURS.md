@@ -87,3 +87,10 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 - ✅ **« Vu / pas vu » du §2 validé** par mentalyas (2026-09-21).
 - ✅ **Phase 1 (Fortify, dompdf, `/ajax/`) conservée comme cible de fin de projet**, non réécrite maintenant. Chaque porte 2b/2c/2d est l'occasion de **re-valider** la décision correspondante contre ce que le prof aura réellement enseigné (ex. si le prof enseigne une authentification maison et PDO, l'Architecte réévalue Fortify/Eloquent avant d'implémenter — le pont pédagogique du FOUNDATION §5 reste la règle). Décision prise par Claude, mentalyas ayant laissé le choix (« comme tu le sens »).
 - ✅ **Notes de cours : introduction systématique.** Quand le prof aborde une matière ou une techno « en plein milieu » (sans l'avoir introduite), la note de cours commence par un récapitulatif **« c'est quoi et comment ça marche »** avant le détail de ce qui a été montré en classe.
+
+## 8. Suivi hors séance
+
+### 2026-09-25 — brainstorm « catalogue de services » (aucun nouveau cours)
+- **Aucune séance nouvelle** : l'état du §1-§3 est inchangé (dernier cours intégré : 19/09 ; prochain : 26/09).
+- La fiche [[L2-catalogue-services]] conçoit la brique 3 (couche `Domain/`, moteur de tarification) avec des notions de POO **pas encore enseignées** : classe abstraite, interfaces écrites soi-même, polymorphisme, composition, motifs Stratégie et Prototype (`clone`/`__clone()`), montants en décimal exact. Introductions ajoutées dans `docs/academique/` (section « Conception objet du projet » du MOC).
+- **Verdict pour la règle de porte** : 🟡 — la brique 3 reste ✅ pour les classes simples (encapsulation, héritage, interface `Iterator` vus) ; les parties qui reposent sur `abstract`, le clonage profond et le stockage d'une composition polymorphe en base (MySQL ⛔) sont **à re-vérifier** contre le cours avant implémentation. La décision revient à mentalyas.

@@ -92,6 +92,13 @@ flowchart TD
 ## Ponts cours ↔ projet
 - [[Laravel ↔ framework PID — Correspondances]] — ce que Laravel automatise de chaque mécanisme vu en cours *(⚠️ brouillon : Laravel pas encore installé)*
 
+## Conception objet du projet (notions ajoutées, pas encore enseignées)
+*Issues du brainstorm du catalogue de services ([[L2-catalogue-services]], 25/09). Le prof ne les a pas encore abordées : ce sont des introductions « c'est quoi + comment ça marche », à relier au cours quand il y viendra. Utiles pour le critère d'examen « framework / généricité ».*
+- [[Glossaire — Classe abstraite, interface et polymorphisme]] — `abstract class Module`, interfaces `Condition`/`Effet`, un appel → la version de l'objet réel (prolonge [[Glossaire PHP — Héritage (extends et parent)]])
+- [[Glossaire — Composition, motif Stratégie et principe ouvert-fermé]] — un service « a des » modules ; une formule de prix par classe ; ajouter sans modifier
+- [[Glossaire PHP — clone, __clone et motif Prototype]] — dupliquer un service ou un modèle : copie superficielle vs profonde
+- [[Glossaire — Montants d'argent, décimal exact vs flottant]] — pourquoi un prix ne se stocke jamais en `float`
+
 ## Ordre d'apprentissage recommandé
 0. (Si PHP est nouveau) [[Introduction au PHP — Bases pour débutant]] — variables, fonctions, tableaux, POO minimale
 1. [[Bootstrap PID — Detection de la Racine du Site]] — comprendre comment le framework se repère
@@ -105,6 +112,7 @@ flowchart TD
 9. [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] — la brique qui les utilise
 10. [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — l'aboutissement : une page complète, avec [[Glossaire — Échappement HTML et faille XSS]] pour la sécurité
 11. [[Laravel ↔ framework PID — Correspondances]] — relier le tout à l'outil du projet
+12. *(Projet, 25/09)* [[Glossaire — Classe abstraite, interface et polymorphisme]] → [[Glossaire — Composition, motif Stratégie et principe ouvert-fermé]] → [[Glossaire PHP — clone, __clone et motif Prototype]] → [[Glossaire — Montants d'argent, décimal exact vs flottant]] — la conception objet du catalogue de services
 
 ## Questions de révision globale
 > **Q :** Si tu devais résumer en 2 phrases ce que fait ce framework maison au professeur d'examen, que dirais-tu ?

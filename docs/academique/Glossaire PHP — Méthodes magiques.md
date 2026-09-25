@@ -78,3 +78,4 @@ protected function __wakeup()
 ## Explorer ensuite
 - [[Glossaire PHP — Superglobales et sessions]] — comprendre `$_SESSION` en détail explique précisément quand PHP sérialise/désérialise, et donc quand `__wakeup()` se déclenche.
 - [[Glossaire — Le motif de conception Singleton]] — `__construct` protégée est la pièce maîtresse de ce motif.
+- [[Glossaire PHP — clone, __clone et motif Prototype]] — *(ajout du 25/09, brainstorm du projet)* `__clone()`, la méthode magique déclenchée par `clone` pour copier un objet en profondeur.

@@ -39,7 +39,7 @@ pid/
 
 Active : oui
 Dossier : docs/academique/
-Derniere mise a jour : 2026-09-21
+Derniere mise a jour : 2026-09-25
 Materiel de cours : Suivit_Cours/
 Lancer en pleine session : `/professor parcours` (ou `/professor cours` pour le dernier cours deposé) — protocole : `~/.claude/skills/professor/parcours.md`
 

@@ -45,3 +45,5 @@ class CMonApp extends CApplication          // CMonApp reçoit tout de CApplicat
 > **R :** Le constructeur de `CApplication` ne s'exécute pas : `self::$s_Instance` et `$_SESSION[...]` ne sont pas remplis, le singleton n'existe pas.
 
 **Pièges** : ⚠️ croire que la mère connaît ses filles (faux : c'est la config `PID_APPLICATION_CLASSNAME` qui désigne la fille) ; ⚠️ supposer l'appel implicite du constructeur de la mère comme en C#.
+
+> **Évolution du 25/09 (projet, pas le cours)** — le brainstorm du catalogue de services préfère la **composition** à l'héritage pour combiner des comportements, et garde l'héritage pour les **contrats** (classe abstraite `Module`) : voir [[Glossaire — Composition, motif Stratégie et principe ouvert-fermé]] et [[Glossaire — Classe abstraite, interface et polymorphisme]].
