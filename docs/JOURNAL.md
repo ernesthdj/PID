@@ -9,6 +9,12 @@
 
 ## Historique
 
+### [2026-09-28] FEAT — vidéo explicative Remotion du framework PID
+**Fichiers :** `video/` (package.json, tsconfig.json, .gitignore, src/Root.tsx, src/compositions/PidFramework.tsx, src/scenes/Foundations.tsx, src/scenes/Runtime.tsx, src/ui/kit.tsx, src/ui/theme.ts)
+**Resume :** Test Remotion : vidéo 1920x1080, 30 fps, ~1 min 42 (11 chapitres) expliquant le framework du cours tel qu'au 19/09 (bootstrap/remontée vers `.pid.config.php`, contrôle de configuration, `PID_PathTo`, autoloader + registre, singleton `CApplication` en session, `CPage::WriteDocument`, `IntoHtml`, pont Laravel, récapitulatif). Contenu tiré du code réel `Suivit_Cours/pid.20260919/_htdocs/`. Rendu : `video/out/pid-framework.mp4` (ignoré par git). Dépendances ajoutées dans `video/` uniquement : remotion, @remotion/cli, react, react-dom, typescript.
+**Prototype motion design (même jour) :** la version « diaporama » ne convenait pas (panneaux qui glissent façon PowerPoint). Nouvelle composition `PidMotion` (`video/src/motion/`, ~36 s) en animation vectorielle : chapitres Bootstrap (graphe, sonde qui remonte, fragments `../` qui volent) et Singleton (éclats → hexagone, capsule sérialisée rangée dans le coffre-session, statique qui se désintègre, `__wakeup`). Morphings calculés à la main (polygones ré-échantillonnés), aucune dépendance ajoutée. Style validé par mentalyas et documenté comme style par défaut dans le skill `remotion`. Rendu : `video/out/pid-motion.mp4`.
+**Constats du code relevés dans la vidéo :** `PID_PathTo("*page.php")` produit un double slash (`../../..//.pid/page.php`) ; l'autoloader ne trouve `monapp.php` via `MonApp.php` que parce que Windows ignore la casse.
+
 ### [2026-09-25 23:30] SESSION — End
 **Resume :** ouverture apres fermeture differee de la session `archiviste-cours-it` ; menage (entree de journal du 21/09 commitee, `.obsidian/` racine ignore, `Sans titre.base` supprime). Brainstorm : nouvelle fiche `L2-catalogue-services.md` validee (catalogue de services parametrable, noyau + modules, OSRM, modeles Prototype, instantane tarifaire) ; niveau 3 choisi comme prochaine etape. Graphe projet mis a jour (dernier : 12/09 ; 841 noeuds, noeuds fantomes des anciens chemins de cours retires). Cours academique : 4 glossaires POO ajoutes (hors seance, 25/09), MOC et RYTHME-COURS §8 mis a jour. Prochaine seance le 26/09 : deposer `Suivit_Cours/pid.20260926/` puis `/professor cours`.
 **Branche :** master
