@@ -9,6 +9,10 @@
 
 ## Historique
 
+### [2026-09-28] FEAT — vidéo motion : chapitres Autoloader et CPage (motif Code → Nœud)
+**Fichiers :** `video/src/motion/parts.tsx` (nouveau), `video/src/motion/AutoloaderMotion.tsx` (nouveau), `video/src/motion/PageMotion.tsx` (nouveau), `video/src/motion/geom.ts`, `video/src/compositions/PidMotion.tsx`
+**Resume :** Application du motif « Code → Nœud » demandé par mentalyas : le vrai extrait de code est montré, se transforme en nœud titré, puis le nœud anime ses actions dans le système. Chapitre 05 (autoloader : nom de classe → registre ✗ → fouille du disque → vérification token_get_all → écriture du registre → inclusion) et 07 (WriteDocument émet les briques de la page, titre filtré par IntoHtml, hook WriteBody de la classe fille). Composant réutilisable `CodeNode` + pièces communes (FlyChip, Spark, Ripple, Mark, Wire). Formes passées de 72 à 360 points (coins arrondis nets). `PidMotion` : 4 chapitres, ~1 min 28.
+
 ### [2026-09-28] FEAT — vidéo explicative Remotion du framework PID
 **Fichiers :** `video/` (package.json, tsconfig.json, .gitignore, src/Root.tsx, src/compositions/PidFramework.tsx, src/scenes/Foundations.tsx, src/scenes/Runtime.tsx, src/ui/kit.tsx, src/ui/theme.ts)
 **Resume :** Test Remotion : vidéo 1920x1080, 30 fps, ~1 min 42 (11 chapitres) expliquant le framework du cours tel qu'au 19/09 (bootstrap/remontée vers `.pid.config.php`, contrôle de configuration, `PID_PathTo`, autoloader + registre, singleton `CApplication` en session, `CPage::WriteDocument`, `IntoHtml`, pont Laravel, récapitulatif). Contenu tiré du code réel `Suivit_Cours/pid.20260919/_htdocs/`. Rendu : `video/out/pid-framework.mp4` (ignoré par git). Dépendances ajoutées dans `video/` uniquement : remotion, @remotion/cli, react, react-dom, typescript.

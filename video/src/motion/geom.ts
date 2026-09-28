@@ -6,7 +6,7 @@ import { Easing, interpolate } from 'remotion';
 
 export type Pt = [number, number];
 
-export const N_POINTS = 72;
+export const N_POINTS = 360;
 
 const CLAMP = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
@@ -73,6 +73,26 @@ export const capsule = (w: number, h: number): Pt[] => {
   }
   pts.push([-half, -r]);
   return resample(pts);
+};
+
+// Rectangle aux coins arrondis (cadre d'un bloc de code, motif « Code → Nœud »),
+// démarré au milieu du bord haut, sens horaire.
+export const roundedRect = (w: number, h: number, r: number): Pt[] => {
+  const hw = w / 2;
+  const hh = h / 2;
+  const rr = Math.min(r, hw, hh);
+  const corner = (cx: number, cy: number, a0: number): Pt[] =>
+    Array.from({ length: 9 }, (_, k) => {
+      const a = a0 + (k / 8) * (Math.PI / 2);
+      return [cx + rr * Math.cos(a), cy + rr * Math.sin(a)] as Pt;
+    });
+  return resample([
+    [0, -hh],
+    ...corner(hw - rr, -hh + rr, -Math.PI / 2),
+    ...corner(hw - rr, hh - rr, 0),
+    ...corner(-hw + rr, hh - rr, Math.PI / 2),
+    ...corner(-hw + rr, -hh + rr, Math.PI),
+  ]);
 };
 
 export const morph = (a: Pt[], b: Pt[], t: number): Pt[] => a.map((p, i) => lerpPt(p, b[i], t));
