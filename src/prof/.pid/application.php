@@ -93,51 +93,160 @@ class CApplication
 	public function ToUtf8($value)
 	{
 		if ($this->CharsetIsUtf8()) return $value;
-		return $this->ToUtf8_R($value);
+		$knownObjects = [];
+		return $this->ToUtf8_R($value, $knownObjects);
 	}
 	
-	private function ToUtf8_R($value)
+	private function ToUtf8_R($value, &$knownObjects)
 	{
 		if (is_string($value)) return mb_convert_encoding($value, self::$c_Encoding[PID_UTF8], self::$c_Encoding[PID_ANSI]);
-		if (is_object($value)) $value = [ ]; // TODO : à modifier plus tard pour retrouver les informations pertinentes, même si difficilement accessibles
+		if (is_object($value) && !is_callable($value))
+		{
+			$value = $this->ObjectToArray($value, $knownObjects);
+		}
 		if (is_array($value))
 		{
 			$result = [];
 			foreach ($value as $k=>$v)
 			{
-				$result[is_string($k) ? $this->ToUtf8_R($k) : $k] = $this->ToUtf8_R($v); // TODO : à modifier plus tard pour éviter les appels sur un objet déjà traité ... voir le système qui sera mis en place pour retrouver les informations pertinentes
+				$result[is_string($k) ? $this->ToUtf8_R($k) : $k] = $this->ToUtf8_R($v);
 			}
 			return $result;
 		}
-		else
+		else if (is_string($value) || is_bool($value) || ($value === null) || is_numeric($value))
 		{
 			return $value;
 		}
+		else
+		{
+			return null;
+		}
 	}
-	
+		
 	public function FromUtf8($value)
 	{
 		if ($this->CharsetIsUtf8()) return $value;
-		return $this->FromUtf8_R($value);
+		$knownObjects = [];
+		return $this->FromUtf8_R($value, $knownObjects);
 	}
 	
 	private function FromUtf8_R($value)
 	{
 		if (is_string($value)) return mb_convert_encoding($value, self::$c_Encoding[PID_ANSI], self::$c_Encoding[PID_UTF8]);
-		if (is_object($value)) $value = [ ]; // TODO : à modifier plus tard pour retrouver les informations pertinentes, même si difficilement accessibles
+		if (is_object($value) && !is_callable($value))
+		{
+			$value = $this->ObjectToArray($value, $knownObjects);
+		}
 		if (is_array($value))
 		{
 			$result = [];
 			foreach ($value as $k=>$v)
 			{
-				$result[is_string($k) ? $this->FromUtf8_R($k) : $k] = $this->FromUtf8_R($v); // TODO : à modifier plus tard pour éviter les appels sur un objet déjà traité ... voir le système qui sera mis en place pour retrouver les informations pertinentes
+				$result[is_string($k) ? $this->FromUtf8_R($k) : $k] = $this->FromUtf8_R($v);
 			}
 			return $result;
 		}
-		else
+		else if (is_string($value) || is_bool($value) || ($value === null) || is_numeric($value))
 		{
 			return $value;
 		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	public function ObjectToArray($object, &$knownObjects)
+	{
+		if (!is_object($object)) return [];
+		if (!is_array($knownObjects)) return [];
+		foreach ($knownObjects as $knownObject)
+		{
+			if ($object === $knownObject)
+			{
+				return null;
+			}
+		}
+		$knownObjects[] = $object;
+		if (is_a($object, "IExhibitable"))
+		{
+			return $object->Exhibit();
+		}
+		else
+		{
+			return get_mangled_object_vars($object);
+		}
+	}
+	
+	public function ArrayToArray($array, &$knownObjects)
+	{
+		if (!is_array($array)) return [];
+		if (!is_array($knownObjects)) return [];
+		$result = [];
+		foreach ($array as $key=>$value)
+		{
+			if (is_object($value) && !is_callable($value))
+			{
+				$result[$key] = $this->ArrayToArray($this->ObjectToArray($value, $knownObjects), $knownObjects);
+			}
+			else if (is_array($value))
+			{
+				$result[$key] = $this->ArrayToArray($value, $knownObjects);
+			}
+			else if (is_string($value) || is_bool($value) || ($value === null) || is_numeric($value))
+			{
+				$result[$key] = $value;
+			}
+		}
+		return $result;
+	}
+	
+	////////////////////////////////////////////////////////
+	// Méthodes de gestion des informations sérialisables //
+	////////////////////////////////////////////////////////
+	
+	public function GetMemberNamesFrom($value, ...$exceptions)
+	{
+		if (!is_object($value)) return [];
+		$memberNames = [ ];
+		foreach (get_mangled_object_vars($value) as $memberName=>$memberValue)
+		{
+			$isSerializable = false;
+			if (is_array($memberValue))
+			{
+				$isSerializable = VerifySerializableArray_R($memberValue);
+			}
+			else if (is_string($memberValue) || is_bool($memberValue) || ($memberValue === null) || is_numeric($memberValue))
+			{
+				$isSerializable = true;
+			}
+			if ($isSerializable)
+			{
+				$nameParts = explode("\0", $memberName);
+				if (!in_array($nameParts[count($nameParts) - 1], $exceptions))
+				{
+					$memberNames[] = $memberName;
+				}
+			}
+		}
+		return $memberNames;
+		
+	}
+	
+	private function VerifySerializableArray_R($array)
+	{
+		foreach ($array as $key=>$value)
+		{
+			if (is_array($value))
+			{
+				if (!VerifySerializableArray_R($value)) return false;
+			}
+			else if (!is_string($value) && !is_bool($value) && ($value !== null) && !is_numeric($value))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	///////////////////////////////////////////////////
@@ -169,6 +278,8 @@ class CApplication
 		self::$s_Instance = $this;
 		$_SESSION[PID_APPLICATION_SESSION_ITEM_NAME] = $this;
 		$this->TCssJsFiles_Initialize($cssFiles, $jsFiles);
+		$this->Js()->Add("*/js/jquery-4.0.0.min.js");
+		$this->Js()->Add("*/js/application.js");
 	}
 	
 	protected function __wakeup()

@@ -197,6 +197,7 @@
 		// Inclusion si possible du contenu d'accueil du répertoire interrogé, ou à défaut, redirection vers le répertoire supérieure
 		if (file_exists(PID_INDEX_CONTENT_FILENAME))
 		{
+			if (!isset($_SESSION)) @session_start();
 			@include_once(PID_INDEX_CONTENT_FILENAME);
 		}
 		else if (!file_exists(PID_CONFIG_FILENAME))
@@ -219,6 +220,7 @@
 	else
 	{
 		// "Simple" inclusion de ce fichier index.php par un autre fichier php, qui lui a fait l'objet de l'interrogation HTTP
+		if (!isset($_SESSION)) @session_start();
 	}
 })();
 
@@ -240,6 +242,7 @@ function PID_PathTo($url, $checkIfFileExists = true)
 			$url = substr($url, 1);
 			if (str_starts_with($url, "/")) $url = substr($url, 1);
 			$url = PID_FOLDER_PATH . (str_ends_with(PID_FOLDER_PATH, "/") ? "" : "/" ) . $url;
+			if (str_starts_with($url, "/")) $url = substr($url, 1);
 		}
 		else
 		{

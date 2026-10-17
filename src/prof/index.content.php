@@ -70,6 +70,17 @@ class CettePage extends CPage
 	}
 }
 
+/*
+//unset($_SESSION["unePersonne"]);
+if (!isset($_SESSION["unePersonne"]))
+{
+	$_SESSION["unePersonne"] = new CPersonne("Depré", "Michel", function($personne, $a, $b) { $c = $a + $b; print("<p>D'après " . $personne->Nom() . " "  . $personne->Prenom() . ", $a + $b = $c</p>"); return $c; });
+}
+if ($_SESSION["unePersonne"]->FaireAction(12, 7) === false)
+{
+	print("<p>" . $_SESSION["unePersonne"]->Nom() . " "  . $_SESSION["unePersonne"]->Prenom() . " n'a rien à faire !</p>");
+}
+*/
+unset($_SESSION[PID_APPLICATION_SESSION_ITEM_NAME]);
 new CettePage()->WriteDocument();
-/**/
 ?>

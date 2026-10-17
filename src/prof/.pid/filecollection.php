@@ -39,7 +39,7 @@ class CFileCollection
 		if (!is_array($this->m_Items)) $this->m_Items = [];
 		if ($this->m_HandleUniqueItems)
 		{
-			if (in_array($relativeUrl, $this->m_HandleUniqueItems)) return false;
+			if (in_array($relativeUrl, $this->m_Items)) return false;
 		}
 		$this->m_Items[] = $relativeUrl;
 		return true;
@@ -55,7 +55,7 @@ class CFileCollection
 		if ($index >= count($this->m_Items)) return $this->Add($relativeUrl);
 		if ($this->m_HandleUniqueItems)
 		{
-			if (in_array($relativeUrl, $this->m_HandleUniqueItems)) return false;
+			if (in_array($relativeUrl, $this->m_Items)) return false;
 		}
 		array_splice($this->m_Items, $index, 0, $relativeUrl);
 		return true;

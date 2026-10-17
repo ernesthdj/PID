@@ -20,8 +20,8 @@ class CPage
 	public function WriteDocument($headContent = null, $bodyContent = null)
 	{
 		self::DeclareContentType();
-		//print("<!doctype html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"be-fr\">\r\n\r\n\t<head>\r\n\t\t<meta charset=\"");
-		print("<!doctype html>\r\n\r\n<html lang=\"be-fr\">\r\n\r\n\t<head>\r\n\t\t<meta charset=\"");
+		//print("<!doctype html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"fr-be\">\r\n\r\n\t<head>\r\n\t\t<meta charset=\"");
+		print("<!doctype html>\r\n\r\n<html lang=\"fr-be\">\r\n\r\n\t<head>\r\n\t\t<meta charset=\"");
 		print(CApplication::Instance()->Charset());
 		print("\"/>\r\n\t\t<meta http-equiv=\"content-type\" content=\"text/html;charset=");
 		print(CApplication::Instance()->Charset());
@@ -31,7 +31,7 @@ class CPage
 			foreach ($css->All() as $url)
 			{
 				if (($targetedUrl = PID_PathTo($url)) === false) continue;
-				print("\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"$targetedUrl\"/>\r\n");
+				print("\t\t<link rel=\"stylesheet\" href=\"$targetedUrl\"/>\r\n");
 			}
 		}
 		foreach ([CApplication::Instance()->Js(), $this->Js()] as $js)
@@ -53,7 +53,7 @@ class CPage
 			$this->WriteHead("\t\t");
 		}
 		print("\t</head>\r\n\r\n");
-		print("\t<body>\r\n");
+		print("\t<body data-path-to-root=\"" . PID_PathTo("/", false) . "\" data-path-to-pid=\"" . PID_PathTo("*/", false) . "\">\r\n");
 		if (!$this->WriteContent("\t\t", $bodyContent, $this->BodyContent()))
 		{
 			$this->WriteBody("\t\t");
@@ -186,6 +186,11 @@ class CPage
 		$this->m_BodyContent = false;
 		$this->HeadContent($headContent);
 		$this->BodyContent($bodyContent);
+	}
+	
+	protected function __sleep()
+	{
+		//TODO : à faire return ;
 	}
 }
 ?>

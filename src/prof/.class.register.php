@@ -6,6 +6,7 @@ define("PID_CLASS_REGISTER",
 	"CPage" => ".pid/Page.php",
 	"TCssJsFiles" => ".pid/trait.CssJsFiles.php",
 	"CApplication" => ".pid/Application.php",
-	"CFileCollection" => ".pid/FileCollection.php"
+	"CFileCollection" => ".pid/FileCollection.php",
+	"TExhibitable" => ".pid/Exhibitable.php"
 ]);
 ?>
