@@ -1,4 +1,7 @@
 # Niveau 2 — Détail Fonctionnalité : Génération & consultation du devis=contrat
+
+**Parent** : L1-fondation.md · **Maturité** : suffisant (manque : format du document PDF ou HTML imprimable non tranché ; contrat à appuyer sur l'instantané tarifaire du catalogue) · **Tâches** : docs/USER-STORIES.md
+
 > Projet : PID · Basé sur : docs/brainstorm/L1-fondation.md
 > Date : 2026-09-12
 

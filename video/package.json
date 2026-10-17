@@ -2,7 +2,7 @@
   "name": "pid-video",
   "version": "1.0.0",
   "private": true,
-  "description": "Vidéo explicative du framework PID (cours du 29/08 au 19/09/2026), générée avec Remotion",
+  "description": "Vidéo explicative du framework PID (cours du 29/08 au 10/10/2026), générée avec Remotion",
   "scripts": {
     "dev": "remotion studio",
     "render": "remotion render PidFramework out/pid-framework.mp4",

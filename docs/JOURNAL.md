@@ -9,6 +9,10 @@
 
 ## Historique
 
+### [2026-10-11] DOCS — intégration du cours du 10/10
+**Fichiers :** `docs/academique/IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet.md`, `docs/academique/Premier JavaScript du framework — jQuery, data-path-to-root et application.js.md`, `docs/academique/Glossaire PHP — Sérialisation (serialize, __sleep, __wakeup).md`, `docs/academique/Glossaire — JavaScript et jQuery, premier contact avec le navigateur.md`, `docs/academique/MOC — PID.md`, `docs/academique/Laravel ↔ framework PID — Correspondances.md`, `docs/RYTHME-COURS.md`, `docs/TASKS.md`
+**Resume :** Cours du 10/10 (`Suivit_Cours/pid.20261010/`) intégré : `IExhibitable`/`TExhibitable` + `__sleep()` pour ranger en session un objet portant une closure, `ToUtf8`/`FromUtf8` étendus aux objets (code inachevé, signalé), sessions démarrées par `index.php`, premier JS (jQuery 4.0.0, `application.js`, `data-path-to-root`/`data-path-to-pid`). Deux notions non introduites par le prof (sérialisation, JS/jQuery) → glossaires « c'est quoi + comment ça marche ». `RYTHME-COURS.md` : 5 séances, JS/jQuery ⛔ → 🟡, AJAX et MySQL inchangés ⛔ (la règle de porte du 2b/2c/2d ne bouge pas). Tâche A1 « Cours 10/10 » cochée dans `TASKS.md`.
+
 ### [2026-09-28] FEAT — vidéo motion : chapitres Autoloader et CPage (motif Code → Nœud)
 **Fichiers :** `video/src/motion/parts.tsx` (nouveau), `video/src/motion/AutoloaderMotion.tsx` (nouveau), `video/src/motion/PageMotion.tsx` (nouveau), `video/src/motion/geom.ts`, `video/src/compositions/PidMotion.tsx`
 **Resume :** Application du motif « Code → Nœud » demandé par mentalyas : le vrai extrait de code est montré, se transforme en nœud titré, puis le nœud anime ses actions dans le système. Chapitre 05 (autoloader : nom de classe → registre ✗ → fouille du disque → vérification token_get_all → écriture du registre → inclusion) et 07 (WriteDocument émet les briques de la page, titre filtré par IntoHtml, hook WriteBody de la classe fille). Composant réutilisable `CodeNode` + pièces communes (FlyChip, Spark, Ripple, Mark, Wire). Formes passées de 72 à 360 points (coins arrondis nets). `PidMotion` : 4 chapitres, ~1 min 28.

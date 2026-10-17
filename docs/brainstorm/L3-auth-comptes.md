@@ -1,4 +1,7 @@
 # Niveau 3 — Conception Technique : Authentification & gestion de comptes multi-rôles
+
+**Parent** : L2-auth-comptes.md · **Maturité** : complet · **Tâches** : docs/USER-STORIES.md
+
 > Basé sur : docs/brainstorm/L1-fondation.md + docs/brainstorm/L2-auth-comptes.md
 > Date : 2026-09-12
 

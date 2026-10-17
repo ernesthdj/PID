@@ -1,4 +1,7 @@
 # Niveau 3 — Conception Technique : Générateur de devis à la carte
+
+**Parent** : L2-generateur-devis.md · **Maturité** : insuffisant (manque : les tables `types_prestation` et `parametres_tarifaires` sont remplacées par le schéma du catalogue de services — à réécrire avec le Niveau 3 du catalogue ; voir L2-catalogue-services.md §12) · **Tâches** : docs/USER-STORIES.md
+
 > Basé sur : docs/brainstorm/L1-fondation.md + docs/brainstorm/L2-generateur-devis.md
 > Date : 2026-09-12
 

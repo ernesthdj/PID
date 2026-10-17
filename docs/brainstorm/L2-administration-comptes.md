@@ -1,4 +1,7 @@
 # Niveau 2 — Détail Fonctionnalité : Administration des comptes
+
+**Parent** : L1-fondation.md · **Maturité** : complet · **Tâches** : docs/USER-STORIES.md
+
 > Projet : PID · Basé sur : docs/brainstorm/L1-fondation.md
 > Date : 2026-09-12
 

@@ -1,4 +1,7 @@
 # Niveau 4 — UX / Parcours Utilisateur
+
+**Parent** : L1-fondation.md · **Maturité** : suffisant (manque : écrans Photographe du catalogue — liste des services, éditeur à modules, modèles, paramètres généraux, simulation ; voir L2-catalogue-services.md §12) · **Tâches** : docs/USER-STORIES.md
+
 > Projet : PID
 > Basé sur : docs/brainstorm/L1-fondation.md + toutes les fonctionnalités niveau 2
 > Date : 2026-09-12

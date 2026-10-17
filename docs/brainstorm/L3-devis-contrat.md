@@ -1,4 +1,7 @@
 # Niveau 3 — Conception Technique : Devis = contrat (génération & consultation)
+
+**Parent** : L2-devis-contrat.md · **Maturité** : suffisant (manque : choix argumenté PDF ou HTML imprimable demandé par le L2 ; intégration de l'instantané tarifaire du catalogue) · **Tâches** : docs/USER-STORIES.md
+
 > Basé sur : docs/brainstorm/L1-fondation.md + docs/brainstorm/L2-devis-contrat.md
 > Date : 2026-09-12
 

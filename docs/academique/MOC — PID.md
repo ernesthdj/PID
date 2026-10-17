@@ -1,8 +1,8 @@
 ---
 type: MOC
-subject: PID — Framework maison codé en direct par le prof (29/08, 05/09, 12/09, 19/09)
+subject: PID — Framework maison codé en direct par le prof (29/08, 05/09, 12/09, 19/09, 10/10)
 tags: [#MOC, #PID, #PHP, #POO, #autoloading]
-date: 2026-09-21
+date: 2026-10-11
 ---
 
 # PID — Map of Content
@@ -12,6 +12,8 @@ date: 2026-09-21
 > ⚠️ **Note de fiabilité (18/09)** : les notes de la session du 12/09 avaient d'abord été rédigées à partir du matériel publié *avant* le cours (dossier `pid_avant_cours.20260912/`). Une fois la version réellement publiée *après* le cours récupérée, plusieurs corrections ont été apportées (constantes `PID_CHARSET`/`PID_APPLICATION_SESSION_ITEM_NAME`, paramètre `false` de `class_exists` dans la boucle de retry, fusion `CPersonne2` → `CPersonne`) et le concept `CApplication`/`CMonApp`/`CPage` — absent du matériel avant-cours — a été ajouté.
 >
 > 🔄 **Refonte du 21/09** : toutes les notes de concept suivent désormais le même gabarit en 4 sections (Vue macro · Pont systémique · Analyse du code · Synthèse) avec un résumé « En 30 secondes » en tête, et chaque glossaire a une section « Sous le capot ». Corrections de fond apportées au passage : raison d'être des `index.php` par dossier (interdire le listing des répertoires), gestion de la query string par `PID_PathTo`, casse des noms de fichiers dans le registre de classes, démarrage de la session par `CApplication`, résolution des chemins relatifs de `include`. La note « Structure POO » est renommée **CPersonne et CAutre**.
+>
+> 🆕 **Cours du 10/10** : le framework apprend à **ranger un objet portant une closure en session** (`IExhibitable` + `TExhibitable`, `__sleep`) et fait ses **premiers pas côté navigateur** (jQuery 4.0.0 + `application.js` chargés partout, chemins passés au JS par des attributs `data-*` du `<body>`). Sessions démarrées dans `index.php`. Notions nouvelles introduites en glossaire : sérialisation, JavaScript/jQuery.
 >
 > Réseau visuel → [[PID — Reseau.canvas]]
 
@@ -37,6 +39,10 @@ flowchart TD
         PG["8. CPage complete<br/>WriteDocument + hooks + IntoHtml"]
         TR["9. TCssJsFiles + CFileCollection<br/>trait + collection + Iterator"]
     end
+    subgraph "10/10 — Etat en session et premier JS"
+        EX["10. IExhibitable + TExhibitable<br/>Exhibit() + __sleep()"]
+        JS["11. jQuery + application.js<br/>data-path-to-root / data-path-to-pid"]
+    end
     S0 -.evolue vers.-> B
     A --> R
     P -.consolide en.-> POO2
@@ -45,6 +51,9 @@ flowchart TD
     CA --> D
     D --> PG
     TR --> PG
+    CA --> EX
+    PG --> JS
+    TR --> JS
 ```
 
 ---
@@ -70,6 +79,8 @@ flowchart TD
 - [[Glossaire — Encodage des caractères (windows-1252 vs UTF-8)]] — pourquoi `é` devient `Ã©`, et `PID_CHARSET` (19/09)
 - [[Glossaire — En-têtes HTTP et header()]] — enveloppe avant la lettre : `header()` avant tout `print` (19/09)
 - [[Glossaire PHP — Opérateur d'étalement (...)]] — `...` collecte et étale des arguments (19/09)
+- [[Glossaire PHP — Sérialisation (serialize, __sleep, __wakeup)]] — mettre un objet en texte pour la session ; ce qui ne se sérialise pas (10/10)
+- [[Glossaire — JavaScript et jQuery, premier contact avec le navigateur]] — le code qui s'exécute chez le visiteur, DOM, `ready`, `data-*` (10/10)
 
 ## Concepts fondamentaux
 *À maîtriser en premier — le "où suis-je et comment je m'y retrouve"*
@@ -88,6 +99,8 @@ flowchart TD
 - [[Dossier .pid et préfixe étoile — Séparer le framework du site]] — le 19/09, le code du framework quitte la racine pour `.pid/` ; nouvelle constante `PID_FOLDER_PATH`, préfixe `*` de `PID_PathTo`, exploration des dossiers cachés
 - [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — le 19/09, `CPage` génère une page complète : titre/contenu en chaîne, `false` ou fonction, classe fille via `WriteHead`/`WriteBody`, échappement `IntoHtml`
 - [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] — le 19/09, un trait partagé par `CApplication` et `CPage` + une collection parcourable (`Iterator`) de fichiers CSS/JS
+- [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] — le 10/10, un contrat + un trait pour dresser l'inventaire des membres sérialisables ; `CPersonne` reçoit une closure `ActionAFaire` que la session ne peut pas conserver
+- [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] — le 10/10, jQuery 4.0.0 et `application.js` ajoutés par `CApplication`, chemins de la racine/du framework passés au JS via `data-*`
 
 ## Ponts cours ↔ projet
 - [[Laravel ↔ framework PID — Correspondances]] — ce que Laravel automatise de chaque mécanisme vu en cours *(⚠️ brouillon : Laravel pas encore installé)*
@@ -111,8 +124,10 @@ flowchart TD
 8. [[Glossaire PHP — Traits]] puis [[Glossaire PHP — Interface Iterator et foreach]] — les deux outils de conception nécessaires pour la suite
 9. [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] — la brique qui les utilise
 10. [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] — l'aboutissement : une page complète, avec [[Glossaire — Échappement HTML et faille XSS]] pour la sécurité
-11. [[Laravel ↔ framework PID — Correspondances]] — relier le tout à l'outil du projet
-12. *(Projet, 25/09)* [[Glossaire — Classe abstraite, interface et polymorphisme]] → [[Glossaire — Composition, motif Stratégie et principe ouvert-fermé]] → [[Glossaire PHP — clone, __clone et motif Prototype]] → [[Glossaire — Montants d'argent, décimal exact vs flottant]] — la conception objet du catalogue de services
+11. [[Glossaire PHP — Sérialisation (serialize, __sleep, __wakeup)]] puis [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] — ranger un objet en session (10/10)
+12. [[Glossaire — JavaScript et jQuery, premier contact avec le navigateur]] puis [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] — le côté navigateur (10/10)
+13. [[Laravel ↔ framework PID — Correspondances]] — relier le tout à l'outil du projet
+14. *(Projet, 25/09)* [[Glossaire — Classe abstraite, interface et polymorphisme]] → [[Glossaire — Composition, motif Stratégie et principe ouvert-fermé]] → [[Glossaire PHP — clone, __clone et motif Prototype]] → [[Glossaire — Montants d'argent, décimal exact vs flottant]] — la conception objet du catalogue de services
 
 ## Questions de révision globale
 > **Q :** Si tu devais résumer en 2 phrases ce que fait ce framework maison au professeur d'examen, que dirais-tu ?
@@ -128,4 +143,4 @@ flowchart TD
 - `docs/FOUNDATION.md` (§5, pont pédagogique explicite entre le cours et le projet Laravel)
 - `Suivit_Cours/Synthèse/plan_du_cours.20260824 (1).txt` — objectifs du squelette sécurisé visé par le cours
 - `Suivit_Cours/Synthèse/modalites_examen.20260824 (2).txt` — grille de cotation (traitement PHP /20, sécurité PHP /20, framework/généricité /20)
-- Code source de référence (nomenclature des dossiers de cours : `Suivit_Cours/pid.aaaammjj/`) : `Suivit_Cours/pid.20260905/pid.20260905/_htdocs/` (version de base, 05/09) ; `Suivit_Cours/pid.20260912/` (version réellement publiée **après** le cours du 12/09 — CApplication/CMonApp/CPage, boucle de retry corrigée) ; `Suivit_Cours/pid.20260919/_htdocs/` (19/09 — dossier `.pid/`, CPage complète, trait et collection CSS/JS) ; `Suivit_Cours/pid.20260912/pid_avant_cours.20260912/_htdocs/` est conservé pour mémoire mais **ne fait plus référence** — c'est le matériel publié avant le cours, incomplet/imprécis par endroits.
+- Code source de référence (nomenclature des dossiers de cours : `Suivit_Cours/pid.aaaammjj/`) : `src/prof/` au tag `cours-20260905` (version de base, 05/09) ; `Suivit_Cours/pid.20260912/` (version réellement publiée **après** le cours du 12/09 — CApplication/CMonApp/CPage, boucle de retry corrigée) ; `Suivit_Cours/pid.20260919/_htdocs/` (19/09 — dossier `.pid/`, CPage complète, trait et collection CSS/JS) ; `Suivit_Cours/pid.20261010/_htdocs/` (10/10 — `IExhibitable`/`TExhibitable`, sessions démarrées par `index.php`, premier JS/jQuery) ; `Suivit_Cours/pid.20260912/pid_avant_cours.20260912/_htdocs/` est conservé pour mémoire mais **ne fait plus référence** — c'est le matériel publié avant le cours, incomplet/imprécis par endroits.

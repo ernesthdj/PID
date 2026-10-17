@@ -33,13 +33,14 @@ pid/
 - **Nouveau cours** — au debut de session, verifier si un dossier `Suivit_Cours/pid.aaaammjj/` du dernier samedi existe et l'integrer (notes dans `docs/academique/`, mise a jour de `docs/RYTHME-COURS.md`) avant d'avancer sur le projet.
 - **Introduction des notions** — quand le prof aborde une matiere ou une techno en cours de route sans l'introduire (MySQL, sessions, AJAX, jQuery...), la note de cours commence par une introduction : **c'est quoi** et **comment ca marche** (recap), avant le detail de ce qui a ete montre en classe (demande de mentalyas, 2026-09-21).
 - **Calendrier** — dernier cours le samedi 30/01/2027 ; suivi dans `docs/RYTHME-COURS.md`.
-- **Materiel de cours** — dossiers `Suivit_Cours/pid.aaaammjj/` ; la version publiee apres le cours fait reference, `pid_avant_cours.*` est conserve pour memoire uniquement.
+- **Materiel de cours** — notes `.txt` dans `Suivit_Cours/pid.aaaammjj/` ; la version publiee apres le cours fait reference, `pid_avant_cours.*` est conserve pour memoire uniquement.
+- **Code du prof** — une seule copie, `src/prof/` (derniere version, vue Architecture). A chaque nouveau cours : remplacer `src/prof/` par le nouveau `_htdocs`, commiter seulement `src/prof` et poser le tag `cours-aaaammjj` ; ne pas garder le code dans `Suivit_Cours/`. Differences entre cours : `git diff cours-A cours-B -- src/prof`.
 
 ## Suivi academique
 
 Active : oui
 Dossier : docs/academique/
-Derniere mise a jour : 2026-09-25
+Derniere mise a jour : 2026-10-11
 Materiel de cours : Suivit_Cours/
 Lancer en pleine session : `/professor parcours` (ou `/professor cours` pour le dernier cours deposé) — protocole : `~/.claude/skills/professor/parcours.md`
 

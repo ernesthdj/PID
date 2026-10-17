@@ -1,4 +1,7 @@
 # Cahier des Charges — PID (Photographie — Devis & Squelette Sécurisé)
+
+**Maturité** : complet · **Tâches** : docs/TASKS.md
+
 > mentalyas · Full-Stack Dev
 > Date : 2026-09-12
 > Statut : Brainstorm niveau 1 seul

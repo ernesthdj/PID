@@ -1,12 +1,12 @@
 # Rythme du cours — ce qui est vu, ce que le projet suppose
 
 > **Règle (mentalyas, 2026-09-21) :** le projet avance au même rythme que le cours, jamais devant.
-> **Date de l'état des lieux :** 2026-09-21 — après le cours du 19/09.
+> **Date de l'état des lieux :** 2026-10-11 — après le cours du 10/10 (§1-§3 et §6 mis à jour ; le §8 garde l'historique).
 > **Fiabilité :** « vu » = présent dans le matériel publié (`Suivit_Cours/pid.aaaammjj/`) et les notes de `docs/academique/`. Ce que le prof a pu dire à l'oral sans laisser de trace **n'est pas compté** — à corriger par mentalyas si besoin.
 
 ---
 
-## 1. Ce que le cours a couvert (4 séances)
+## 1. Ce que le cours a couvert (5 séances)
 
 | Séance | Notion enseignée | Note de cours |
 |--------|------------------|---------------|
@@ -14,18 +14,19 @@
 | 05/09 | Bootstrap, `PID_PathTo`/`PID_Include`, autoloader + cache, premières classes (`CPersonne`) | [[Bootstrap PID — Detection de la Racine du Site]] · [[Autoloading PID — spl_autoload_register et le Cache]] |
 | 12/09 | Autoloader durci (retry), `CApplication` singleton en session, charset, `CPage` squelette | [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] |
 | 19/09 | Dossier `.pid/`, `CPage` complète (hooks, `IntoHtml`), trait + collection CSS/JS ; le prof retire les traces de debug (`var_dump`). Notions introduites (glossaire) : héritage, encodage des caractères, en-têtes HTTP, opérateur d'étalement | [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] |
+| 10/10 | Sessions démarrées par `index.php` ; objet portant une closure en session : `IExhibitable` + `TExhibitable`, `__sleep()` ; `ToUtf8`/`FromUtf8` étendus aux objets (en chantier) ; **premier JS** : jQuery 4.0.0 + `application.js` chargés par `CApplication`, chemins passés par `data-*` ; correctifs `filecollection` et `PID_PathTo`. Notions introduites (glossaire) : sérialisation, JavaScript/jQuery | [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] · [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] |
 
 ## 2. Ce que le cours **vise** (plan du 24/08) et où on en est
 
 | Objectif du plan de cours | État |
 |---------------------------|------|
-| Programmation orientée objet | 🟡 en cours (classes, héritage, singleton, trait, interface `Iterator`) |
+| Programmation orientée objet | 🟡 en cours (classes, héritage, singleton, trait, interface `Iterator`, interface perso `IExhibitable`, sérialisation) |
 | Outils : PHP | 🟡 en cours (base du framework) |
 | Outils : HTML5 / CSS3 | ⚪ pas de séance dédiée (acquis préalable) |
 | Outils : MySQL | 🔴 pas encore abordé |
-| Outils : JavaScript + jQuery | 🔴 pas encore abordé |
+| Outils : JavaScript + jQuery | 🟡 amorcé le 10/10 (jQuery chargé, `ready`, `data-*`, fonction constructeur) ; pas de DOM manipulé ni d'événements |
 | Communication AJAX | 🔴 pas encore abordée |
-| Synchronisation d'objets client/serveur | 🔴 pas encore abordée |
+| Synchronisation d'objets client/serveur | 🟡 amorcée côté serveur le 10/10 (`Exhibit()` : présenter un objet comme un tableau) ; rien côté échange |
 | Comptes de types différents (admin, gérant, client…) | 🔴 pas encore abordé |
 | Création / modification de compte, gestion des comptes par l'admin | 🔴 pas encore abordé |
 | Sécurité des données des comptes (y compris en base) | 🔴 pas encore abordée |
@@ -33,7 +34,7 @@
 | Sécurité par email, oubli de login/mot de passe | 🔴 pas encore abordé |
 | Protection contre la force brute, états de compte | 🔴 pas encore abordé |
 
-**Lecture :** 4 séances sur les fondations du framework ; **tout le cœur « comptes/sécurité/base de données/AJAX » reste devant nous.** Or la Phase 1 du pipeline est déjà écrite pour l'ensemble.
+**Lecture :** 5 séances sur les fondations du framework (la 5e entrouvre le JS) ; **tout le cœur « comptes/sécurité/base de données/AJAX » reste devant nous.** Or la Phase 1 du pipeline est déjà écrite pour l'ensemble.
 
 ## 3. Ce que la Phase 1 suppose, brique par brique
 
@@ -48,7 +49,7 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 | 3 | Couche `Domain/` pure : `TarificationCalculator`, `DistanceCalculator`, `StatutDevisStateMachine`, `VerrouillageCompteRules` (§3.1) | POO : classes, encapsulation, accesseurs validants | ✅ | Même style que `CPersonne`/`CMonApp` — du PHP pur, sans framework |
 | 4 | Vues et layouts (UI-DESIGN, tokens) | `CPage` : contenu, hooks, héritage (19/09) | ✅ | `WriteHead`/`WriteBody` ↔ `@yield`/`@section` Blade ; `IntoHtml` ↔ `{{ }}` |
 | 5 | Vitrine / portfolio (US-VITRINE-01→03) | HTML5/CSS3 (5 pts, acquis) | ✅ | — |
-| 6 | État applicatif / session | `CApplication`, `$_SESSION` (12/09) | 🟡 | Singleton en session ↔ service container + session Laravel |
+| 6 | État applicatif / session | `CApplication`, `$_SESSION` (12/09), sérialisation d'objets (10/10) | 🟡 | Singleton en session ↔ service container + session Laravel |
 | 7 | Échappement XSS | `IntoHtml`/`IntoAttr` (19/09) | 🟡 | XSS vu ; CSRF, injection SQL, hachage **pas** vus |
 | 8 | Schéma de base, migrations, Eloquent (ARCHITECTURE §2, 8 tables) | MySQL/PDO, requêtes paramétrées | ⛔ | **20 pts d'examen** (BDD 10 + SQL 10) |
 | 9 | Authentification Fortify : inscription, login, reset, vérification email, force brute, états de compte (US-AUTH-01→06) | Cœur du plan de cours | ⛔ | Fortify masque le mécanisme ; l'oral exige de l'expliquer |
@@ -76,9 +77,9 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 
 ## 6. Calendrier
 
-- **Séances faites :** 4 (29/08, 05/09, 12/09, 19/09).
+- **Séances faites :** 5 (29/08, 05/09, 12/09, 19/09, 10/10). Aucun matériel pour le 26/09 ni le 03/10.
 - **Dernier cours :** samedi **30/01/2027** (confirmé par mentalyas le 2026-09-21).
-- **Samedis restants au maximum :** 19 (1 en septembre, 5 en octobre, 4 en novembre, 4 en décembre, 5 en janvier). Le nombre réel sera plus bas si le prof saute des samedis (congés, interruptions) — à ajuster au fil de l'eau.
+- **Samedis restants au maximum (après le 10/10) :** 16 (3 en octobre : 17, 24, 31 ; 4 en novembre ; 4 en décembre ; 5 en janvier). Le nombre réel sera plus bas si le prof saute des samedis (congés, interruptions) — à ajuster au fil de l'eau.
 - **Date de l'examen oral :** non connue (postérieure au 30/01/2027).
 - **Conséquence :** au rythme actuel (4 séances pour les fondations), le prof dispose d'environ 19 séances pour enseigner tout le reste du plan (MySQL, comptes, sécurité, JS/jQuery, AJAX). Les étapes 2b→2d du §5 se débloquent donc **au fil des mois, pas d'un coup** ; l'étape 2a est la seule qui peut avancer dès maintenant.
 
@@ -94,3 +95,8 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 - **Aucune séance nouvelle** : l'état du §1-§3 est inchangé (dernier cours intégré : 19/09 ; prochain : 26/09).
 - La fiche [[L2-catalogue-services]] conçoit la brique 3 (couche `Domain/`, moteur de tarification) avec des notions de POO **pas encore enseignées** : classe abstraite, interfaces écrites soi-même, polymorphisme, composition, motifs Stratégie et Prototype (`clone`/`__clone()`), montants en décimal exact. Introductions ajoutées dans `docs/academique/` (section « Conception objet du projet » du MOC).
 - **Verdict pour la règle de porte** : 🟡 — la brique 3 reste ✅ pour les classes simples (encapsulation, héritage, interface `Iterator` vus) ; les parties qui reposent sur `abstract`, le clonage profond et le stockage d'une composition polymorphe en base (MySQL ⛔) sont **à re-vérifier** contre le cours avant implémentation. La décision revient à mentalyas.
+
+### 2026-10-11 — intégration du cours du 10/10
+- **Séance 5 intégrée** : notes [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] et [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] ; glossaires de sérialisation et de JavaScript/jQuery. Matériel : `Suivit_Cours/pid.20261010/_htdocs/`.
+- **Règle de porte** : brique 11 (AJAX + jQuery) reste ⛔ — seuls jQuery chargé et `ready` sont vus, ni AJAX ni DOM. Brique 6 (état/session) reste 🟡 : la sérialisation d'objets est vue, pas l'authentification.
+- **Dans le code du prof, à surveiller** : plusieurs méthodes de `CApplication` ajoutées le 10/10 (`ToUtf8_R`, `GetMemberNamesFrom`) semblent inachevées ; elles ne sont pas exercées par le matériel. Ne rien bâtir dessus avant le prochain cours.

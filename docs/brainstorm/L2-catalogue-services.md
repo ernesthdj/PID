@@ -1,4 +1,7 @@
 # Niveau 2 — Détail Fonctionnalité : Catalogue de services paramétrable
+
+**Parent** : L2-generateur-devis.md · **Maturité** : suffisant (manque : points ouverts du §11 — modèles fournis au démarrage, informations client qui influencent le prix, instance OSRM et cache ; Niveau 3 recommandé au §13, pas encore rédigé) · **Tâches** : docs/TACHES-Catalogue-services.md
+
 > Projet : PID · Basé sur : docs/brainstorm/L1-fondation.md, L2-generateur-devis.md, L3-generateur-devis.md
 > Date : 2026-09-25
 > Statut : **validé par mentalyas le 2026-09-25** — points ouverts marqués ⏳ (§11) ; prochaine étape : Niveau 3

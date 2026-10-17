@@ -1,4 +1,7 @@
 # Niveau 2 — Détail Fonctionnalité : Générateur de devis à la carte
+
+**Parent** : L1-fondation.md · **Maturité** : suffisant (manque : réalignement sur le catalogue de services — choix d'un service, événements réels, formule de prix remplacée, étapes selon les modules ; voir L2-catalogue-services.md §12) · **Tâches** : docs/USER-STORIES.md
+
 > Projet : PID · Basé sur : docs/brainstorm/L1-fondation.md
 > Date : 2026-09-12
 

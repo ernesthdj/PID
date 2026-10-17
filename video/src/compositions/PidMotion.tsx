@@ -3,6 +3,7 @@ import { AbsoluteFill, Series } from 'remotion';
 import { C } from '../ui/theme';
 import { AUTOLOADER_MOTION_FRAMES, AutoloaderMotion } from '../motion/AutoloaderMotion';
 import { BOOTSTRAP_MOTION_FRAMES, BootstrapMotion } from '../motion/BootstrapMotion';
+import { EXHIBIT_MOTION_FRAMES, ExhibitMotion } from '../motion/ExhibitMotion';
 import { PAGE_MOTION_FRAMES, PageMotion } from '../motion/PageMotion';
 import { SINGLETON_MOTION_FRAMES, SingletonMotion } from '../motion/SingletonMotion';
 
@@ -12,6 +13,7 @@ const SCENES: { id: string; duration: number; Component: React.FC<{ duration: nu
   { id: 'autoloader', duration: AUTOLOADER_MOTION_FRAMES, Component: AutoloaderMotion },
   { id: 'singleton', duration: SINGLETON_MOTION_FRAMES, Component: SingletonMotion },
   { id: 'page', duration: PAGE_MOTION_FRAMES, Component: PageMotion },
+  { id: 'exhibit', duration: EXHIBIT_MOTION_FRAMES, Component: ExhibitMotion },
 ];
 
 export const PID_MOTION_FRAMES = SCENES.reduce((sum, s) => sum + s.duration, 0);

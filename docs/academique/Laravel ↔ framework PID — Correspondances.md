@@ -2,7 +2,7 @@
 type: pont
 subject: Laravel ↔ framework PID — ce que Laravel automatise de ce que le prof code à la main
 source: pont
-seances: [2026-08-29, 2026-09-05, 2026-09-12, 2026-09-19]
+seances: [2026-08-29, 2026-09-05, 2026-09-12, 2026-09-19, 2026-10-10]
 tags: [#pont, #Laravel, #PID, #framework]
 date: 2026-09-21
 niveau: intermédiaire
@@ -36,6 +36,9 @@ Les deux approches exécutent **les mêmes opérations machine** : concaténer d
 | `CPage` + `WriteHead`/`WriteBody` (Template Method) | Vues Blade : gabarits (`@extends`, `@section`, `@yield`) | [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] |
 | `IntoHtml` / `IntoAttr` | `{{ }}` échappe automatiquement ; `{!! !!}` affiche **sans** échapper (à surveiller) | [[Glossaire — Échappement HTML et faille XSS]] |
 | `TCssJsFiles` + `CFileCollection` | Empilement de styles/scripts dans les vues et outil de build des assets | [[TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS]] |
+| `IExhibitable` + `TExhibitable` (`Exhibit()`), `__sleep()` pour ranger un objet en session | Interfaces `Arrayable` / `JsonSerializable` (`toArray()`, `jsonSerialize()`) pour *présenter* un objet ; trait `SerializesModels` ; propriétés `$hidden`/`$visible` d'Eloquent pour choisir ce qui sort | [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] |
+| `session_start()` dans `index.php` | Middleware `StartSession` (démarrage automatique, pilote fichier/base/cache configurable) | [[Glossaire PHP — Sérialisation (serialize, __sleep, __wakeup)]] |
+| `$(document).ready` + `data-path-to-root` posé par `CPage` sur `<body>` | Layout Blade qui expose `{{ url('/') }}` / `asset()` dans un attribut `data-*` ou une balise `<meta>` ; JS via Vite (`@vite`) | [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] |
 | Dossier `.pid/` (framework séparé du site) | Dossier `vendor/` (framework) séparé de `app/` (code du projet) | [[Dossier .pid et préfixe étoile — Séparer le framework du site]] |
 
 **Ce que l'outil cache** : l'exploration du disque, la reconstruction de l'état à chaque requête, l'échappement HTML — trois choses que le jury peut demander d'expliquer.
