@@ -1,6 +1,5 @@
 <?php
-?>
-<!doctype html>
+?><!doctype html>
 
 <html lang="be-fr">
 

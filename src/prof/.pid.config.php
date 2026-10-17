@@ -16,4 +16,5 @@ define("PID_DEFAULT_INDEX_CONTENT", "<!doctype html>
 	</body>
 
 </html>");
+define("PID_CLASS_REGISTER_FILENAME", ".class.register.php");
 ?>
