@@ -1,6 +1,11 @@
 <?php
 include("index.php");
-if (!isset($_SESSION)) @session_start();
+
+//$app = new CApplication(); // Impossible
+
+CApplication::Instance()->DoSomething();
+
+CApplication::Instance()->DoSomething();
 ?><!doctype html>
 
 <html lang="be-fr">

@@ -5,6 +5,9 @@
 	$httpRequestOfIndexFile = (count(get_included_files()) == 1);
 	// Définition du nom du fichier de configuration du framework PID, et qui sert aussi de marqueur de racine du site
 	define("PID_CONFIG_FILENAME", ".pid.config.php");
+	// Définition des constantes "techniques"
+	define("PID_ANSI", "windows-1252");
+	define("PID_UTF8", "utf-8");
 	// Recherche du chemin ascendant de l'emplacement du fichier faisant l'objet de la requête HTTP vers le répertoire racine du site
 	$relativePathToRoot = "./";
 	for ($remainingUpSteps = substr_count(str_replace("\\", "/", __FILE__), "/"); $remainingUpSteps > 0; $remainingUpSteps--)
@@ -31,13 +34,17 @@
 	// Inclusion de la configuration du framework PID
 	include_once(PID_PATH_TO_ROOT . PID_CONFIG_FILENAME);
 	$missingConstantNames = [];
-	foreach (array("PID_SETUP_ACTION_NAME", "PID_SETUP_INDEX_FILES", "PID_INDEX_CONTENT_FILENAME", "PID_DEFAULT_INDEX_CONTENT", "PID_CLASS_REGISTER_FILENAME") as $constantName)
+	foreach (array("PID_SETUP_ACTION_NAME", "PID_SETUP_INDEX_FILES", "PID_INDEX_CONTENT_FILENAME", "PID_DEFAULT_INDEX_CONTENT", "PID_CLASS_REGISTER_FILENAME", "PID_CHARSET", "PID_APPLICATION_SESSION_ITEM_NAME") as $constantName)
 	{
 		if (!defined($constantName)) $missingConstantNames[] = $constantName;
 	}
 	if (!empty($missingConstantNames))
 	{
 		die("PID error : missing some constant(s) in " . PID_CONFIG_FILENAME . " : " . implode(", ", $missingConstantNames) . " !");
+	}
+	if ((PID_CHARSET != PID_ANSI) && (PID_CHARSET != PID_UTF8))
+	{
+		die("PID error : invalid value for PID_CHARSET constant defined into " . PID_CONFIG_FILENAME . " ; must be defined as PID_ANSI or PID_UTF8 !");
 	}
 	// Vérification et exécution si nécessaire des actions de configuration du framework PID
 	if (isset($_GET[PID_SETUP_ACTION_NAME]))
@@ -86,98 +93,104 @@
 		{
 			$PID_CLASS_REGISTER = defined("PID_CLASS_REGISTER") && is_array(PID_CLASS_REGISTER) ? PID_CLASS_REGISTER : [];
 		}
-		if (!isset($PID_CLASS_REGISTER[$className]))
+		for ($step = 0; $step < 2; $step++)
 		{
-			$exploreToFind = function(&$exploreToFind, $path, &$kindName, &$typeName, &$className)
+			if (!isset($PID_CLASS_REGISTER[$className]))
 			{
-				$tokenType = ["class" => T_CLASS, "interface" => T_INTERFACE, "trait" => T_TRAIT][$kindName];
-				$filePath = false;
-				foreach ([ "$kindName.$typeName.php", "$typeName.php" ] as $filename)
+				$exploreToFind = function(&$exploreToFind, $path, &$kindName, &$typeName, &$className)
 				{
-					if (file_exists($path . $filename))
+					$tokenType = ["class" => T_CLASS, "interface" => T_INTERFACE, "trait" => T_TRAIT][$kindName];
+					$filePath = false;
+					foreach ([ "$kindName.$typeName.php", "$typeName.php" ] as $filename)
 					{
-						if (($code = @file_get_contents($path . $filename)) !== false)
+						if (file_exists($path . $filename))
 						{
-							var_dump("Check '$path$filename'");
-							$step = 0;
-							foreach (token_get_all($code) as $token)
+							if (($code = @file_get_contents($path . $filename)) !== false)
 							{
-								if (is_array($token))
+								//var_dump("Check '$path$filename'");
+								$step = 0;
+								foreach (token_get_all($code) as $token)
 								{
-									if ($step == 0)
+									if (is_array($token))
 									{
-										if ($token[0] == $tokenType)
+										if ($step == 0)
 										{
-											$step++;
-										}
-									}
-									else // ($step == 1)
-									{
-										if ($token[0] == T_STRING)
-										{
-											if ($token[1] == $className)
+											if ($token[0] == $tokenType)
 											{
-												$filePath = $path . $filename;
-												break;
+												$step++;
 											}
-											$step = 0;
 										}
-										else if (($token[0] != T_WHITESPACE) && ($token[0] != T_COMMENT))
+										else // ($step == 1)
 										{
-											$step = 0;
+											if ($token[0] == T_STRING)
+											{
+												if ($token[1] == $className)
+												{
+													$filePath = $path . $filename;
+													break;
+												}
+												$step = 0;
+											}
+											else if (($token[0] != T_WHITESPACE) && ($token[0] != T_COMMENT))
+											{
+												$step = 0;
+											}
 										}
 									}
 								}
+								if ($filePath !== false) break;
 							}
-							if ($filePath !== false) break;
 						}
 					}
-				}
-				if ($filePath !== false) return $filePath;
-				$subDirectories = glob($path . "*", GLOB_ONLYDIR);
-				foreach ($subDirectories as $subDir)
-				{
-					$subPath = $subDir;
-					if (!str_ends_with($subPath, "/")) $subPath .= "/";
-					if (str_ends_with($subPath, "/./") || str_ends_with($subPath, "/../")) continue;
-					$filePath = $exploreToFind($exploreToFind, $subPath, $kindName, $typeName, $className);
-					if ($filePath !== false) break;
-				}
-				return $filePath;
-			};
-			$filePath = $exploreToFind($exploreToFind, PID_PATH_TO_ROOT, $kindName, $typeName, $className);
-			if ($filePath !== false)
-			{
-				$filePath = substr($filePath, strlen(PID_PATH_TO_ROOT));
-				$PID_CLASS_REGISTER[$className] = $filePath;
-				$code = "<" . "?php\r\ndefine(\"PID_CLASS_REGISTER\",\r\n[\r\n";
-				$firstStep = true;
-				foreach ($PID_CLASS_REGISTER as $key=>$value)
-				{
-					if ($firstStep)
+					if ($filePath !== false) return $filePath;
+					$subDirectories = glob($path . "*", GLOB_ONLYDIR);
+					foreach ($subDirectories as $subDir)
 					{
-						$firstStep = false;
+						$subPath = $subDir;
+						if (!str_ends_with($subPath, "/")) $subPath .= "/";
+						if (str_ends_with($subPath, "/./") || str_ends_with($subPath, "/../")) continue;
+						$filePath = $exploreToFind($exploreToFind, $subPath, $kindName, $typeName, $className);
+						if ($filePath !== false) break;
 					}
-					else
+					return $filePath;
+				};
+				$filePath = $exploreToFind($exploreToFind, PID_PATH_TO_ROOT, $kindName, $typeName, $className);
+				if ($filePath !== false)
+				{
+					$filePath = substr($filePath, strlen(PID_PATH_TO_ROOT));
+					$PID_CLASS_REGISTER[$className] = $filePath;
+					$code = "<" . "?php\r\ndefine(\"PID_CLASS_REGISTER\",\r\n[\r\n";
+					$firstStep = true;
+					foreach ($PID_CLASS_REGISTER as $key=>$value)
 					{
-						$code .= ",\r\n";
+						if ($firstStep)
+						{
+							$firstStep = false;
+						}
+						else
+						{
+							$code .= ",\r\n";
+						}
+						$code .= "\t\"$key\" => \"$value\"";
 					}
-					$code .= "\t\"$key\" => \"$value\"";
+					$code .= "\r\n]);\r\n?" . ">";
+					$codeFilePath = PID_PathTo(PID_CLASS_REGISTER_FILENAME, false);
+					if (($codeFilePath === false) || @file_put_contents($codeFilePath, $code) === false) die("PID error : can't create/update file '" . PID_PATH_TO_ROOT . PID_CLASS_REGISTER_FILENAME . "' !");
 				}
-				$code .= "\r\n]);\r\n?" . ">";
-				$codeFilePath = PID_PathTo(PID_CLASS_REGISTER_FILENAME, false);
-				if (($codeFilePath === false) || @file_put_contents($codeFilePath, $code) === false) die("PID error : can't create/update file '" . PID_PATH_TO_ROOT . PID_CLASS_REGISTER_FILENAME . "' !");
+				else
+				{
+					die("PID error : can't find $kindName '$className' !");
+				}
 			}
 			else
 			{
-				die("PID error : can't find $kindName '$className' !");
+				$filePath = $PID_CLASS_REGISTER[$className];
 			}
+			PID_Include($filePath);
+			eval("\$exists = $kindName" . "_exists(\"$className\", false);");
+			if ($exists) return;
+			unset($PID_CLASS_REGISTER[$className]);
 		}
-		else
-		{
-			$filePath = $PID_CLASS_REGISTER[$className];
-		}
-		PID_Include($filePath);
 	});
 	if ($httpRequestOfIndexFile)
 	{

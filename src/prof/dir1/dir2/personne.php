@@ -1,5 +1,9 @@
 <?php
-class CPersonne2
+class CAutre
+{
+}
+// Ma classe personne
+class /* OUPS un commentaire */ CPersonne
 {
 	private $m_Nom;
 	
