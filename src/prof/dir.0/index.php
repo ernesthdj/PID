@@ -34,7 +34,7 @@
 	// Inclusion de la configuration du framework PID
 	include_once(PID_PATH_TO_ROOT . PID_CONFIG_FILENAME);
 	$missingConstantNames = [];
-	foreach (array("PID_SETUP_ACTION_NAME", "PID_SETUP_INDEX_FILES", "PID_INDEX_CONTENT_FILENAME", "PID_DEFAULT_INDEX_CONTENT", "PID_CLASS_REGISTER_FILENAME", "PID_CHARSET", "PID_APPLICATION_SESSION_ITEM_NAME") as $constantName)
+	foreach (array("PID_SETUP_ACTION_NAME", "PID_SETUP_INDEX_FILES", "PID_INDEX_CONTENT_FILENAME", "PID_DEFAULT_INDEX_CONTENT", "PID_CLASS_REGISTER_FILENAME", "PID_CHARSET", "PID_APPLICATION_SESSION_ITEM_NAME", "PID_FOLDER_PATH") as $constantName)
 	{
 		if (!defined($constantName)) $missingConstantNames[] = $constantName;
 	}
@@ -67,7 +67,7 @@
 							print("<li>File $path" . "index.php has been created or updated</li>");
 						}
 					}
-					$subDirectories = glob($path . "*", GLOB_ONLYDIR);
+					$subDirectories = array_merge(glob($path . "*", GLOB_ONLYDIR), glob($path . ".*", GLOB_ONLYDIR));
 					foreach ($subDirectories as $subDir)
 					{
 						$subPath = $subDir;
@@ -143,7 +143,7 @@
 						}
 					}
 					if ($filePath !== false) return $filePath;
-					$subDirectories = glob($path . "*", GLOB_ONLYDIR);
+					$subDirectories = array_merge(glob($path . "*", GLOB_ONLYDIR), glob($path . ".*", GLOB_ONLYDIR));
 					foreach ($subDirectories as $subDir)
 					{
 						$subPath = $subDir;
@@ -235,8 +235,17 @@ function PID_PathTo($url, $checkIfFileExists = true)
 	else
 	{
 		// Lien interne
-		if (str_starts_with($url, "./")) $url = substr($url, 2);
-		else if (str_starts_with($url, "/")) $url = substr($url, 1);
+		if (str_starts_with($url, "*"))
+		{
+			$url = substr($url, 1);
+			if (str_starts_with($url, "/")) $url = substr($url, 1);
+			$url = PID_FOLDER_PATH . (str_ends_with(PID_FOLDER_PATH, "/") ? "" : "/" ) . $url;
+		}
+		else
+		{
+			if (str_starts_with($url, "./")) $url = substr($url, 2);
+			else if (str_starts_with($url, "/")) $url = substr($url, 1);
+		}
 		$url = PID_PATH_TO_ROOT . $url;
 		// Vérification de l'existence de la ressource
 		if ($checkIfFileExists === true)
@@ -267,5 +276,17 @@ function PID_IncludeOnce($url)
 	if (!@is_file($url)) return false;
 	@include_once($url);
 	return true;
+}
+
+// Fonction (globale) permettant de vérifier si une valeur correspond à un nombre entier
+function PID_IsInteger($value)
+{
+	return is_numeric($value) && (strpos("$value", ".") === false);
+}
+
+// Fonction (globale) permettant de vérifier si une valeur correspond à un nombre réel
+function PID_IsReal($value)
+{
+	return is_numeric($value);
 }
 ?>

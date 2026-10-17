@@ -21,14 +21,12 @@ class CMonApp extends CApplication
 	public function __construct($information = null)
 	{
 		parent::__construct();
-		var_dump("Création d'un objet de type CMonApp");
 		$this->Information($information);
 	}
 	
 	protected function __wakeup()
 	{
 		parent::__wakeup();
-		var_dump("Récupération d'un objet de type CMonApp");
 	}
 	
 	public function DoSomething()

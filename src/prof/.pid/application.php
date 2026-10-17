@@ -63,6 +63,12 @@ class CApplication
 		return self::$s_Instance;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	// Gestion des fichiers css et js à inclure systématiquement dans toute page affichée du site //
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	use TCssJsFiles;
+	
 	//////////////////////////////////////////////////
 	// Méthodes relatives au contexte d'utilisation //
 	//////////////////////////////////////////////////
@@ -134,20 +140,39 @@ class CApplication
 		}
 	}
 	
+	///////////////////////////////////////////////////
+	// Méthodes utilitaires de traitements de chaîne //
+	///////////////////////////////////////////////////
+	
+	public function IntoHtml($value)
+	{
+		if (is_numeric($value)) return "$value";
+		if (is_bool($value)) return $value ? "true" : "false";
+		if (!is_string($value)) return "";
+		return str_replace(["&", "<", ">"], ["&amp;", "&lt;", "&gt;"], $value);
+	}
+	
+	public function IntoAttr($value)
+	{
+		if (is_numeric($value)) return "$value";
+		if (is_bool($value)) return $value ? "true" : "false";
+		if (!is_string($value)) return "";
+		return str_replace(["&", "<", ">", "\"", "\r\n", "\n", "\r"], ["&amp;", "&lt;", "&gt;", "&quot;", "&#13;", "&#13;", "&#13;"], $value);
+	}
+	
 	//////////////////////////////////////////
 	// Méthodes du cycle de vide de l'objet //
 	//////////////////////////////////////////
 	
-	protected function __construct()
+	protected function __construct($cssFiles = null, $jsFiles = null)
 	{
-		var_dump("CREATION D'UN OBJET DE TYPE CApplication");
 		self::$s_Instance = $this;
 		$_SESSION[PID_APPLICATION_SESSION_ITEM_NAME] = $this;
+		$this->TCssJsFiles_Initialize($cssFiles, $jsFiles);
 	}
 	
 	protected function __wakeup()
 	{
-		var_dump("RECUPERATION D'UN OBJET DE TYPE CApplication");
 	}
 }
 ?>

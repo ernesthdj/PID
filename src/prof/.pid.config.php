@@ -22,12 +22,11 @@ define("PID_DEFAULT_INDEX_CONTENT", "<!doctype html>
 define("PID_CLASS_REGISTER_FILENAME", ".class.register.php");
 define("PID_APPLICATION_SESSION_ITEM_NAME", "PID_APPLICATION");
 define("PID_CHARSET", PID_ANSI);
-//define("PID_CHARSET", PID_UTF8);
+define("PID_FOLDER_PATH", "/.pid");
 
 // -------------------------
 // Paramètres PID optionnels
 // -------------------------
 define("PID_APPLICATION_CLASSNAME", "CMonApp");
-//define("PID_APPLICATION_INSTANCIATOR_ARGUMENTS", function() { return [ "Voici de l'information pour mon application" ]; });
-define("PID_APPLICATION_INSTANCIATOR_ARGUMENTS", [ "Voici de l'information pour mon application" ]);
+define("PID_APPLICATION_INSTANCIATOR_ARGUMENTS", [ /* to do */ ]);
 ?>
