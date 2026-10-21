@@ -135,3 +135,8 @@
 ### [2026-09-12 08:25] FEAT — init
 **Fichiers :** `CLAUDE.md`, `docs/JOURNAL.md`, `src/`, `tests/`
 **Resume :** Scaffolding initial via `/hub new`. Coquille vide creee — stack et dependances a definir apres brainstorm.
+
+### [2026-10-21 10:43] FEAT — US-AUTH-01 inscription (logique pure, hors rythme du cours)
+**Fichiers :** `src/app/Domain/Auth/*`, `tests/run.php`, `tests/Auth/InscriptionServiceTest.php`, `docs/USER-STORIES.md`
+**Resume :** mentalyas a demande de contourner la règle de porte (auth ⛔ dans RYTHME-COURS) : le prof pourrait ne pas aborder ces points. Inscription implémentée en PHP pur, sans framework : `InscriptionService` (statut `en_attente_verification`, erreurs explicites email déjà utilisé / mot de passe faible, hash bcrypt, email de vérification, échec d envoi journalisé sans annuler le compte, course UNIQUE gérée). Persistance et envoi derrière des interfaces (`ComptesRepository`, `VerificationMailer`) à brancher sur le schéma MySQL et Laravel plus tard (T022, T026, T027). 4 cases DoD cochées.
+**Verifie :** `php tests/run.php` (PHP 8.0.30 XAMPP) : 11 ok, 0 échec. **Non vérifié :** aucun formulaire, route, base ni envoi réel (pas de squelette Laravel : PHP 8.0 sans Composer, Laravel exige 8.2+) ; PHPUnit absent, lanceur maison.
