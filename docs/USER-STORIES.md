@@ -24,10 +24,10 @@
 **Source** : UC-1 Inscription
 
 **DoD** :
-- [ ] Le compte est créé avec le statut `en_attente_verification`
-- [ ] Un email déjà utilisé ou un mot de passe trop faible produit une erreur explicite (pas de message générique à ce stade — l'utilisateur vient de saisir sa propre information)
-- [ ] Le mot de passe est haché (bcrypt), jamais stocké en clair
-- [ ] Un email de vérification est envoyé automatiquement à l'inscription
+- [x] Le compte est créé avec le statut `en_attente_verification`
+- [x] Un email déjà utilisé ou un mot de passe trop faible produit une erreur explicite (pas de message générique à ce stade — l'utilisateur vient de saisir sa propre information)
+- [x] Le mot de passe est haché (bcrypt), jamais stocké en clair
+- [x] Un email de vérification est envoyé automatiquement à l'inscription
 
 ### US-AUTH-02 — Vérification d'email
 **En tant que** visiteur venant de m'inscrire, **je veux** recevoir un lien de vérification et l'activer **afin de** prouver que l'email m'appartient et débloquer l'accès à mon compte.
