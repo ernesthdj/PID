@@ -1,12 +1,12 @@
 # Rythme du cours — ce qui est vu, ce que le projet suppose
 
-> **Règle (mentalyas, 2026-09-21) :** le projet avance au même rythme que le cours, jamais devant.
-> **Date de l'état des lieux :** 2026-10-11 — après le cours du 10/10 (§1-§3 et §6 mis à jour ; le §8 garde l'historique).
+> **Règle (mentalyas, 2026-09-21) :** ~~le projet avance au même rythme que le cours, jamais devant~~ — **levée le 2026-11-11** : l'implémentation suit `docs/lancement/06-PLAN.md` sans verrou ; ce fichier reste le suivi pédagogique (notions vues, notions anticipées par le projet).
+> **Date de l'état des lieux :** 2026-11-11 — après les cours du 17/10 et du 07/11 (§1-§3 et §6 mis à jour ; le §8 garde l'historique).
 > **Fiabilité :** « vu » = présent dans le matériel publié (`Suivit_Cours/pid.aaaammjj/`) et les notes de `docs/academique/`. Ce que le prof a pu dire à l'oral sans laisser de trace **n'est pas compté** — à corriger par mentalyas si besoin.
 
 ---
 
-## 1. Ce que le cours a couvert (5 séances)
+## 1. Ce que le cours a couvert (7 séances)
 
 | Séance | Notion enseignée | Note de cours |
 |--------|------------------|---------------|
@@ -15,6 +15,8 @@
 | 12/09 | Autoloader durci (retry), `CApplication` singleton en session, charset, `CPage` squelette | [[CApplication, CMonApp et CPage — Singleton applicatif et charset]] |
 | 19/09 | Dossier `.pid/`, `CPage` complète (hooks, `IntoHtml`), trait + collection CSS/JS ; le prof retire les traces de debug (`var_dump`). Notions introduites (glossaire) : héritage, encodage des caractères, en-têtes HTTP, opérateur d'étalement | [[CPage — Générer une page HTML (WriteDocument et points d'extension)]] |
 | 10/10 | Sessions démarrées par `index.php` ; objet portant une closure en session : `IExhibitable` + `TExhibitable`, `__sleep()` ; `ToUtf8`/`FromUtf8` étendus aux objets (en chantier) ; **premier JS** : jQuery 4.0.0 + `application.js` chargés par `CApplication`, chemins passés par `data-*` ; correctifs `filecollection` et `PID_PathTo`. Notions introduites (glossaire) : sérialisation, JavaScript/jQuery | [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] · [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] |
+| 17/10 | **Premier AJAX** : `ExecuteCommand` (JS, `$.ajax`) → `.pid/.treatcommand.php` → `TreatCommand` → méthode `Command_<nom>` ; réponse JSON `{success, data / errorMessage}` ; JS en classes ES6 : singleton, `DefineAppClass`, `IsA`. Notion introduite (glossaire) : AJAX/JSON. *Code seul, pas de notes `.txt`.* | [[Commandes AJAX du framework — ExecuteCommand et TreatCommand]] · [[Classes JS du framework — singleton, DefineAppClass et initialiseurs]] |
+| 07/11 | **Mode DEV/PROD** (fichier marqueur hors racine, PROD par défaut) + commandes de debug `GetSession`/`ClearSession` ; JS : initialiseurs ; site nettoyé (`classes/`). **Premier MySQL** (`pid.struct.sql`) : base, utilisateur MySQL aux droits limités, tables `Role`/`Utilisateur` + clé étrangère, fonctions stockées `PidEx_CrypterMdP` (SHA-512 salé) et `PidEx_CreerUtilisateur`. Notion introduite (glossaire) : MySQL. *Deux versions publiées (v1, v2) ; v2 = référence. Pas de notes `.txt`.* | [[Mode DEV et PROD — fichiers marqueurs et commandes de debug]] · [[Schéma PID — tables Role et Utilisateur et fonctions stockées]] |
 
 ## 2. Ce que le cours **vise** (plan du 24/08) et où on en est
 
@@ -23,18 +25,18 @@
 | Programmation orientée objet | 🟡 en cours (classes, héritage, singleton, trait, interface `Iterator`, interface perso `IExhibitable`, sérialisation) |
 | Outils : PHP | 🟡 en cours (base du framework) |
 | Outils : HTML5 / CSS3 | ⚪ pas de séance dédiée (acquis préalable) |
-| Outils : MySQL | 🔴 pas encore abordé |
-| Outils : JavaScript + jQuery | 🟡 amorcé le 10/10 (jQuery chargé, `ready`, `data-*`, fonction constructeur) ; pas de DOM manipulé ni d'événements |
-| Communication AJAX | 🔴 pas encore abordée |
+| Outils : MySQL | 🟡 amorcé le 07/11 (schéma, clés, utilisateur MySQL, fonctions stockées) ; pas de connexion PHP → MySQL (PDO) |
+| Outils : JavaScript + jQuery | 🟡 en cours (10/10 : jQuery, `ready`, `data-*` ; 17/10 : classes ES6, héritage, singleton ; 07/11 : initialiseurs) ; pas de DOM manipulé ni d'événements |
+| Communication AJAX | 🟡 vue le 17/10 : canal de commandes `$.ajax` ↔ `TreatCommand`, réponse JSON ; aucune commande métier encore |
 | Synchronisation d'objets client/serveur | 🟡 amorcée côté serveur le 10/10 (`Exhibit()` : présenter un objet comme un tableau) ; rien côté échange |
-| Comptes de types différents (admin, gérant, client…) | 🔴 pas encore abordé |
-| Création / modification de compte, gestion des comptes par l'admin | 🔴 pas encore abordé |
-| Sécurité des données des comptes (y compris en base) | 🔴 pas encore abordée |
+| Comptes de types différents (admin, gérant, client…) | 🟡 table `Role` (A, G, C) le 07/11 ; aucune logique PHP |
+| Création / modification de compte, gestion des comptes par l'admin | 🟡 création côté base (`PidEx_CreerUtilisateur`, 07/11) ; ni formulaire ni appel PHP |
+| Sécurité des données des comptes (y compris en base) | 🟡 07/11 : empreinte SHA-512 salée en base, compte MySQL au moindre privilège, commandes de debug fermées en PROD |
 | Accès restreints (menu filtré, rejet des pages sans droit) | 🔴 pas encore abordé |
-| Sécurité par email, oubli de login/mot de passe | 🔴 pas encore abordé |
-| Protection contre la force brute, états de compte | 🔴 pas encore abordé |
+| Sécurité par email, oubli de login/mot de passe | 🟡 colonnes prévues (`EmailAValider`, `EmailValide`, `MailToken`) ; aucun envoi |
+| Protection contre la force brute, états de compte | 🟡 colonnes prévues (`NombreEchecs`, `InstantDegel`) ; aucune logique |
 
-**Lecture :** 5 séances sur les fondations du framework (la 5e entrouvre le JS) ; **tout le cœur « comptes/sécurité/base de données/AJAX » reste devant nous.** Or la Phase 1 du pipeline est déjà écrite pour l'ensemble.
+**Lecture :** 5 séances sur les fondations du framework, puis 2 séances qui ouvrent AJAX (17/10) et la base des comptes (07/11). **Le cœur « comptes/sécurité » est amorcé côté schéma, mais aucune ligne de PHP ne parle encore à MySQL.**
 
 ## 3. Ce que la Phase 1 suppose, brique par brique
 
@@ -49,12 +51,12 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 | 3 | Couche `Domain/` pure : `TarificationCalculator`, `DistanceCalculator`, `StatutDevisStateMachine`, `VerrouillageCompteRules` (§3.1) | POO : classes, encapsulation, accesseurs validants | ✅ | Même style que `CPersonne`/`CMonApp` — du PHP pur, sans framework |
 | 4 | Vues et layouts (UI-DESIGN, tokens) | `CPage` : contenu, hooks, héritage (19/09) | ✅ | `WriteHead`/`WriteBody` ↔ `@yield`/`@section` Blade ; `IntoHtml` ↔ `{{ }}` |
 | 5 | Vitrine / portfolio (US-VITRINE-01→03) | HTML5/CSS3 (5 pts, acquis) | ✅ | — |
-| 6 | État applicatif / session | `CApplication`, `$_SESSION` (12/09), sérialisation d'objets (10/10) | 🟡 | Singleton en session ↔ service container + session Laravel |
+| 6 | État applicatif / session | `CApplication`, `$_SESSION` (12/09), sérialisation d'objets (10/10), lecture/vidage de session en DEV (07/11) | 🟡 | Singleton en session ↔ service container + session Laravel |
 | 7 | Échappement XSS | `IntoHtml`/`IntoAttr` (19/09) | 🟡 | XSS vu ; CSRF, injection SQL, hachage **pas** vus |
-| 8 | Schéma de base, migrations, Eloquent (ARCHITECTURE §2, 8 tables) | MySQL/PDO, requêtes paramétrées | ⛔ | **20 pts d'examen** (BDD 10 + SQL 10) |
-| 9 | Authentification Fortify : inscription, login, reset, vérification email, force brute, états de compte (US-AUTH-01→06) | Cœur du plan de cours | ⛔ | Fortify masque le mécanisme ; l'oral exige de l'expliquer |
-| 10 | Rôles, Policies, menu filtré (US-ADMIN, §3.2) | Comptes de types différents, accès restreints | ⛔ | Policies ↔ contrôle d'accès maison à enseigner |
-| 11 | AJAX + jQuery : tunnel de devis, endpoints `/ajax/`, autocomplétion (29 endpoints) | JS/jQuery (15 pts) + AJAX (15 pts) | ⛔ | **30 pts d'examen** |
+| 8 | Schéma de base, migrations, Eloquent (ARCHITECTURE §2, 8 tables) | MySQL/PDO, requêtes paramétrées | 🟡 schéma SQL vu (07/11) ; PDO et requêtes paramétrées pas vus | **20 pts d'examen** (BDD 10 + SQL 10) |
+| 9 | Authentification Fortify : inscription, login, reset, vérification email, force brute, états de compte (US-AUTH-01→06) | Cœur du plan de cours | ⛔ (schéma des comptes vu le 07/11, logique non vue ; US-AUTH-01 codée hors rythme le 21/10, voir [[Hachage du mot de passe — SHA-512 du prof ↔ bcrypt du projet]]) | Fortify masque le mécanisme ; l'oral exige de l'expliquer |
+| 10 | Rôles, Policies, menu filtré (US-ADMIN, §3.2) | Comptes de types différents, accès restreints | ⛔ (table `Role` seulement) | Policies ↔ contrôle d'accès maison à enseigner |
+| 11 | AJAX + jQuery : tunnel de devis, endpoints `/ajax/`, autocomplétion (29 endpoints) | JS/jQuery (15 pts) + AJAX (15 pts) | 🟡 échange AJAX/JSON vu (17/10) ; DOM et événements pas vus | **30 pts d'examen** |
 | 12 | Génération PDF (dompdf), géocodage (Nominatim) | Aucune (contenu spécifique) | ➕ | Autorisé, mais dépend des briques 8 et 11 pour être branché |
 
 ## 4. Conséquences
@@ -77,9 +79,9 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 
 ## 6. Calendrier
 
-- **Séances faites :** 5 (29/08, 05/09, 12/09, 19/09, 10/10). Aucun matériel pour le 26/09 ni le 03/10.
+- **Séances faites :** 7 (29/08, 05/09, 12/09, 19/09, 10/10, 17/10, 07/11). Aucun matériel pour le 26/09, le 03/10, le 24/10 ni le 31/10.
 - **Dernier cours :** samedi **30/01/2027** (confirmé par mentalyas le 2026-09-21).
-- **Samedis restants au maximum (après le 10/10) :** 16 (3 en octobre : 17, 24, 31 ; 4 en novembre ; 4 en décembre ; 5 en janvier). Le nombre réel sera plus bas si le prof saute des samedis (congés, interruptions) — à ajuster au fil de l'eau.
+- **Samedis restants au maximum (après le 07/11) :** 12 (3 en novembre : 14, 21, 28 ; 4 en décembre ; 5 en janvier). Le nombre réel sera plus bas si le prof saute des samedis (congés, interruptions) — à ajuster au fil de l'eau.
 - **Date de l'examen oral :** non connue (postérieure au 30/01/2027).
 - **Conséquence :** au rythme actuel (4 séances pour les fondations), le prof dispose d'environ 19 séances pour enseigner tout le reste du plan (MySQL, comptes, sécurité, JS/jQuery, AJAX). Les étapes 2b→2d du §5 se débloquent donc **au fil des mois, pas d'un coup** ; l'étape 2a est la seule qui peut avancer dès maintenant.
 
@@ -100,3 +102,9 @@ Légende : ✅ débloqué (notion vue) · 🟡 partiel · ⛔ à attendre le cou
 - **Séance 5 intégrée** : notes [[IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet]] et [[Premier JavaScript du framework — jQuery, data-path-to-root et application.js]] ; glossaires de sérialisation et de JavaScript/jQuery. Matériel : `Suivit_Cours/pid.20261010/_htdocs/`.
 - **Règle de porte** : brique 11 (AJAX + jQuery) reste ⛔ — seuls jQuery chargé et `ready` sont vus, ni AJAX ni DOM. Brique 6 (état/session) reste 🟡 : la sérialisation d'objets est vue, pas l'authentification.
 - **Dans le code du prof, à surveiller** : plusieurs méthodes de `CApplication` ajoutées le 10/10 (`ToUtf8_R`, `GetMemberNamesFrom`) semblent inachevées ; elles ne sont pas exercées par le matériel. Ne rien bâtir dessus avant le prochain cours.
+
+### 2026-11-11 — intégration des cours du 17/10 et du 07/11
+- **Séances 6 et 7 intégrées** (code seul, aucune note `.txt`) : notes [[Commandes AJAX du framework — ExecuteCommand et TreatCommand]], [[Classes JS du framework — singleton, DefineAppClass et initialiseurs]], [[Mode DEV et PROD — fichiers marqueurs et commandes de debug]], [[Schéma PID — tables Role et Utilisateur et fonctions stockées]], pont [[Hachage du mot de passe — SHA-512 du prof ↔ bcrypt du projet]] ; glossaires AJAX/JSON et MySQL. Matériel : `Suivit_Cours/pid.20261017/`, `pid.v1.20261107/`, `pid.v2.20261107/` (v2 = référence).
+- **Règle de porte** : brique 11 ⛔ → 🟡 (échange AJAX vu, DOM/événements non) ; brique 8 ⛔ → 🟡 (schéma vu, PDO non). Les briques 9 et 10 restent ⛔ : seules les tables existent.
+- **Écart projet ↔ cours à trancher** (mentalyas) : US-AUTH-01 (21/10, hors rythme) utilise bcrypt et l'email comme identifiant ; le prof utilise SHA-512 salé en SQL, un `Login` et une table `Role`.
+- **Dans le code du prof, à surveiller** : `ResponseError` appelé sans `$this->` (07/11) ; `typeof(...) == undefined` dans les initialiseurs JS ; pas de vérification qu'une commande `Command_*` existe ; casse `Role`/`role` dans le SQL ; `.class.register.php` pointe encore vers `dir1/dir2/Personne.php`, supprimé en v2.

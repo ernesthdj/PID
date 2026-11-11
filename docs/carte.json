@@ -1,0 +1,1177 @@
+{
+  "format": "brainstormer-carte",
+  "version": 1,
+  "projet": "PID",
+  "noeuds": [
+    {
+      "id": "L1-fondation",
+      "type": "brainstorm",
+      "titre": "Cahier des Charges — PID (Photographie — Devis & Squelette Sécurisé)",
+      "parent": null,
+      "document": "docs/brainstorm/L1-fondation.md",
+      "maturite": "complet"
+    },
+    {
+      "id": "L2-administration-comptes",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Administration des comptes",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L2-administration-comptes.md",
+      "maturite": "complet"
+    },
+    {
+      "id": "L2-auth-comptes",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Authentification & gestion de comptes multi-rôles",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L2-auth-comptes.md",
+      "maturite": "complet"
+    },
+    {
+      "id": "L2-catalogue-services",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Catalogue de services paramétrable",
+      "parent": "L2-generateur-devis",
+      "document": "docs/brainstorm/L2-catalogue-services.md",
+      "maturite": "suffisant"
+    },
+    {
+      "id": "L2-devis-contrat",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Génération & consultation du devis=contrat",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L2-devis-contrat.md",
+      "maturite": "suffisant"
+    },
+    {
+      "id": "L2-generateur-devis",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Générateur de devis à la carte",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L2-generateur-devis.md",
+      "maturite": "suffisant"
+    },
+    {
+      "id": "L2-vitrine-portfolio",
+      "type": "brainstorm",
+      "titre": "Niveau 2 — Détail Fonctionnalité : Vitrine / Portfolio",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L2-vitrine-portfolio.md",
+      "maturite": "complet"
+    },
+    {
+      "id": "L3-auth-comptes",
+      "type": "brainstorm",
+      "titre": "Niveau 3 — Conception Technique : Authentification & gestion de comptes multi-rôles",
+      "parent": "L2-auth-comptes",
+      "document": "docs/brainstorm/L3-auth-comptes.md",
+      "maturite": "complet"
+    },
+    {
+      "id": "L3-devis-contrat",
+      "type": "brainstorm",
+      "titre": "Niveau 3 — Conception Technique : Devis = contrat (génération & consultation)",
+      "parent": "L2-devis-contrat",
+      "document": "docs/brainstorm/L3-devis-contrat.md",
+      "maturite": "suffisant"
+    },
+    {
+      "id": "L3-generateur-devis",
+      "type": "brainstorm",
+      "titre": "Niveau 3 — Conception Technique : Générateur de devis à la carte",
+      "parent": "L2-generateur-devis",
+      "document": "docs/brainstorm/L3-generateur-devis.md",
+      "maturite": "insuffisant"
+    },
+    {
+      "id": "L4-parcours",
+      "type": "brainstorm",
+      "titre": "Niveau 4 — UX / Parcours Utilisateur",
+      "parent": "L1-fondation",
+      "document": "docs/brainstorm/L4-parcours.md",
+      "maturite": "suffisant"
+    },
+    {
+      "id": "f1k2ebp5-19rm8rg",
+      "type": "lot",
+      "titre": "Lot 1 — Points ouverts du brainstorm (§11)",
+      "parent": "L2-catalogue-services"
+    },
+    {
+      "id": "f1k2ebp5-T001",
+      "type": "tache",
+      "titre": "Choisir les modèles fournis au démarrage (proposition : Mariage complet, Portrait studio, Photo d'identité, Événement standard 250 € / 2 h)",
+      "parent": "f1k2ebp5-19rm8rg",
+      "repere": "T001",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T002",
+      "type": "tache",
+      "titre": "Confirmer que les informations client qui influencent le prix (ex. 20 €/personne au-delà de 4) restent en v2",
+      "parent": "f1k2ebp5-19rm8rg",
+      "repere": "T002",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T003",
+      "type": "tache",
+      "titre": "Choisir l'instance OSRM (publique ou auto-hébergée) et la mise en cache des distances",
+      "parent": "f1k2ebp5-19rm8rg",
+      "repere": "T003",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-1rn899p",
+      "type": "lot",
+      "titre": "Lot 2 — Niveau 3 du catalogue (§13)",
+      "parent": "L2-catalogue-services"
+    },
+    {
+      "id": "f1k2ebp5-T004",
+      "type": "tache",
+      "titre": "Rédiger `docs/brainstorm/L3-catalogue-services.md` : schéma relationnel des modules (composition polymorphe en MySQL), format de l'instantané tarifaire, contrat OSRM et cache, algorithme de calcul pas",
+      "parent": "f1k2ebp5-1rn899p",
+      "repere": "T004",
+      "etat": "a-faire",
+      "fichiers": [
+        "docs/brainstorm/L3-catalogue-services.md"
+      ]
+    },
+    {
+      "id": "f1k2ebp5-1286bpa",
+      "type": "lot",
+      "titre": "Lot 3 — Réaligner les documents existants (§12)",
+      "parent": "L2-catalogue-services"
+    },
+    {
+      "id": "f1k2ebp5-T005",
+      "type": "tache",
+      "titre": "`L2-generateur-devis.md` : choix d'un service du catalogue, événements réels au lieu des segments, formule de prix remplacée, étapes conditionnelles selon les modules",
+      "parent": "f1k2ebp5-1286bpa",
+      "repere": "T005",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T006",
+      "type": "tache",
+      "titre": "`L3-generateur-devis.md` : remplacer les tables `types_prestation` et `parametres_tarifaires` par le schéma du catalogue",
+      "parent": "f1k2ebp5-1286bpa",
+      "repere": "T006",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T007",
+      "type": "tache",
+      "titre": "`L2-devis-contrat.md` et `L3-devis-contrat.md` : appuyer le document contrat sur l'instantané tarifaire",
+      "parent": "f1k2ebp5-1286bpa",
+      "repere": "T007",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T008",
+      "type": "tache",
+      "titre": "`L4-parcours.md` : ajouter les écrans Photographe (liste des services, éditeur à modules, modèles, paramètres généraux, simulation)",
+      "parent": "f1k2ebp5-1286bpa",
+      "repere": "T008",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T009",
+      "type": "tache",
+      "titre": "`USER-STORIES.md`, `ARCHITECTURE.md`, `API-ENDPOINTS.md`, `UI-DESIGN.md` : réaligner sur le catalogue",
+      "parent": "f1k2ebp5-1286bpa",
+      "repere": "T009",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-np6lnv",
+      "type": "lot",
+      "titre": "Lot 4 — Critères d'acceptation à livrer (§10)",
+      "parent": "L2-catalogue-services"
+    },
+    {
+      "id": "f1k2ebp5-T010",
+      "type": "tache",
+      "titre": "Le Photographe crée un service simple (nom, description, prix) en moins d'une minute, et le publie",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T010",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T011",
+      "type": "tache",
+      "titre": "Le Photographe crée un service avancé en activant des modules, sans aucune modification de code",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T011",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T012",
+      "type": "tache",
+      "titre": "Un service créé depuis un modèle ou par duplication est indépendant : modifier la source ne le change pas",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T012",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T013",
+      "type": "tache",
+      "titre": "Le générateur n'affiche au client que les étapes des modules actifs du service choisi",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T013",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T014",
+      "type": "tache",
+      "titre": "R1 : 12h00 → 15h30 sur un événement « 250 € / 2 h / 60 €/h » donne 340 € ; 2 h 10 → 30 min facturées ; 1 h → 250 €",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T014",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T015",
+      "type": "tache",
+      "titre": "R2 : le détail liste chaque trajet, le total, les km inclus et les km facturés ; l'adresse de départ n'apparaît jamais",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T015",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T016",
+      "type": "tache",
+      "titre": "R2 : OSRM indisponible → le devis reste composable avec une distance marquée « estimation »",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T016",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T017",
+      "type": "tache",
+      "titre": "Modifier le prix d'un service après la validation d'un devis ne change pas ce devis",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T017",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T018",
+      "type": "tache",
+      "titre": "Un service utilisé dans un devis ne peut pas être supprimé, seulement archivé",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T018",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1k2ebp5-T019",
+      "type": "tache",
+      "titre": "Un Administrateur ou un Client ne peut ni lire ni modifier l'écran de gestion du catalogue (403)",
+      "parent": "f1k2ebp5-np6lnv",
+      "repere": "T019",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-14i62fe",
+      "type": "lot",
+      "titre": "A1 · PID cours — Intégrer le cours du samedi",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T001",
+      "type": "tache",
+      "titre": "Cours 29/08 — racine du site, index.content, configuration",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T001",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T002",
+      "type": "tache",
+      "titre": "Cours 05/09 — autoloader (première version)",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T002",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T003",
+      "type": "tache",
+      "titre": "Cours 12/09 — PID_PathTo/Include, autoloader + retry, POO",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T003",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T004",
+      "type": "tache",
+      "titre": "Cours 19/09 — dossier .pid, CPage, trait CSS/JS",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T004",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T005",
+      "type": "tache",
+      "titre": "Cours 10/10 — IExhibitable/TExhibitable, sessions, premier JS/jQuery (notes + RYTHME-COURS mis à jour le 2026-10-11)",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T005",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T006",
+      "type": "tache",
+      "titre": "Cours du 17/10 — à intégrer dès que `Suivit_Cours/pid.20261017/` est déposé",
+      "parent": "f1ipo97m-14i62fe",
+      "repere": "T006",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-1t26lo9",
+      "type": "lot",
+      "titre": "A2 · PID cours — Documentation extraite du cours",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T007",
+      "type": "tache",
+      "titre": "Notes de cours et glossaires PHP / POO / web (`docs/academique/`)",
+      "parent": "f1ipo97m-1t26lo9",
+      "repere": "T007",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T008",
+      "type": "tache",
+      "titre": "Correspondances Laravel ↔ framework PID (`academique/Laravel ↔ framework PID — Correspondances.md`), à jour jusqu'au 10/10 — à compléter à chaque cours",
+      "parent": "f1ipo97m-1t26lo9",
+      "repere": "T008",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T009",
+      "type": "tache",
+      "titre": "Vidéo explicative Remotion du framework PID (`video/`) — chapitres Bootstrap, Autoloader, Singleton, CPage et Exhibit + premier JS (cours du 10/10) — à compléter à chaque cours",
+      "parent": "f1ipo97m-1t26lo9",
+      "repere": "T009",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-1i6yljw",
+      "type": "lot",
+      "titre": "A3 · PID cours — Points du code du prof à confirmer en cours",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T010",
+      "type": "tache",
+      "titre": "`CFileCollection::Add/Insert` : `in_array` sur un booléen — corrigé par le prof le 10/10 (`m_Items`)",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T010",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T011",
+      "type": "tache",
+      "titre": "`PID_PathTo(\"*page.php\")` produisait un double slash — corrigé le 10/10 (slash initial retiré)",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T011",
+      "etat": "faite"
+    },
+    {
+      "id": "f1ipo97m-T012",
+      "type": "tache",
+      "titre": "Action `updateIndexes` déclenchable par URL sans contrôle d'accès",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T012",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T013",
+      "type": "tache",
+      "titre": "Écriture concurrente du cache `.class.register.php`",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T013",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T014",
+      "type": "tache",
+      "titre": "`__wakeup()` déclaré `protected` (avertissement probable sous PHP 8)",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T014",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T015",
+      "type": "tache",
+      "titre": "Casse des noms de fichiers sous Linux (le registre note `.pid/FileCollection.php`, le fichier est `filecollection.php`)",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T015",
+      "etat": "a-faire",
+      "fichiers": [
+        ".pid/FileCollection.php"
+      ]
+    },
+    {
+      "id": "f1ipo97m-T016",
+      "type": "tache",
+      "titre": "`new X()->m()` sans parenthèses exige PHP 8.4",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T016",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T017",
+      "type": "tache",
+      "titre": "Comportement de `CMonApp::DoSomething()` avec des arguments vides",
+      "parent": "f1ipo97m-1i6yljw",
+      "repere": "T017",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-ix1z1s",
+      "type": "lot",
+      "titre": "B1 · Projet perso — Aligner les docs sur l'auth écrite à la main",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T018",
+      "type": "tache",
+      "titre": "Retirer Fortify de `FOUNDATION.md`",
+      "parent": "f1ipo97m-ix1z1s",
+      "repere": "T018",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T019",
+      "type": "tache",
+      "titre": "Retirer Fortify de `ARCHITECTURE.md`",
+      "parent": "f1ipo97m-ix1z1s",
+      "repere": "T019",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T020",
+      "type": "tache",
+      "titre": "Retirer Fortify de `API-ENDPOINTS.md`",
+      "parent": "f1ipo97m-ix1z1s",
+      "repere": "T020",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T021",
+      "type": "tache",
+      "titre": "Retirer Fortify de `UI-DESIGN.md`",
+      "parent": "f1ipo97m-ix1z1s",
+      "repere": "T021",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-3hupin",
+      "type": "lot",
+      "titre": "B2a · Projet perso — Socle Laravel, vitrine, Domain/ pur (débloquée)",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T022",
+      "type": "tache",
+      "titre": "Installer le squelette Laravel dans `src/`",
+      "parent": "f1ipo97m-3hupin",
+      "repere": "T022",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T023",
+      "type": "tache",
+      "titre": "Layout Blade + tokens CSS de la palette (`PALETTE.md`, `UI-DESIGN.md`)",
+      "parent": "f1ipo97m-3hupin",
+      "repere": "T023",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T024",
+      "type": "tache",
+      "titre": "Classes `Domain/` du catalogue + tests unitaires des règles R1 à R4 (`brainstorm/L2-catalogue-services.md`)",
+      "parent": "f1ipo97m-3hupin",
+      "repere": "T024",
+      "etat": "a-faire",
+      "fichiers": [
+        "brainstorm/L2-catalogue-services.md"
+      ]
+    },
+    {
+      "id": "f1ipo97m-T025",
+      "type": "tache",
+      "titre": "Pages vitrine statiques : accueil, portfolio, services",
+      "parent": "f1ipo97m-3hupin",
+      "repere": "T025",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-i69ndy",
+      "type": "lot",
+      "titre": "B2b · Projet perso — Schéma MySQL et migrations (après le cours MySQL/PDO)",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T026",
+      "type": "tache",
+      "titre": "Schéma MySQL et migrations",
+      "parent": "f1ipo97m-i69ndy",
+      "repere": "T026",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-1424jte",
+      "type": "lot",
+      "titre": "B2c · Projet perso — Auth, rôles, accès restreints (après les cours comptes + sécurité)",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T027",
+      "type": "tache",
+      "titre": "Auth, rôles, accès restreints (auth écrite à la main sur Hash / Auth::login / middleware)",
+      "parent": "f1ipo97m-1424jte",
+      "repere": "T027",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-5m37l0",
+      "type": "lot",
+      "titre": "B2d · Projet perso — Tunnel de devis jQuery + AJAX (après les cours JS/jQuery et AJAX)",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T028",
+      "type": "tache",
+      "titre": "Tunnel de devis jQuery + AJAX (endpoints `/ajax/`, voir `API-ENDPOINTS.md`)",
+      "parent": "f1ipo97m-5m37l0",
+      "repere": "T028",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-hafvsy",
+      "type": "lot",
+      "titre": "B2e · Projet perso — Document devis = contrat, géocodage (après 2b et 2d)",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T029",
+      "type": "tache",
+      "titre": "Document devis = contrat, géocodage (trancher PDF ou HTML imprimable)",
+      "parent": "f1ipo97m-hafvsy",
+      "repere": "T029",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-1ol2970",
+      "type": "lot",
+      "titre": "B3 · Projet perso — Préparer l'oral « sous le capot »",
+      "parent": "L1-fondation"
+    },
+    {
+      "id": "f1ipo97m-T030",
+      "type": "tache",
+      "titre": "Choisir la forme des fiches d'oral (par critère de la grille ?)",
+      "parent": "f1ipo97m-1ol2970",
+      "repere": "T030",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1ipo97m-T031",
+      "type": "tache",
+      "titre": "Rédiger une fiche par critère de la grille, au fil des étapes 2a → 2e",
+      "parent": "f1ipo97m-1ol2970",
+      "repere": "T031",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j",
+      "type": "lot",
+      "titre": "1. Squelette sécurisé — Authentification & gestion de comptes multi-rôles",
+      "parent": "L2-administration-comptes"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-nyjhf8-1jtdfbb",
+      "type": "tache",
+      "titre": "Le compte est créé avec le statut `en_attente_verification`",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "faite"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-nyjhf8-19c2hlo",
+      "type": "tache",
+      "titre": "Un email déjà utilisé ou un mot de passe trop faible produit une erreur explicite (pas de message générique à ce stade — l'utilisateur vient de saisir sa propre information)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "faite"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-nyjhf8-ptq995",
+      "type": "tache",
+      "titre": "Le mot de passe est haché (bcrypt), jamais stocké en clair",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "faite"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-nyjhf8-8olc3k",
+      "type": "tache",
+      "titre": "Un email de vérification est envoyé automatiquement à l'inscription",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "faite"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-edan65-s0824z",
+      "type": "tache",
+      "titre": "Inscription + vérification email obligatoire avant toute connexion possible",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-edan65-1sbeedm",
+      "type": "tache",
+      "titre": "Statut du compte passe de `en_attente_verification` à `actif` après clic sur le lien",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-edan65-1lx0559",
+      "type": "tache",
+      "titre": "Lien de vérification expiré → renvoi possible, ancien token invalidé",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-edan65-1qmn7ez",
+      "type": "tache",
+      "titre": "Changement d'email ultérieur (profil) redéclenche une nouvelle vérification",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1p35r3r-1xap8x4",
+      "type": "tache",
+      "titre": "Identifiants corrects + compte `actif` → session ouverte, redirection selon rôle",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1p35r3r-1tjndq1",
+      "type": "tache",
+      "titre": "Les 3 rôles redirigent vers 3 espaces distincts",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1p35r3r-f5bajj",
+      "type": "tache",
+      "titre": "Compte bloqué/désactivé → message explicite sans détail sur la raison exacte",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1p35r3r-3o6hok",
+      "type": "tache",
+      "titre": "Toute route protégée rejette côté serveur un accès non autorisé (jamais un contrôle uniquement côté vue)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-zbi6t9-prtj9",
+      "type": "tache",
+      "titre": "5 échecs verrouillent temporairement le compte (fenêtre de 15 min, cf. règle métier §9.1)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-zbi6t9-imvp1h",
+      "type": "tache",
+      "titre": "Déverrouillage automatique après expiration, ou manuel par l'Administrateur",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-zbi6t9-1esp42q",
+      "type": "tache",
+      "titre": "Chaque tentative (réussie ou échouée) est journalisée dans `login_attempts` (email, IP, horodatage)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-129hma7-ipa1bp",
+      "type": "tache",
+      "titre": "Lien de reset à usage unique et à durée de vie limitée",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-129hma7-1iqspfi",
+      "type": "tache",
+      "titre": "Email inconnu en base → même message générique que pour un email connu (anti-énumération)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-129hma7-uvow8y",
+      "type": "tache",
+      "titre": "Réinitialisation réussie invalide toutes les sessions actives du compte",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1m3gkji-1a67nc8",
+      "type": "tache",
+      "titre": "Tout rôle peut modifier ses informations depuis son espace",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1m3gkji-bdsin",
+      "type": "tache",
+      "titre": "Un changement d'email redéclenche une vérification (statut repasse par une étape de confirmation)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-bfpt6j-1m3gkji-e6cpvz",
+      "type": "tache",
+      "titre": "Aucun message n'expose l'existence d'un compte tiers (ex. lors d'un contrôle d'unicité d'email)",
+      "parent": "f1mf4zc7-bfpt6j",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej",
+      "type": "lot",
+      "titre": "2. Vitrine / Portfolio",
+      "parent": "L2-administration-comptes"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1uf8xz1-18qs7mi",
+      "type": "tache",
+      "titre": "Portfolio consultable sans compte",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1uf8xz1-1gm0tbj",
+      "type": "tache",
+      "titre": "Filtrable par type de prestation (catégories alignées sur `types_prestation`)",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1uf8xz1-1k9q6zs",
+      "type": "tache",
+      "titre": "Vue photo en grand format accessible depuis le portfolio",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-hbiqia-1wc9qp5",
+      "type": "tache",
+      "titre": "Page d'accueil et page « présentation des services » accessibles sans compte",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-hbiqia-vi9340",
+      "type": "tache",
+      "titre": "Chaque page vitrine propose un appel à l'action (CTA) vers le générateur de devis",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1jqxwee-93107p",
+      "type": "tache",
+      "titre": "Accès à la gestion de contenu réservé au rôle Photographe (vérifié côté serveur)",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1jqxwee-143rxov",
+      "type": "tache",
+      "titre": "Les modifications sont visibles immédiatement côté public, sans étape de publication séparée",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-a3qdej-1jqxwee-14p17fo",
+      "type": "tache",
+      "titre": "Les fichiers uploadés (photos) sont validés en type et en taille avant acceptation",
+      "parent": "f1mf4zc7-a3qdej",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2",
+      "type": "lot",
+      "titre": "3. Générateur de devis à la carte",
+      "parent": "L2-administration-comptes"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-io3gd3-1ba55y4",
+      "type": "tache",
+      "titre": "Le forfait de base du type de prestation choisi est affiché immédiatement",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-io3gd3-1fklalx",
+      "type": "tache",
+      "titre": "Le choix initialise un devis en cours (session), sans nécessiter de compte",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1cim6l4-c49bt1",
+      "type": "tache",
+      "titre": "Composition multi-segments possible sans compte",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1cim6l4-vfwi1p",
+      "type": "tache",
+      "titre": "Un devis contient au moins 1 segment",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1cim6l4-lpwhyz",
+      "type": "tache",
+      "titre": "Les segments sont ordonnés par heure de début croissante",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1w0zckv-1yzyzy8",
+      "type": "tache",
+      "titre": "Distance calculée automatiquement via géocodage (0 pour le premier segment)",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1w0zckv-iehudp",
+      "type": "tache",
+      "titre": "Distance = distance géodésique depuis le segment précédent",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1w0zckv-1hljluu",
+      "type": "tache",
+      "titre": "Échec ou timeout du géocodage → erreur explicite avec correction manuelle proposée (pas de blocage silencieux)",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1xahoa1-y93yg4",
+      "type": "tache",
+      "titre": "Prix décomposé ligne par ligne dans l'interface",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1xahoa1-duk72v",
+      "type": "tache",
+      "titre": "Formule appliquée : forfait_base + Σ(distance × prix/km) + Σ(heures_sup × prix/heure) + suppléments, par segment puis agrégée",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1xahoa1-p85g6m",
+      "type": "tache",
+      "titre": "Paramètres tarifaires lus en base de données, jamais codés en dur",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-rn7a0n-15j6ek1",
+      "type": "tache",
+      "titre": "Récapitulatif affiche l'intégralité des segments, distances et décomposition du prix",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-rn7a0n-1e83ewb",
+      "type": "tache",
+      "titre": "Accessible à tout moment avant validation finale, sans perte de la composition en cours",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-o0aylg-14xlkq5",
+      "type": "tache",
+      "titre": "Devis en cours conservé à travers le parcours d'inscription (perte perçue traitée par un message de réassurance explicite, cf. FOUNDATION §11.4)",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-o0aylg-yktwoi",
+      "type": "tache",
+      "titre": "Après inscription (et selon le flux retenu, après vérification), retour automatique au devis pour finalisation",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1i66yxg-1jjhhqv",
+      "type": "tache",
+      "titre": "Prix final systématiquement recalculé côté serveur à la validation, jamais fait confiance à une valeur transmise par le client",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1i66yxg-jrg4ve",
+      "type": "tache",
+      "titre": "Enregistrement du devis + segments en une transaction atomique unique (tout ou rien)",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-13paeh2-1i66yxg-k3v4mw",
+      "type": "tache",
+      "titre": "Un devis validé au moins une fois n'est jamais enregistré avec un prix différent de celui recalculé serveur",
+      "parent": "f1mf4zc7-13paeh2",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k",
+      "type": "lot",
+      "titre": "4. Devis = contrat (génération & consultation)",
+      "parent": "L2-administration-comptes"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-2rnnoe-8tj1p2",
+      "type": "tache",
+      "titre": "Document généré automatiquement à la validation du devis (pas d'action manuelle supplémentaire)",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-2rnnoe-tc6bb1",
+      "type": "tache",
+      "titre": "Détail complet présent dans le document (segments, distances, décomposition du prix)",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-2rnnoe-15oai6n",
+      "type": "tache",
+      "titre": "Valeurs figées (`donnees_figees`) au moment de la génération, immuables ensuite même si les paramètres tarifaires changent",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-2rnnoe-34w8g5",
+      "type": "tache",
+      "titre": "Format du document (PDF vs HTML imprimable) : **point ouvert non tranché** (cf. FOUNDATION §12) — à lever par l'Architecte avant implémentation",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-69pvl8-1xopi7s",
+      "type": "tache",
+      "titre": "Un Client ne consulte/télécharge que ses propres devis",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-69pvl8-1ngh7ws",
+      "type": "tache",
+      "titre": "Isolation stricte même en cas de manipulation directe d'URL (ex. changement d'ID dans l'adresse)",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-69pvl8-13u1znd",
+      "type": "tache",
+      "titre": "Téléchargement sert toujours le même fichier déjà généré (pas de régénération à chaque téléchargement)",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-zlxrk8-1dumoz0",
+      "type": "tache",
+      "titre": "Photographe a un accès global en lecture à tous les devis",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-zlxrk8-1dract4",
+      "type": "tache",
+      "titre": "Écriture limitée au champ statut (pas de modification des données figées)",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-zlxrk8-110ryem",
+      "type": "tache",
+      "titre": "Cycle de statut respecté : `en_attente` → `confirmé` → `réalisé` ; `annulé` possible depuis `en_attente` ou `confirmé`",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-zlxrk8-1ecyesy",
+      "type": "tache",
+      "titre": "Un devis `réalisé` ne change plus jamais de statut",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-zlxrk8-1ysiuom",
+      "type": "tache",
+      "titre": "Vue paginée si volume important",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-1wyxvu8-1wdziyv",
+      "type": "tache",
+      "titre": "Le document est toujours régénéré/servi à partir de `donnees_figees`, jamais recalculé depuis `parametres_tarifaires` courants",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-6i0j0k-1wyxvu8-1vatbhd",
+      "type": "tache",
+      "titre": "Génération + snapshot exécutés dans une même transaction",
+      "parent": "f1mf4zc7-6i0j0k",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct",
+      "type": "lot",
+      "titre": "5. Administration des comptes",
+      "parent": "L2-administration-comptes"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-sc3f73-1cf200b",
+      "type": "tache",
+      "titre": "Accès exclusif Administrateur, vérifié côté serveur (pas seulement masqué côté vue)",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-sc3f73-1wmawjb",
+      "type": "tache",
+      "titre": "Liste affiche a minima email, rôle, statut du compte",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1ahg9qk-1vizwul",
+      "type": "tache",
+      "titre": "Blocage effectif immédiatement (le compte bloqué ne peut plus se connecter dès l'action confirmée)",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1ahg9qk-6i3kjz",
+      "type": "tache",
+      "titre": "Impossible pour un Administrateur de se bloquer lui-même accidentellement",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1ahg9qk-wmzxjw",
+      "type": "tache",
+      "titre": "Action journalisée avec auteur et horodatage",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-6qnibi-yszhg0",
+      "type": "tache",
+      "titre": "Action réservée à l'Administrateur, vérifiée côté serveur",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-6qnibi-wmzxjw",
+      "type": "tache",
+      "titre": "Action journalisée avec auteur et horodatage",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-6qnibi-136jr29",
+      "type": "tache",
+      "titre": "Le mécanisme réutilise les garanties de sécurité du reset self-service (lien à usage unique, durée limitée — cf. US-AUTH-05), pas un mot de passe en clair transmis à l'admin",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1s1g5mz-1tan238",
+      "type": "tache",
+      "titre": "Accès exclusif Administrateur, vérifié côté serveur",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1s1g5mz-nn0l10",
+      "type": "tache",
+      "titre": "Journal consultable par compte et/ou par IP, avec horodatage",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "f1mf4zc7-1dvasct-1s1g5mz-1e9dj4y",
+      "type": "tache",
+      "titre": "Purge des entrées au-delà de 90 jours (cas limite §10.1)",
+      "parent": "f1mf4zc7-1dvasct",
+      "etat": "a-faire"
+    },
+    {
+      "id": "lancement",
+      "type": "brainstorm",
+      "titre": "Dossier de lancement",
+      "parent": null,
+      "document": "docs/lancement/README.md",
+      "maturite": "insuffisant"
+    },
+    {
+      "id": "lancement-01-prd",
+      "type": "brainstorm",
+      "titre": "01 — PRD",
+      "parent": "lancement",
+      "document": "docs/lancement/01-PRD.md",
+      "maturite": "insuffisant",
+      "resume": {
+        "texte": "Couvre : la logique métier du générateur de devis : catalogue paramétrable, fiches techniques, calcul HTVA/TVAC, transport, réductions, cycle de vie du dossier client. Décisions majeures : généricité totale, toute variante de règle étant une option du photographe (P01) · aucun tarif ni valeur chiffrée dans le code (P02) · un prix soumis ne change jamais (P05) · moteur indépendant du langage, implémenté en PHP dans PID puis traduit en TypeScript (P06). Ne couvre pas : l'interface et la direction artistique (PortfolioPhotographe), l'authentification (hors de ce dossier), la facturation et les d…",
+        "signe_par": "claude"
+      }
+    },
+    {
+      "id": "lancement-02-trd",
+      "type": "brainstorm",
+      "titre": "02 — TRD (à écrire)",
+      "parent": "lancement",
+      "document": "docs/lancement/02-TRD.md"
+    },
+    {
+      "id": "lancement-03-app-flow",
+      "type": "brainstorm",
+      "titre": "03 — App Flow (à écrire)",
+      "parent": "lancement",
+      "document": "docs/lancement/03-APP-FLOW.md"
+    },
+    {
+      "id": "lancement-04-ux-ui",
+      "type": "brainstorm",
+      "titre": "04 — Brief UX/UI (à écrire)",
+      "parent": "lancement",
+      "document": "docs/lancement/04-UX-UI.md"
+    },
+    {
+      "id": "lancement-05-backend",
+      "type": "brainstorm",
+      "titre": "05 — Schéma Backend (à écrire)",
+      "parent": "lancement",
+      "document": "docs/lancement/05-BACKEND.md"
+    },
+    {
+      "id": "lancement-06-plan",
+      "type": "brainstorm",
+      "titre": "06 — Plan d'implémentation (à écrire)",
+      "parent": "lancement",
+      "document": "docs/lancement/06-PLAN.md"
+    }
+  ]
+}

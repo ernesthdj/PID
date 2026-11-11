@@ -5,9 +5,44 @@
 | # | Regle | Fichier(s) | Date |
 |---|-------|-----------|------|
 | 1 | Le materiel de cours PID est publie en deux temps (avant/apres le samedi) — toujours verifier `Suivit_Cours/<date>/` pour la version **post-cours** avant de baser des notes academiques dessus ; un dossier `pid_avant_cours.<date>/` signale l'ancienne version a ne plus utiliser comme reference. | `Suivit_Cours/12_09_2026/`, `docs/academique/` | 2026-09-18 |
-| 2 | Le projet avance au rythme du cours, jamais devant : avant toute tache d'implementation, verifier dans `docs/RYTHME-COURS.md` que la notion correspondante est vue. Les dossiers de cours suivent la nomenclature `Suivit_Cours/pid.aaaammjj/` (depuis le 2026-09-21). | `docs/RYTHME-COURS.md`, `CLAUDE.md` | 2026-09-21 |
+| 2 | Le projet avance au rythme du cours, jamais devant : avant toute tache d'implementation, verifier dans `docs/RYTHME-COURS.md` que la notion correspondante est vue. **Levée le 2026-11-11 : aucun verrou, voir 06-PLAN.** Les dossiers de cours suivent la nomenclature `Suivit_Cours/pid.aaaammjj/` (depuis le 2026-09-21). | `docs/RYTHME-COURS.md`, `CLAUDE.md` | 2026-09-21 |
 
 ## Historique
+
+### [2026-11-11 23:00] SESSION — End
+**Resume :** Cours du 17/10 et du 07/11 intégrés (7 notes dans docs/academique/). Brainstorm complet du générateur de devis et de l'ERP au format /brainstorm-it : dossier docs/lancement/ prêt à coder (PRD v2.1, TRD v1.1, App Flow v1.2, UX/UI sans objet, Backend v1.1, Plan v1.0 en 18 lots, ADR-001 à ADR-008). Verrou de rythme du cours levé. L01 commencé : sauvegarde de src/ hors dépôt ; installations Herd, MySQL 8.4 (port 3307, le 3306 est pris par Dolibarr) et Mailpit à faire par mentalyas.
+**Branche :** master
+**Commits pushes :** 11 (2 de cette session + 9 locaux en attente)
+
+### [2026-11-11] DOCS — dossier de lancement : Plan validé, dossier prêt à coder
+**Fichiers :** `docs/lancement/06-PLAN.md` (v1.0), `README.md`, `CLAUDE.md`, `docs/RYTHME-COURS.md`
+**Resume :** 18 lots (L01 socle → L18 finitions), chemin critique L01-L02-L03-L05-L07-L09-L10-L14-L17-L18 ; couverture vérifiée par script : 74 CA, 56 écrans, 38 tables. Verrou de rythme du cours levé par mentalyas (règle 2 du journal caduque) : l'implémentation suit le Plan, RYTHME-COURS devient un suivi pédagogique. Dossier `docs/lancement/` à l'état « prêt à coder ».
+
+### [2026-11-11] DOCS — dossier de lancement : ERP répercuté, TRD, App Flow et Backend validés
+**Fichiers :** `docs/lancement/01-PRD.md` (v2.1), `02-TRD.md` (v1.1), `03-APP-FLOW.md` (v1.2), `05-BACKEND.md` (v1.1), `decisions/ADR-007-cloudinary.md`, `decisions/ADR-008-mailpit.md`, `README.md`
+**Resume :** ERP F08-F13 répercuté : API02 Cloudinary (compte PortfolioPhotographe, dossier `pid/`), emails capturés par Mailpit, 3 commandes planifiées, Chart.js pour F11 ; écrans E04-E06, E25-E40, parcours P8-P13 ; tables T20-T38. ADR-007 et ADR-008 acceptées, MSG20-MSG23 validés (Q26). Couverture vérifiée par script : 57 UC sur 57, aucun message cité non défini. Prochaine étape : Plan.
+
+### [2026-11-11] DOCS — dossier de lancement : Schéma Backend validé
+**Fichiers :** `docs/lancement/05-BACKEND.md` (v1.0), `01-PRD.md` (v1.2), `03-APP-FLOW.md` (v1.1)
+**Resume :** 19 tables (T01-T19) ; montants en centimes, taux en points de base, distances en mètres ; paramètres variables en JSON validé par le moteur ; lignes figées ; aucune donnée tarifaire de départ. Rétention réglable + anonymisation (R06.14, R06.15, UC06.7, UC06.8), exception RGPD à R07.6.
+
+### [2026-11-11] DOCS — dossier de lancement : App Flow et UX/UI validés
+**Fichiers :** `docs/lancement/03-APP-FLOW.md` (v1.0), `docs/lancement/04-UX-UI.md` (v1.0, sans objet), `docs/lancement/01-PRD.md` (v1.1)
+**Resume :** 30 écrans (simulateur page unique, dossier client à onglets, ERP à menu latéral), 7 parcours, couverture des 29 UC. Messages hors UC rangés au PRD (MSG01-MSG15), R06.13 ajoutée. UX/UI sans objet : direction artistique et tokens repris de PortfolioPhotographe.
+
+### [2026-11-11] DOCS — dossier de lancement : TRD validé
+**Fichiers :** `docs/lancement/02-TRD.md` (v1.0), `docs/lancement/decisions/ADR-001` à `ADR-006`, `docs/lancement/README.md`
+**Resume :** Moteur PHP pur (`app/Domain/Devis`) dans Laravel 13, vues Blade + jQuery 4.0.0 + Tailwind 4, PHP 8.4, MySQL 8.4 LTS, Dompdf, OpenRouteService (API01), PHPUnit. PID reste en local (Herd + MySQL) ; la mise en ligne se fera avec PortfolioPhotographe. À vérifier à l'installation : quotas géocodage ORS (Q18), compatibilité laravel-dompdf ↔ Laravel 13.
+
+### [2026-11-11] DOCS — dossier de lancement du moteur de devis : PRD validé
+**Fichiers :** `docs/lancement/README.md`, `docs/lancement/01-PRD.md` (v1.0), `docs/brainstorm/generateur-devis/L1-fondation.md` (matière première, conservé)
+**Resume :** Brainstorm repris de zéro sur la logique métier du générateur de devis, d'abord en `/brainstorm` classique (L1), puis basculé sur `/brainstorm-it` à la demande de mentalyas. PRD validé : 6 principes (généricité totale, aucune valeur en dur, calculateur non comptable, devis détaillé, instantané des prix, moteur indépendant du langage), 7 fonctionnalités F01-F07 (catalogue, fiches techniques, calcul, transport, réductions + parrainage, cycle du dossier, PDF versionné). Décision D2 du L1 abandonnée : l'adresse est obligatoire dans le devis. Prochaine étape : TRD.
+
+### [2026-11-11] DOCS — intégration des cours du 17/10 et du 07/11
+**Fichiers :** `docs/academique/` (6 notes créées, 1 étendue, MOC, canvas), `docs/RYTHME-COURS.md`, `CLAUDE.md`
+**Resume :** `/professor cours` sur le matériel déposé (code seul, pas de `.txt`). Créées : Commandes AJAX (`ExecuteCommand` ↔ `TreatCommand`), Classes JS (singleton, `DefineAppClass`, initialiseurs), Mode DEV/PROD, Schéma `Role`/`Utilisateur`, pont Hachage SHA-512 ↔ bcrypt, glossaires AJAX/JSON et MySQL. Étendue : Premier JavaScript (évolutions 17/10, 07/11). Canvas : 7 nœuds ajoutés (dont les deux notes du 10/10 qui manquaient). Rythme : briques 8 et 11 passent à 🟡.
+**Non fait (attend mentalyas) :** remplacement de `src/prof` + tags `cours-20261017` / `cours-20261107`, sort de `pid.struct.sql` (mot de passe MySQL d'exemple en clair), ménage des dossiers de code dans `Suivit_Cours/`. Rien n'est commité.
+**Points ⚠️ :** `ResponseError` sans `$this->` ; `typeof(...) == undefined` ; commande `Command_*` inexistante non vérifiée ; casse `Role`/`role` dans le SQL ; registre de classes périmé en v2.
 
 ### [2026-10-11] DOCS — intégration du cours du 10/10
 **Fichiers :** `docs/academique/IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet.md`, `docs/academique/Premier JavaScript du framework — jQuery, data-path-to-root et application.js.md`, `docs/academique/Glossaire PHP — Sérialisation (serialize, __sleep, __wakeup).md`, `docs/academique/Glossaire — JavaScript et jQuery, premier contact avec le navigateur.md`, `docs/academique/MOC — PID.md`, `docs/academique/Laravel ↔ framework PID — Correspondances.md`, `docs/RYTHME-COURS.md`, `docs/TASKS.md`
