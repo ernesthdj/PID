@@ -88,3 +88,17 @@ CApplication.prototype.Afficher = function() { console.log("J'ai un bidule : " +
 **Question d'oral probable** — *« Comment le JavaScript connaît-il le chemin vers la racine du site ? »* → PHP le calcule (`PID_PathTo`) et le dépose dans des attributs `data-*` du `<body>` ; le JS le lit avec `.data()` une fois le DOM prêt.
 
 **Lien avec la suite** : ces chemins serviront de **base d'URL** pour les futures requêtes AJAX. Équivalent Laravel : `{{ url('/') }}` ou `asset()` injecté dans un attribut `data-*` du layout Blade, ou une balise `<meta>` lue par le JS ([[Laravel ↔ framework PID — Correspondances]]).
+
+---
+
+## Évolution du 17/10 — le prototype devient une classe, le singleton est écrit
+
+- `function CApplication()` + `CApplication.prototype.Afficher` sont remplacés par une **`class CApplication`** (syntaxe ES6). Le singleton commenté le 10/10 est **écrit** : `CApplication.Instance()`.
+- La lecture des chemins `data-path-to-root` / `data-path-to-pid` passe dans le **constructeur** et devient **obligatoire** (`throw` si l'attribut manque) ; ils sont gardés dans `m_PathToRoot` / `m_PathToPid`.
+- Ces chemins servent enfin : `m_PathToPid + ".treatcommand.php"` est l'URL des requêtes AJAX → [[Commandes AJAX du framework — ExecuteCommand et TreatCommand]].
+- Le site a son propre JS : `CMonApp` (PHP) ajoute `/js/monapp.js` dans son constructeur.
+- Détail complet : [[Classes JS du framework — singleton, DefineAppClass et initialiseurs]].
+
+## Évolution du 07/11 — lecture des chemins différée au `ready`
+
+Dans la v2, la lecture des attributs `data-*` quitte le constructeur pour un **initialiseur** exécuté au `$(document).ready` (`ExecuteInitializers`) ; le `ready` n'appelle plus `FaireQuelqueChose()`.

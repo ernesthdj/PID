@@ -1,34 +1,383 @@
 {
-	"nodes":[
-		{"id":"pathto","type":"file","file":"docs/academique/PID_PathTo, PID_Include et PID_IncludeOnce.md","x":-140,"y":60,"width":380,"height":360,"color":"4"},
-		{"id":"label_ordre","type":"text","text":"Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)\n7 Dossier .pid · 8 CPage · 9 Trait CSS/JS (19/09)","x":-1000,"y":300,"width":260,"height":190},
-		{"id":"label_29_08","type":"text","text":"## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)","x":-820,"y":-580,"width":300,"height":220},
-		{"id":"autoload","type":"file","file":"docs/academique/Autoloading PID — spl_autoload_register et le Cache.md","x":-330,"y":600,"width":380,"height":280,"color":"3"},
-		{"id":"capplication","type":"file","file":"docs/academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md","x":650,"y":600,"width":380,"height":420,"color":"5"},
-		{"id":"intro_php","type":"file","file":"docs/academique/Introduction au PHP — Bases pour débutant.md","x":-1220,"y":-1880,"width":970,"height":940,"color":"2"},
-		{"id":"retry","type":"file","file":"docs/academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md","x":160,"y":1000,"width":380,"height":420,"color":"6"},
-		{"id":"poo","type":"file","file":"docs/academique/Structure POO — CPersonne et CAutre.md","x":-780,"y":1000,"width":380,"height":420,"color":"3"},
-		{"id":"dossier_pid","type":"file","file":"docs/academique/Dossier .pid et préfixe étoile — Séparer le framework du site.md","x":650,"y":1120,"width":380,"height":360,"color":"5"},
-		{"id":"cpage","type":"file","file":"docs/academique/CPage — Générer une page HTML (WriteDocument et points d'extension).md","x":650,"y":1640,"width":380,"height":420,"color":"5"},
-		{"id":"tcssjs","type":"file","file":"docs/academique/TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS.md","x":1150,"y":1400,"width":380,"height":360,"color":"5"},
-		{"id":"moc","type":"file","file":"docs/academique/MOC — PID.md","x":300,"y":-1760,"width":580,"height":440,"color":"1"},
-		{"id":"pont_laravel","type":"file","file":"docs/academique/Laravel ↔ framework PID — Correspondances.md","x":650,"y":2200,"width":380,"height":360,"color":"2"},
-		{"id":"bootstrap","type":"file","file":"docs/academique/Bootstrap PID — Detection de la Racine du Site.md","x":-80,"y":-820,"width":1070,"height":700,"color":"4"},
-		{"id":"label_glossaire","type":"text","text":"+ Glossaire PHP (9 notes) :\nvisibilite, methodes magiques,\nstatic, closures, sessions,\neval, tokenisation,\ninclude/require, singleton\n-> section dediee du MOC,\npas de noeuds ici (evite la toile d'araignee)","x":-160,"y":-1180,"width":380,"height":180}
+	"nodes": [
+		{
+			"id": "pathto",
+			"type": "file",
+			"file": "docs/academique/PID_PathTo, PID_Include et PID_IncludeOnce.md",
+			"x": -140,
+			"y": 60,
+			"width": 380,
+			"height": 360,
+			"color": "4"
+		},
+		{
+			"id": "label_ordre",
+			"type": "text",
+			"text": "Sens de lecture : haut -> bas\n1 Bootstrap · 2 PathTo/Include\n3 Autoloading · 4 POO (paralelle)\n5 Retry (raffinement 12/09)\n6 CApplication (extension 12/09)\n7 Dossier .pid · 8 CPage · 9 Trait CSS/JS (19/09)",
+			"x": -1000,
+			"y": 300,
+			"width": 260,
+			"height": 190
+		},
+		{
+			"id": "label_29_08",
+			"type": "text",
+			"text": "## 29/08 — avant\nSquelette pre-autoloader\n(index.php + index.content.php,\npas encore de PID_PathTo/Include)",
+			"x": -820,
+			"y": -580,
+			"width": 300,
+			"height": 220
+		},
+		{
+			"id": "autoload",
+			"type": "file",
+			"file": "docs/academique/Autoloading PID — spl_autoload_register et le Cache.md",
+			"x": -330,
+			"y": 600,
+			"width": 380,
+			"height": 280,
+			"color": "3"
+		},
+		{
+			"id": "capplication",
+			"type": "file",
+			"file": "docs/academique/CApplication, CMonApp et CPage — Singleton applicatif et charset.md",
+			"x": 650,
+			"y": 600,
+			"width": 380,
+			"height": 420,
+			"color": "5"
+		},
+		{
+			"id": "intro_php",
+			"type": "file",
+			"file": "docs/academique/Introduction au PHP — Bases pour débutant.md",
+			"x": -1220,
+			"y": -1880,
+			"width": 970,
+			"height": 940,
+			"color": "2"
+		},
+		{
+			"id": "retry",
+			"type": "file",
+			"file": "docs/academique/Evolution de l'Autoloader — Boucle de Retry (0509 vers 1209).md",
+			"x": 160,
+			"y": 1000,
+			"width": 380,
+			"height": 420,
+			"color": "6"
+		},
+		{
+			"id": "poo",
+			"type": "file",
+			"file": "docs/academique/Structure POO — CPersonne et CAutre.md",
+			"x": -780,
+			"y": 1000,
+			"width": 380,
+			"height": 420,
+			"color": "3"
+		},
+		{
+			"id": "dossier_pid",
+			"type": "file",
+			"file": "docs/academique/Dossier .pid et préfixe étoile — Séparer le framework du site.md",
+			"x": 650,
+			"y": 1120,
+			"width": 380,
+			"height": 360,
+			"color": "5"
+		},
+		{
+			"id": "cpage",
+			"type": "file",
+			"file": "docs/academique/CPage — Générer une page HTML (WriteDocument et points d'extension).md",
+			"x": 650,
+			"y": 1640,
+			"width": 380,
+			"height": 420,
+			"color": "5"
+		},
+		{
+			"id": "tcssjs",
+			"type": "file",
+			"file": "docs/academique/TCssJsFiles et CFileCollection — Collections de fichiers CSS et JS.md",
+			"x": 1150,
+			"y": 1400,
+			"width": 380,
+			"height": 360,
+			"color": "5"
+		},
+		{
+			"id": "moc",
+			"type": "file",
+			"file": "docs/academique/MOC — PID.md",
+			"x": 300,
+			"y": -1760,
+			"width": 580,
+			"height": 440,
+			"color": "1"
+		},
+		{
+			"id": "pont_laravel",
+			"type": "file",
+			"file": "docs/academique/Laravel ↔ framework PID — Correspondances.md",
+			"x": 650,
+			"y": 2200,
+			"width": 380,
+			"height": 360,
+			"color": "2"
+		},
+		{
+			"id": "bootstrap",
+			"type": "file",
+			"file": "docs/academique/Bootstrap PID — Detection de la Racine du Site.md",
+			"x": -80,
+			"y": -820,
+			"width": 1070,
+			"height": 700,
+			"color": "4"
+		},
+		{
+			"id": "label_glossaire",
+			"type": "text",
+			"text": "+ Glossaire PHP (9 notes) :\nvisibilite, methodes magiques,\nstatic, closures, sessions,\neval, tokenisation,\ninclude/require, singleton\n-> section dediee du MOC,\npas de noeuds ici (evite la toile d'araignee)",
+			"x": -160,
+			"y": -1180,
+			"width": 380,
+			"height": 180
+		},
+		{
+			"id": "exhibit",
+			"type": "file",
+			"file": "docs/academique/IExhibitable et TExhibitable — Exposer l'état sérialisable d'un objet.md",
+			"x": 1150,
+			"y": 600,
+			"width": 380,
+			"height": 420,
+			"color": "5"
+		},
+		{
+			"id": "premier_js",
+			"type": "file",
+			"file": "docs/academique/Premier JavaScript du framework — jQuery, data-path-to-root et application.js.md",
+			"x": 1650,
+			"y": 1640,
+			"width": 380,
+			"height": 420,
+			"color": "5"
+		},
+		{
+			"id": "js_classes",
+			"type": "file",
+			"file": "docs/academique/Classes JS du framework — singleton, DefineAppClass et initialiseurs.md",
+			"x": 1650,
+			"y": 2160,
+			"width": 380,
+			"height": 420,
+			"color": "6"
+		},
+		{
+			"id": "ajax_cmd",
+			"type": "file",
+			"file": "docs/academique/Commandes AJAX du framework — ExecuteCommand et TreatCommand.md",
+			"x": 1650,
+			"y": 2680,
+			"width": 380,
+			"height": 420,
+			"color": "6"
+		},
+		{
+			"id": "mode_dev",
+			"type": "file",
+			"file": "docs/academique/Mode DEV et PROD — fichiers marqueurs et commandes de debug.md",
+			"x": 1650,
+			"y": 3200,
+			"width": 380,
+			"height": 420,
+			"color": "4"
+		},
+		{
+			"id": "schema_sql",
+			"type": "file",
+			"file": "docs/academique/Schéma PID — tables Role et Utilisateur et fonctions stockées.md",
+			"x": 1650,
+			"y": 3720,
+			"width": 380,
+			"height": 420,
+			"color": "4"
+		},
+		{
+			"id": "pont_hash",
+			"type": "file",
+			"file": "docs/academique/Hachage du mot de passe — SHA-512 du prof ↔ bcrypt du projet.md",
+			"x": 1650,
+			"y": 4240,
+			"width": 380,
+			"height": 420,
+			"color": "2"
+		}
 	],
-	"edges":[
-		{"id":"e_29_08_bootstrap","fromNode":"label_29_08","fromSide":"right","toNode":"bootstrap","toSide":"left","label":"evolue vers (05/09)"},
-		{"id":"e_moc_bootstrap","fromNode":"moc","fromSide":"bottom","toNode":"bootstrap","toSide":"top","label":"1"},
-		{"id":"e_bootstrap_pathto","fromNode":"bootstrap","fromSide":"bottom","toNode":"pathto","toSide":"top","label":"2 fournit PID_PATH_TO_ROOT"},
-		{"id":"e_pathto_autoload","fromNode":"pathto","fromSide":"bottom","toNode":"autoload","toSide":"top","label":"3 utilise PID_Include"},
-		{"id":"e_autoload_poo","fromNode":"autoload","fromSide":"bottom","toNode":"poo","toSide":"top","label":"4 charge ces classes"},
-		{"id":"e_autoload_retry","fromNode":"autoload","fromSide":"bottom","toNode":"retry","toSide":"top","label":"5 durci le 12/09"},
-		{"id":"e_bootstrap_capplication","fromNode":"bootstrap","fromSide":"right","toNode":"capplication","toSide":"top","label":"valide PID_CHARSET / PID_APPLICATION_SESSION_ITEM_NAME"},
-		{"id":"e_autoload_capplication","fromNode":"autoload","fromSide":"right","toNode":"capplication","toSide":"left","label":"6 charge CApplication/CMonApp/CPage"},
-		{"id":"e_moc_intro","fromNode":"moc","fromSide":"left","toNode":"intro_php","toSide":"right","label":"prerequis PHP"},
-		{"id":"e_capplication_dossier","fromNode":"capplication","fromSide":"bottom","toNode":"dossier_pid","toSide":"top","label":"7 framework range dans .pid (19/09)"},
-		{"id":"e_dossier_cpage","fromNode":"dossier_pid","fromSide":"bottom","toNode":"cpage","toSide":"top","label":"8 CPage devient complete"},
-		{"id":"e_tcssjs_cpage","fromNode":"tcssjs","fromSide":"left","toNode":"cpage","toSide":"right","label":"9 fournit Css() / Js()"},
-		{"id":"e_cpage_pont","fromNode":"cpage","fromSide":"bottom","toNode":"pont_laravel","toSide":"top","label":"10 equivalents Laravel"}
+	"edges": [
+		{
+			"id": "e_29_08_bootstrap",
+			"fromNode": "label_29_08",
+			"fromSide": "right",
+			"toNode": "bootstrap",
+			"toSide": "left",
+			"label": "evolue vers (05/09)"
+		},
+		{
+			"id": "e_moc_bootstrap",
+			"fromNode": "moc",
+			"fromSide": "bottom",
+			"toNode": "bootstrap",
+			"toSide": "top",
+			"label": "1"
+		},
+		{
+			"id": "e_bootstrap_pathto",
+			"fromNode": "bootstrap",
+			"fromSide": "bottom",
+			"toNode": "pathto",
+			"toSide": "top",
+			"label": "2 fournit PID_PATH_TO_ROOT"
+		},
+		{
+			"id": "e_pathto_autoload",
+			"fromNode": "pathto",
+			"fromSide": "bottom",
+			"toNode": "autoload",
+			"toSide": "top",
+			"label": "3 utilise PID_Include"
+		},
+		{
+			"id": "e_autoload_poo",
+			"fromNode": "autoload",
+			"fromSide": "bottom",
+			"toNode": "poo",
+			"toSide": "top",
+			"label": "4 charge ces classes"
+		},
+		{
+			"id": "e_autoload_retry",
+			"fromNode": "autoload",
+			"fromSide": "bottom",
+			"toNode": "retry",
+			"toSide": "top",
+			"label": "5 durci le 12/09"
+		},
+		{
+			"id": "e_bootstrap_capplication",
+			"fromNode": "bootstrap",
+			"fromSide": "right",
+			"toNode": "capplication",
+			"toSide": "top",
+			"label": "valide PID_CHARSET / PID_APPLICATION_SESSION_ITEM_NAME"
+		},
+		{
+			"id": "e_autoload_capplication",
+			"fromNode": "autoload",
+			"fromSide": "right",
+			"toNode": "capplication",
+			"toSide": "left",
+			"label": "6 charge CApplication/CMonApp/CPage"
+		},
+		{
+			"id": "e_moc_intro",
+			"fromNode": "moc",
+			"fromSide": "left",
+			"toNode": "intro_php",
+			"toSide": "right",
+			"label": "prerequis PHP"
+		},
+		{
+			"id": "e_capplication_dossier",
+			"fromNode": "capplication",
+			"fromSide": "bottom",
+			"toNode": "dossier_pid",
+			"toSide": "top",
+			"label": "7 framework range dans .pid (19/09)"
+		},
+		{
+			"id": "e_dossier_cpage",
+			"fromNode": "dossier_pid",
+			"fromSide": "bottom",
+			"toNode": "cpage",
+			"toSide": "top",
+			"label": "8 CPage devient complete"
+		},
+		{
+			"id": "e_tcssjs_cpage",
+			"fromNode": "tcssjs",
+			"fromSide": "left",
+			"toNode": "cpage",
+			"toSide": "right",
+			"label": "9 fournit Css() / Js()"
+		},
+		{
+			"id": "e_cpage_pont",
+			"fromNode": "cpage",
+			"fromSide": "bottom",
+			"toNode": "pont_laravel",
+			"toSide": "top",
+			"label": "10 equivalents Laravel"
+		},
+		{
+			"id": "e_capplication_exhibit",
+			"fromNode": "capplication",
+			"toNode": "exhibit",
+			"fromSide": "right",
+			"toSide": "left",
+			"label": "10/10 : etat en session"
+		},
+		{
+			"id": "e_cpage_premierjs",
+			"fromNode": "cpage",
+			"toNode": "premier_js",
+			"fromSide": "right",
+			"toSide": "left",
+			"label": "11 premier JS (10/10)"
+		},
+		{
+			"id": "e_premierjs_jsclasses",
+			"fromNode": "premier_js",
+			"toNode": "js_classes",
+			"fromSide": "bottom",
+			"toSide": "top",
+			"label": "12 classes JS (17/10)"
+		},
+		{
+			"id": "e_jsclasses_ajax",
+			"fromNode": "js_classes",
+			"toNode": "ajax_cmd",
+			"fromSide": "bottom",
+			"toSide": "top",
+			"label": "13 ExecuteCommand (17/10)"
+		},
+		{
+			"id": "e_ajax_modedev",
+			"fromNode": "ajax_cmd",
+			"toNode": "mode_dev",
+			"fromSide": "bottom",
+			"toSide": "top",
+			"label": "14 commandes DEV (07/11)"
+		},
+		{
+			"id": "e_modedev_schema",
+			"fromNode": "mode_dev",
+			"toNode": "schema_sql",
+			"fromSide": "bottom",
+			"toSide": "top",
+			"label": "15 premier MySQL (07/11)"
+		},
+		{
+			"id": "e_schema_ponthash",
+			"fromNode": "schema_sql",
+			"toNode": "pont_hash",
+			"fromSide": "bottom",
+			"toSide": "top",
+			"label": "16 pont projet"
+		}
 	]
 }
